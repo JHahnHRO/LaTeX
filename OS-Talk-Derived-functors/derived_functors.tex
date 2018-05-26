@@ -1,0 +1,501 @@
+% !TeX root = derived_functors.tex
+% !TeX spellcheck = en_GB
+\documentclass[fontsize=11pt,fleqn,a4paper]{scrartcl}
+\input{_preamble/master_preamble.tex}
+
+\begin{document}
+
+\maketitle
+
+\section{Some categorial flavour to algebraic notions}
+
+\begin{definition}[Projective and injective objects]
+$P\in Ob(\mathsf{A})$ is called \udot{projective} iff for every epimorphism $B\twoheadrightarrow A$ and every morphism $P\to A$ there is a morphism $P\to B$ making the triangle commutative.
+
+Dually $I\in Ob(\mathsf{A})$ is called \udot{injective} iff for every monomorphism $A\hookrightarrow B$ and every morphism $A\to I$ there is a morphism $B\to I$ making the triangle commutative.
+
+\begin{figure}[ht]
+\centering
+\begin{tabular}{cc}
+\begin{tikzpicture}
+\node (B) at (0,0) {$B$};
+\node (A) at (2,0) {$A$};
+\node (null) at (3,0) {$0$};
+\node (P) at (2,2) {$P$};
+
+\path[->]
+(A) edge (null)
+(P) edge (A)
+(P) edge[dotted] (B);
+
+\path[->>]
+(B) edge (A);
+\end{tikzpicture}
+&
+\begin{tikzpicture}
+\node (B) at (0,0) {$B$};
+\node (A) at (2,0) {$A$};
+\node (null) at (3,0) {$0$};
+\node (I) at (2,2) {$I$};
+
+\path[<-]
+(A) edge (null)
+(P) edge (A)
+(I) edge[dotted] (B);
+
+\path[left hook->]
+(A) edge (B);
+\end{tikzpicture}
+\end{tabular}
+\end{figure}
+\end{definition}
+
+\begin{remark}
+In both cases, the morphisms need not be unique and in many cases they aren't.
+\end{remark}
+
+\section{Some homological algebra}
+
+\begin{definition}[Chain complexes]
+Let $\mathsf{A}$ be an additive category. A \udot{chain complex} $(A_\ast,\partial)$ is a pair consisting of a graded object $A_\ast\in\mathsf{A}^\IN$ and a morphism $\partial: A\to A$ of degree $-1$, i.e. $\partial_n : A_n \to A_{n-1}$, such that $\partial\circ\partial=0$.
+
+The category of chain complexes is denoted $Ch(\mathsf{A})$.
+\end{definition}
+
+\begin{definition}[Homology]
+Let $\mathsf{A}$ be an abelian category and $A_\ast\in Ch(\mathsf{A})$ a chain complex. Then its \udot{homology} is defined to be the graded object $H_n := \underbrace{\ker(\partial_n)}_{=:Z_n} / \underbrace{\im(\partial_{n+1})}_{=:B_n}$.
+\end{definition}
+
+\subsection{Mapping cone}
+
+\begin{definition}
+Let $f:(A_\ast,\partial^A)\to(B_\ast,\partial^B)$ be a chain-map. The \udot{mapping cone} $C(f)=(C(f)_\ast,\partial^{C(f)})$ is the chain complex given by
+\[C(f)_n := A_{n-1} \oplus B_n \quad\text{and}\quad \partial_n^{C(f)} := \begin{pmatrix}-\partial_{n-1}^A & 0 \\ -f_{n-1} & \partial_n^B \end{pmatrix}\]
+\end{definition}
+
+\begin{lemma}[Mapping cones vs. quasi-isomorphisms]
+Let $f:(A_\ast,\partial^A)\to(B_\ast,\partial^B)$ be a chain-map.
+\begin{enumerate}
+\item $0 \to B \xhookrightarrow{i} C(f) \xtwoheadrightarrow{q} A[-1] \to 0$ is a short exact sequence of chain complexes.
+\item The induced long exact sequence in homology
+\[\cdots \to H_{n+1}(B) \xrightarrow{i_\ast} H_{n+1}(C(f)) \xrightarrow{q_\ast} \underbrace{H_{n+1}(A[-1])}_{=H_n(A)} \xrightarrow{\delta} H_n(B) \to H_n(C(f)) \to \cdots\]
+has $f_\ast$ as connecting morphism $\delta$.
+\item $f$ quasi-isomorphism $\iff C(f)$ is acylic.
+\end{enumerate}
+\end{lemma}
+
+\begin{lemma}[Mapping cones vs. chain homotopy]
+Let $f:(A_\ast,\partial^A)\to(B_\ast,\partial^B)$ be a chain-map.
+\begin{enumerate}
+\item $f$ is a homotopy-equivalence $\iff C(f)$ is contractible.
+\item TFAE:
+\begin{enumerate}
+\item $f$ is null-homotopic.
+\item $f$ factorises through $A\hookrightarrow C(\id_A)$.
+\item $f$ factorises through a contractible complex.
+\item The short exact sequence $0\to B\hookrightarrow C(f)\to A\to 0$ splits.
+\end{enumerate}
+\end{enumerate}
+\end{lemma}
+\begin{proof}
+a. A map
+\[H:=\begin{pmatrix}
+\alpha & \beta \\ \gamma & \delta
+\end{pmatrix} : \begin{array}{c}A_{n-1}\\\oplus\\B_n\end{array} \to \begin{array}{c}A_n \\\oplus\\ B_{n+1}\end{array}\]
+is a homotopy $\id_{C(f)} \homotopic 0$ iff $H\partial^{C(f)} + \partial^{C(f)} H = \id$, that is iff
+\[-\begin{pmatrix}
+\alpha\partial + \beta f + \partial\alpha & -\beta\partial + \partial\beta \\
+\gamma\partial + \delta f + f\alpha-\partial\gamma & -\delta\partial + f\beta - \partial\delta
+\end{pmatrix} = \begin{pmatrix}
+\id & 0 \\ 0 & \id
+\end{pmatrix}\]
+i.e. iff $\beta: B\to A$ is a chain-map, $-\alpha$ is a homotopy $\id\homotopic(-\beta) f$, $\delta$ is homotopy $\id\homotopic f(-\beta)$ and $\gamma$ is some map satisfying the last equation.
+
+This already proves one direction: If $C(f) \homotopic 0$, then $f(-\beta) \homotopic \id$ and $(-\beta) f \homotopic\id$ so that $A\homotopic B$.
+
+\medbreak
+Conversely, if $f(-\beta) \homotopic \id$ and $(-\beta)f \homotopic \id$ via homotopies $\delta$ and $-\alpha$ respectively, then setting $\gamma:=0$ for the moment, we instead get a homotopy $\tilde{H}$ of $0$ with $\psi:=\begin{pmatrix}
+\id & 0 \\ \delta f + f\alpha & \id
+\end{pmatrix}$ which is obviously an isomorphism on the level of modules. $\psi$ is in fact a chain map:
+\[\partial^{C(f)} \psi - \psi \partial^{C(f)} = \begin{pmatrix}
+0 & 0 \\ \partial\delta f + \partial f\alpha + \delta f\partial + f\alpha\partial & 0
+\end{pmatrix}\]
+This is zero because
+\[\partial\delta f + \delta f \partial = \partial\delta f + \delta \partial f = (-\id+f\beta)f\]
+and
+\[\partial f \alpha + f\alpha\partial = f\partial\alpha+f\alpha\partial = f(\id-\beta f)\]
+Therefore $H:=\psi^{-1}\tilde{H}$ is a homotopy $0\homotopic \id_{C(f)}$ so that $C(f)$ is contractible as claimed.
+
+\medbreak
+b. i.$\impliedby$ii.$\impliedby$iii. is trivial. We show i.$\iff$iii.: $f$ factorises over the inclusion $A\hookrightarrow C(\id_A), a\mapsto (0,a)$ iff there is a chain-map
+\[(h_{n-1}, f_n) : \begin{array}{c}A_{n-1}\\\oplus\\A_n\end{array} \to B_n\]
+And for a family $(h_n: A_n\to B_{n+1})$ to induce such a chain map $C(\id_A)\to B$ is equivalent to $\partial^B h =-h\partial^A - f$, i.e. to $h$ being a homotopy $f \homotopic 0$.
+
+i.$\iff$iv.: $B\hookrightarrow C(f)$ splits iff there is a chain map
+\[(r,\id) : \begin{array}{c}A_{n-1}\\\oplus\\B_n\end{array} \to B_n\]
+And for a family $(r_n: A_n\to B_{n+1})$ to induce such a chain map $C(f)\to B$ is equivalent to $\partial r=-r\partial-f$, i.e. to $r$ being a homotopy $f\homotopic 0$.
+\end{proof}
+
+\subsection{Replacing objects and complexes by projective or injective resolutions}
+
+\begin{lemma}
+Chain maps between projectives / acyclic complexes are unique up to homotopy:
+\begin{multicols}{2}
+\begin{enumerate}
+\item Homology: If $C_\ast\in Ch^-(\mathsf{A})$ is acyclic and $P_\ast\in Ch^-(Proj(\mathsf{A}))$ all morphisms $P_\ast\to C_\ast$ are null-homotopic.
+\item Cohomology: If $C^\ast\in Ch^+(\mathsf{A})$ is acyclic and $I^\ast\in Ch^+(Inj(\mathsf{A}))$ all morphisms $C^\ast \to I^\ast$ are null-homotopic.
+\end{enumerate}
+\end{multicols}
+\end{lemma}
+\begin{proof}
+Let $\alpha,\beta: P_\ast\to C_\ast$ be two chain maps. Inductively we construct a homotopy $h:P_\ast\to C_\ast[1]$ between the two.
+
+\begin{tikzcd}[row sep=large, column sep=large]
+\cdots \arrow[r] &
+P_2 \ar[r] \ar[d, "\alpha_2-\beta_2" description] \ar[dl, dotted, "h_2" description] &
+P_1 \ar[r] \ar[d, "\alpha_1-\beta_1" description] \ar[dl, dotted, "h_1" description] &
+P_0 \ar[r] \ar[d, "\alpha_0-\beta_0" description] \ar[dl, dotted, "h_0" description] & 0 \\
+\cdots \ar[r] & C_2 \ar[r] & C_1 \ar[r] & C_0 \ar[r] & 0
+\end{tikzcd}
+
+We begin with setting $h_n:=0$ for all $n<0$. First step is to construct $h_0$. Since $C$ is exact, $C_1\to C_0$ is epi so that $\alpha_0-\beta_0$ lifts to some $h_0: P_0 \to C_1$ by projectivity, so that $\partial_1 h_0 + \partial 0 = \alpha_0-\beta_0$ is satisfied.
+
+If $h_0,\ldots,h_{n-1}$ are already known and a partial homotopy, then
+\begin{align*}
+\partial_n(\alpha_n-\beta_n) &= (\alpha_{n-1}-\beta_{n-1})\partial_n \\
+&=(\partial_n h_{n-1} + h_{n-2} \partial_{n-1})\partial_n \\
+&=\partial_n h_{n-1} \partial_n
+\end{align*}
+So that $\partial(\alpha_n-\beta_n - h_{n-1}\partial_n)=0$. Therefore $\alpha_n-\beta_n-h_{n-1}\partial_n$ maps into $Z_n(C)$ which equals $B_n(C)=\im(\partial_{n+1})$ by exactness. By projectivity, we can find $h_n$ so that
+\[\alpha_n-\beta_n - h_{n-1}\partial_n = \partial_{n+1} h_n\]
+is satisfied which proves the lemma.
+\end{proof}
+
+\begin{corollary}[Fundamental lemma of homological algebra]
+\enquote{Objects can be replaced by their projective or injective resolutions}
+\begin{multicols}{2}
+\begin{enumerate}
+\item Homology: Assume that $\mathsf{A}$ has enough projectives and that a projective resolution has been fixed for every object.
+
+Any $f:A\to B$ extends to a chain map between the augmented complexes
+\[\begin{tikzcd}
+P_\ast(A) \ar[r] \ar[d, "\phi" description] & A \ar[r] \ar[d, "f" description] & 0\\
+P_\ast(B) \ar[r] & B \ar[r] & 0
+\end{tikzcd}\]
+$\phi$ is unique up to homotopy.
+
+In particular: $\mathsf{A} \xrightarrow{P_\ast} K^-(Proj(\mathsf{A}))$ is a well-defined functor with $H_0\circ P_\ast \isomorphic \id_\mathsf{A}$.
+
+\item Cohomology: Assume that $\mathsf{A}$ has enough injectives and that a injective resolution has been fixed for every object.
+
+Any $f:A\to B$ extends to a chain map between the augmented complexes
+\[\begin{tikzcd}
+0 \ar[r] & A \ar[r] \ar[d, "f" description] & I^\ast(A) \ar[d, "\phi" description] \\
+0 \ar[r] & B \ar[r] & I^\ast(B) 
+\end{tikzcd}\]
+$\phi$ is unique up to homotopy.
+
+In particular: $\mathsf{A} \xrightarrow{I^\ast} K^+(Inj(\mathsf{A}))$ is a well-defined functor with $H_0\circ I^\ast \isomorphic \id_\mathsf{A}$.
+\end{enumerate}
+\end{multicols}
+As a consequence, projective and injective resolutions are unique up to homotopy equivalence.
+\end{corollary}
+\begin{proof}
+Uniqueness up to homotopy follows from the lemma. We only have to show existence. Again, we work inductively:
+\[\begin{tikzcd}[row sep=large]
+\cdots \ar[r] &
+P_2(A) \ar[r] \ar[d, dotted, "\phi_2" description] &
+P_1(A) \ar[r] \ar[d, dotted, "\phi_1" description] &
+P_0(A) \ar[r] \ar[d, dotted, "\phi_0" description] &
+A \ar[r] \ar[d, "f" description] & 0\\
+\cdots \ar[r] & P_2(B) \ar[r] & P_1(B) \ar[r] & P_0(B) \ar[r] &
+B \ar[r] & 0
+\end{tikzcd}\]
+
+We set $P_{-1}(A):=A$, $\phi_{-1}:=f$,  and $P_{-1}(B):=B$ for notational convenience. If $\phi_{n-1}$ is already constructed, then
+\[\begin{tikzcd}
+P_n(A) \ar[r, "\partial"] & P_{n-1}(A) \ar[d, "\phi_{n-1}"] & \\
+ & P_{n-1}(B) \ar[r, "\partial"] & P_{n-2}(B)
+\end{tikzcd} = \begin{tikzcd}
+P_n(A) \ar[r, "\partial"] & P_{n-1}(A) \ar[r, "\partial"] & P_{n-2}(A) \ar[d, "\phi_{n-2}"] \\
+ & & P_{n-2}(B)
+\end{tikzcd} = 0\]
+Therefore $\phi_{n-1}\circ\partial_n: P_n(A) \to P_{n-1}(B)$ maps into $Z_{n-1}(P_\ast(B))$ which equals $B_{n-1}(P_\ast(B)) = \im(\partial_n)$ by exactness. By projectivity, we get a lift $\phi_n: P_n(A) \to P_n(B)$.
+\end{proof}
+
+
+\begin{lemma}[Horseshoe lemma]
+\enquote{$P_\ast$ and $I^\ast$ are exact}
+
+\begin{multicols}{2}
+\begin{enumerate}
+\item Homology: Every diagram
+\[\begin{tikzcd}[column sep=tiny, row sep=small]
+& P_\ast(A) \ar[d] & & P_\ast(C) \ar[d] & \\
+0 \ar[r] & A \ar[r]\ar[d] & B \ar[r] & C \ar[r]\ar[d] & 0 \\
+& 0 & & 0 &
+\end{tikzcd}\]
+with exact first row and projective resolutions in the columns can be extended with some projective resolution $P_\ast(B)\to B\to 0$ to a diagram
+\[\begin{tikzcd}[column sep=tiny, row sep=small]
+0 \ar[r] & P_\ast(A) \ar[r] \ar[d] & P_\ast(B) \ar[r]\ar[d] & P_\ast(C) \ar[r]\ar[d] & 0 \\
+0 \ar[r] & A \ar[r]\ar[d] & B \ar[r]\ar[d] & C \ar[r]\ar[d] & 0 \\
+& 0 & 0 & 0 &
+\end{tikzcd}\]
+in which all rows are exact.
+
+\item Cohomology: Every diagram
+\[\begin{tikzcd}[column sep=tiny, row sep=small]
+& 0 \ar[d] & & 0 \ar[d] & \\
+0 \ar[r] & A \ar[r] \ar[d] & B \ar[r] & C \ar[r] \ar[d] & 0\\
+& I^\ast(A) & & I^\ast(C)&
+\end{tikzcd}\]
+with exact first row and injective resolutions in the columns can be extended with some injective resolution $0\to B\to I^\ast(B)$ to a diagram
+\[\begin{tikzcd}[column sep=tiny, row sep=small]
+& 0 \ar[d] & 0\ar[d] & 0\ar[d] & \\
+0 \ar[r] & A \ar[r] \ar[d] & B \ar[r]\ar[d] & C \ar[r]\ar[d] & 0\\
+0 \ar[r] & I^\ast(A) \ar[r] & I^\ast(B) \ar[r] & I^\ast(C) \ar[r] & 0
+\end{tikzcd}\]
+in which all rows are exact.
+\end{enumerate}
+\end{multicols}
+\end{lemma}
+\begin{proof}
+Set $A_{-1}:=A$ and $A_n:=P_n(A)$, $C_{-1}:=C$ and $C_n:=P_n(C)$ as well as $B_{-1}:=B$. Then define $P_n(B) := B_n:=A_n\oplus C_n$.
+
+For the vertical maps consider
+\[\begin{tikzcd}
+0 \ar[r] & A_n \ar[r] \ar[d] & A_n\oplus C_n \ar[r] \ar[d,dotted,"g" description] & C_n \ar[r] \ar[d] \ar[dl,dotted,"h" description] \ar[dll,dotted,"f"' near end] & 0 \\
+0 \ar[r] & A_{n-1} \ar[r] \ar[d] & B_{n-1} \ar[r]\ar[d] & C_{n-1} \ar[r]\ar[d] & 0 \\
+0 \ar[r] & A_{n-2} \ar[r] & B_{n-2} \ar[r] & C_{n-2} \ar[r] & 0 \\
+\end{tikzcd}\]
+We define $g:A_n\oplus C_n\to B_{n-1}$ separately on the two components. Define $g:A_n\oplus 0\to B_{n-1}$ to be the composition $A_n\to A_{n-1}\to B_{n-1}$.
+
+The map $g: 0\oplus C_n\to B_{n-1}$ we choose in two steps. First choose $h: C_n \to B_{n-1}$ to make the triangle on the right side commute. Then
+\[\begin{tikzcd}[column sep=tiny, row sep=small]
+0\oplus C_n \ar[d,"h"] & \\
+B_{n-1} \ar[d] & \\
+B_{n-2} \ar[r] & C_{n-2} & \\
+\end{tikzcd} = \begin{tikzcd}[column sep=tiny, row sep=small]
+0\oplus C_n \ar[r,"="] & C_n \ar[d] \\
+& C_{n-1} \ar[d] \\
+& C_{n-2} \\
+\end{tikzcd} = 0\]
+d.h. $\partial h(C_n) \subseteq A_{n-2}$ because the $(n-2)$th row is exact and of course $\partial\partial h=0$ so that $\partial h(C_n) \subseteq Z_{n-2}(A_\ast) = B_{n-2}(A_\ast)$ by exactness of $A_\ast$. Using projectivity once again, we can lift $\partial h$ to $f: C_n \to A_{n-1}$ and finally define $g:0\oplus C_n\to B_{n-1}$ as $h-f$. Note that $\overline{g(c_n)} = \partial c_n$ still holds because $\im(f) \subseteq\ker(B_{n-1}\to C_{n-1})$.
+
+\medbreak
+This ensures $\partial g = 0$ which proves that the middle column is a(n incomplete) complex. We still have to show exactness. So let $b_{n-1}\in B_{n-1}$ with $\partial b_{n-1}=0$.
+
+Then its image $c_{n-1}=\overline{b_{n-1}}$ also satisfies $\partial c_{n-1} =0$ so that a $c_n$ exists with $c_{n-1} = \partial c_n$ by exactness of $C_\ast$. Then $\overline{b_{n-1}-g(0\oplus c_n)} = c_{n-1} - \partial c_n = 0$ so that $b_{n-1}-g(0\oplus c_n)\in\ker(B_{n-1} \to C_{n-1})$ which is $\im(A_{n-1} \to B_{n-1})$ by exactness of the $(n-1)$th row so that $b_{n-1}-g(0\oplus c_n) = a_{n-1}$. Then $0=0-0=\partial b_{n-1} - \partial g(0\oplus c_n) = \partial a_{n-1}$ so that $a_{n-1} = \partial a_n = g(a_n \oplus 0)$. That shows $b_{n-1} = g(a_n\oplus c_n)$.
+\end{proof}
+
+\begin{corollary}
+\enquote{Complexes can be replaces by double complexes of projectives/injectives}
+\begin{multicols}{2}
+\begin{enumerate}
+\item Homology: For every $K_\ast\in Ch(\mathsf{A})$ exists a commutative double complex $P_{\ast,\ast}$ and maps $P_{n,\ast}\to K_n$ such that $P_{\ast,n} \to K_n \to 0$ is a projective resolution.
+\item Cohomology: For every $K^\ast\in Ch(\mathsf{A})$ exists a commutative double complex $I^{\ast,\ast}$ and maps $K^n\to I^{n,\ast}\to K^n$ such that $0\to K^n\to I^{n,\ast} \to K^n \to 0$ is an injective resolution.
+\end{enumerate}
+\end{multicols}
+\end{corollary}
+\begin{proof}
+Consider the short exact sequences
+\[0\to Z_n \to K_n \to B_{n-1}\to 0\]
+and choose projective resolutions $P_{n,\ast}''\to Z_n\to 0$ and $P_{n,\ast}'\to B_n\to 0$. Apply the horseshoe lemma to obtain a projective resolution $P_{n,\ast}\to K_n\to 0$ fitting in the exact sequence.
+
+Now apply the fundamental lemma of homological algebra to get a chain-map  $P_{n,\ast}' \to P_{n-1,\ast}''$ that extends the canonical map $B_{n-1} \to Z_{n-1}$ and let $P_{n,\ast} \to P_{n-1,\ast}$ be the composition $P_{n,\ast} \twoheadrightarrow P_{n,\ast}' \to P_{n-1,\ast}'' \hookrightarrow P_{n-1,\ast}$. Since $P' \to P \to P''$ are short exact sequences, we obtain a commutative double complex in this way.
+\end{proof}
+
+\begin{theorem}
+\enquote{Complexes can be replaced by projective / injective resolutions}
+
+\begin{multicols}{2}
+\begin{enumerate}
+\item Homology: For any bounded above complex $K_\ast\in Ch^-(\mathsf{A})$ there is a $P_\ast \in Ch^-(Proj(\mathsf{A}))$ and a quasi-isomorphism $P_\ast \to K_\ast$.
+
+\item Cohomology: For any bounded below complex $K^\ast\in Ch^+(\mathsf{A})$ there is a $I^\ast \in Ch^+(Inj(\mathsf{A}))$ and a quasi-isomorphism $K^\ast \to I^\ast$.
+\end{enumerate}
+\end{multicols}
+\end{theorem}
+\begin{proof}
+Take the total complex of $P_{\ast,\ast}$ in the previous statement.
+\end{proof}
+
+
+\section{Derived functors}
+
+\begin{remark}[The Problem]
+Given a right-exact functor $F: \mathsf{A} \to \mathsf{B}$, and exact sequence
+\[0\to A \to B \to C \to 0\]
+gives a exact sequence
+\[F(A) \to F(B) \to F(C) \to 0\]
+We want to find functors $L_nF$ and natural transformations $\delta_n$ (natural w.r.t. the short exact sequence) such that this sequence extends to a long exact sequence
+\[\cdots \to L_2F(C) \xrightarrow{\delta_2} L_1F(A) \to L_1F(B) \to L_1F(C) \xrightarrow{\delta_1} \underbrace{F(A)}_{=L_0F(A)} \to \underbrace{F(B)}_{L_0F(B)} \to \underbrace{F(C)}_{=0} \to 0\]
+And similarly for left-exact functors.
+
+Of course, we want the universal solution to this problem.
+\end{remark}
+
+\begin{definition}[$\delta$-Functors \& Derived functors]
+A family $(F_n,\delta_n)_{n\in\IN}$ of functors $\mathsf{A} \xrightarrow{F_n} \mathsf{B}$ and natural transformations $F_n(C) \xrightarrow{\delta_n} F_{n-1}(A)$ for every short exact sequence $0\to A\to B\to C\to 0$ that transforms such short exact sequences into long exact sequences as above is called a \udot{(homological) $\delta$-functor}.
+
+A morphism of $\delta$-functors is a family $(t_n)$ of natural transformations $F_n \xrightarrow{t_n} G_n$ which induces morphisms between the long exact sequences, i.e. $t_n\delta_n^F = \delta_n^G t_n$.
+
+Cohomological $\delta$-Functors $(F^n,\delta^n)$ are analogously defined for left-exact functors.
+\end{definition}
+
+\begin{definition}[Universal $\delta$-functors and derived functors]
+Let $F: \mathsf{A} \to \mathsf{B}$ be right-exact. A $\delta$-functor $(F_n,\delta_n)$ is called the \udot{universal $\delta$-functor extending $F$} or \udot{left derived functor of $F$} if there is an iso $F_0 \xrightarrow[\isomorphic]{\tau} F$ and $((F_n,\delta_n),\tau)$ is the final object in the category of all such $\delta$-functors.
+
+Similarly the \udot{right derived functor} of a left exact $F$ is defined as an initial object in the appropriate category of cohomological $\delta$-functors with fixed iso $F \xrightarrow[\isomorphic]{\tau} F^0$.
+\end{definition}
+
+\begin{lemma}[Extending natural transformations]
+Let $(F_n,\delta_n)$, $(\tilde{F},\tilde{\delta}_n)$ be two $\delta$-functors $\mathsf{A}\to\mathsf{B}$.
+\begin{multicols}{2}
+\begin{enumerate}
+\item Homology: Assume $F_n(P) = 0$ for all $n\leq 1$ and all $P\in Proj(\mathsf{A})$.
+
+Then every $\tilde{F} \xrightarrow{t_0} F$ extends uniquely to a family of natural transformations $\tilde{F}_n \xrightarrow{t_n} F_n$ which induces a morphism between the long exact sequences.
+\item Cohomology: Assume $F^n(I) = 0$ for all $n\leq 1$ and all $I\in Inj(\mathsf{A})$.
+
+Then every $F\xrightarrow{t_0}\tilde{F}$ extends uniquely to a family of natural transformations $F^n \xrightarrow{t^n} \tilde{F}^n$ which induces a morphism between the long exact sequences.
+\end{enumerate}
+\end{multicols}
+\end{lemma}
+\begin{proof}
+Assume that unique transformations $t_0,\ldots,t_{n-1}$ have already been constructed. Fix $C\in\mathsf{A}$ and choose a short exact $0\to K\xrightarrow{j} P \xrightarrow{q} C\to 0$ with $P$ projective. Then
+\[\begin{tikzcd}
+\cdots \ar[r] & \tilde{F}_n(P) \ar[r]\ar[d,dotted]  & \tilde{F}_n(C) \ar[r,"\tilde{\delta_n}"]\ar[d,dotted]  & \tilde{F}_{n-1}(K) \ar[r]\ar[d,"t_{n-1}"]  & \tilde{F}_{n-1}(P)\ar[d,"t_{n-1}"] \ar[r] & \cdots \\
+\cdots \ar[r] & \underbrace{F_n(P)}_{=0} \ar[r] & F_n(C) \ar[r,"\delta_n"] & F_{n-1}(K) \ar[r] & F_{n-1}(P) \ar[r] & \cdots 
+\end{tikzcd}\]
+It follows that $F_n(C) \xrightarrow[\isomorphic]{\delta_n} \ker(F_{n-1}(j))$ and since $t_{n-1}$ is natural, there is a unique $t_n: \tilde{F}_n(C) \to F_n(C)$ that makes the square commute. This $t_n$ does not depend on the choice of $K$ and $P$ by Schanuel's lemma.
+
+Naturality of $t_n$ follows from a simple diagram chase using naturality of $\delta_n$ and $\tilde{\delta_n}$, naturality of $t_{n-1}$ and that $F_n(A) \to F_{n-1}(K)$ is mono.
+
+It remains to show that $t_n$ commutes with the deltas for an arbitrary short exact $0\to A\to B\to C\to 0$. This also follows from a simple diagram chase.
+\end{proof}
+
+\begin{theorem}[Derived functors exist.]
+Let $F:\mathsf{A}\to\mathsf{B}$ be right / left exact functor.
+\begin{multicols}{2}
+\begin{enumerate}
+%\begin{minipage}{0.45\linewidth}
+\item Homology:
+\begin{enumerate}
+\item If $\mathsf{A}$ has enough projectives, then $F$ has a left derived functor.
+\item $L_i F(P) = 0$ for all projectives $P$ and all $i>0$.
+\item Deriving is a functor $L_i: \mathsf{Fun}_\text{r.e.}(\mathsf{A},\mathsf{B}) \to \mathsf{Fun}_\text{add}(\mathsf{A},\mathsf{B})$.
+\end{enumerate}
+%\end{minipage}
+%\begin{minipage}{0.45\linewidth}
+\item Cohomology:
+\begin{enumerate}
+\item If $\mathsf{A}$ has enough injectives, then $F$ has a right derived functor.
+\item $R^i F(I) = 0$ for all injectives $I$ and all $i>0$.
+\item Deriving is a functor $R^i: \mathsf{Fun}_\text{l.e.}(\mathsf{A},\mathsf{B}) \to \mathsf{Fun}_\text{add}(\mathsf{A},\mathsf{B})$.
+\end{enumerate}
+%\end{minipage}
+\end{enumerate}
+\end{multicols}
+\end{theorem}
+\begin{proof}
+Existence: Define $L_nF := H_n \circ P_\ast$. Note that this does not depend on the choice of the projective resolutions $P_\ast$ because all choices are homotopy equivalent and homology forgets homotopy. Note that $L_i F(P) = 0$ for $P$ projective and $i>0$ because $0\to P\xrightarrow{\id} P \to 0$ is a projective resolution of $P$.
+
+\medbreak
+Horseshoe lemma implies that every short exact sequence
+\[0\to A\to B\to C\to 0\]
+lifts to exact sequence $0\to P_\ast(A) \to P_\ast(B) \to P_\ast(C)\to 0$ which implies a long exact sequence in homology. Therefore $LF=(L_i F,\delta_i)$ is a $\delta$-functor extending $F$.
+
+\medbreak
+We still have to show universality. Let $((\tilde{F}_n,\tilde{\delta}_n), \tilde{\tau})$ be another $\delta$-functor extending $F$. The above lemma shows that there is a unique morphism of $\delta$-functors $t: \tilde{F}\to F$ which extends $t_0 := \tau^{-1}\circ\tilde{\tau}$.
+
+It also proves functoriality of deriving.
+\end{proof}
+
+\begin{remark}
+Projective / injective resolutions work for all functors to construct derived functors. With a bit more care one can make also resolutions work that consist of more general \enquote{$F$-acyclic} objects.
+\end{remark}
+
+\section{Examples}
+
+\begin{example}[Snake lemma]
+Taking kernels is a left-exact functor $\mathsf{A}^{\ast\to\ast} \to \mathsf{Ab}$. Its right derived functor is the cokernel in degree 1 and zero further up.
+
+Dually taking cokernels is right-exact and its left derived functor is the kernel in degree 1 and zero everywhere else.
+
+This is a manifestation of the snake lemma.
+\end{example}
+
+\begin{example}[Sheaf (co)homology]
+Sheaf cohomology $H^\ast(X,\mathcal{F})$ is the right derived functor of the global section functor $\Gamma: Sh(X) \to \mathsf{Ab}$.
+\end{example}
+
+\begin{example}[DeRham cohomology]
+$H_\text{dR}^\ast(M)$ is Sheaf cohomology of the sheaf $\Omega^0(M)$ of locally constant functions $M\to\IR$.
+\end{example}
+
+\begin{example}[Singular cohomology]
+$H_\text{sing}^\ast(X;G)$ is sheaf cohomology of the sheaf $\underline{G}_X\in Sh(X)$ of locally constant $G$-valued functions.
+\end{example}
+
+\begin{example}[Étale cohomology]
+Étale cohomology is the Sheaf cohomology for sheafs on the étale site, i.e. the right derived functor of global sections $\mathsf{Sh}_{et}(X) \to \mathsf{Ab}$.
+\end{example}
+
+\begin{example}[Ext and Tor]
+$\operatorname{Ext}_A^i(M,N) := (R^i \Hom_A(M,-))(N)$.
+
+$\operatorname{Tor}_i^A(M,N) := (L_i M\otimes_A -)(N) = (L_i -\otimes_A N)(M)$.
+\end{example}
+
+\begin{example}[Group (co)homology]
+$H_\ast(G,M)$ is the left derived functor of the functor of coinvariants $k \otimes_{kG} -$, i.e. it is $Tor_\ast^{kG}(k,M)$.
+
+$H_k^\ast(G,-)$ is the right derived functor of the functor of fixed points $(-)^G = \Hom_{kG}(k,-)$, i.e. it is $Ext_{kG}^\ast(k,M)$.
+\end{example}
+
+\begin{example}[Hochschild (co)homology]
+Let $A^e := A\otimes_k A^{op}$ be the enveloping algebra of the $k$-algebra $A$.
+
+$HH_n(A,M) := Tor_n^{A^e}(A,M)$, i.e. it is the left derived functor of the functors of coinvariant $M/[A,M] = A\otimes_{A^e} M: (A,A)\mathsf{-Bimod} \to \mathsf{Ab}$.
+
+$HH^n(A,M) := Ext_{A^e}^N(A,M)$, i.e. the right derived functor of invariants $Z(M) := \Hom_{A^e}(A,M): (A,A)\mathsf{-Bimod} \to \mathsf{Ab}$.
+\end{example}
+
+\begin{example}[Lie-algebra (co)homology]
+$H_n(\mathfrak{g},M) := Tor_n^{U(\mathfrak{g})}(k,M)$, i.e. left derived of taking coinvariants.
+
+$H^n(\mathfrak{g},M) := Ext^n_{U(\mathfrak{g})}(k,M)$, i.e. right derived of taking invariants.
+\end{example}
+
+\section{The derived category and total derived functors}
+
+\begin{theorem}
+Let $p_\mathsf{A}^?: K^?(\mathsf{A}) \to D^?(\mathsf{A})$ be the projection functor from the homotopy category onto the derived category.
+
+The total left/right derived functor of $F:\mathsf{A}\to\mathsf{B}$ is the \enquote{best approximation} of $K^\pm(F): K^\pm(\mathsf{A}) \to K^\pm(\mathsf{B})$ on the level of derived categories, i.e. it fits into the diagram
+\[\begin{tikzcd}[sep = large]
+K^{\pm}(\mathsf{A}) \ar[r,"K(F)"] \ar[d,"p_\mathsf{A}^\pm"'] & K^{\pm}(\mathsf{B}) \ar[d,"p_\mathsf{B}^\pm"] \\
+D^\pm(\mathsf{A}) \ar[r,dotted,"LF"',"RF"] & D^\pm(\mathsf{B})
+\end{tikzcd}\]
+\end{theorem}
+
+\begin{remark}
+In this situation $LF$ / $RF$ is also both the left and right Kan-extension of $Q_\mathsf{B}\circ K(F)$ along the localisation $p_\mathsf{A}$. Concretely: $LF$ fits into a diagram
+\[\begin{tikzcd}[sep = large]
+K^-(\mathsf{A}) \ar[rr,"p_\mathsf{B}^-\circ K(F)"{name=top_arrow}] \ar[dr,"p_\mathsf{A}^\pm"] && D^-(\mathsf{B}) \\
+ & D^-(\mathsf{A}) \ar[ur,bend right=90,"G"{name=G, description}]
+\arrow[to=top_arrow,from=G, Rightarrow,"f" description]
+\end{tikzcd}
+=
+\begin{tikzcd}[sep = large]
+K^-(\mathsf{A}) \ar[rr,"p_\mathsf{B}^\pm\circ K(F)"{name=top_arrow}] \ar[dr,"p_\mathsf{A}^-"] && D^-(\mathsf{B}) \\
+ & D^-(\mathsf{A}) \ar[ur,dotted,"LF"{name=LF, description}] \ar[ur,bend right=90,"G"{name=G,description}] \ar[to=top_arrow,Rightarrow,"\isomorphic" description]
+\arrow[Rightarrow,dotted, to=LF, from=G,"\exists!"]
+\end{tikzcd}\]
+which is commutative up to natural isomorphism $p_\mathsf{B} \circ K(F) \xrightarrow[\isomorphic]{} LF \circ p_\mathsf{A}$ such that for every other functor $D^-(\mathsf{A}) \xrightarrow{G} D^-(\mathsf{B})$ every natural transformation $G \circ p_\mathsf{A} \xrightarrow[\isomorphic]{f} p_\mathsf{B} \circ K(F)$ factors uniquely through this iso.
+
+Therefore some authors \emph{define} $LF$ of \emph{any} additive functor $F$ as the right Kan extension $Ran_{p_\mathsf{A}^-}( p_\mathsf{B}^- \circ K(F))$ and $RF$ as the left Kan extension $Lan_{p_\mathsf{A}^+}(p_\mathsf{B}^+\circ K(F))$. In this situation however, $LF$ and $RF$ do in general not extend $F$.
+\end{remark}
+
+\end{document}
