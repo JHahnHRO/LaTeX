@@ -1,7 +1,9 @@
 \BOOKMARK [1][-]{section.1}{Some categorial flavour to algebraic notions}{}% 1
 \BOOKMARK [1][-]{section.2}{Some homological algebra}{}% 2
 \BOOKMARK [2][-]{subsection.2.1}{Mapping cone}{section.2}% 3
-\BOOKMARK [2][-]{subsection.2.2}{Replacing objects and complexes by projective or injective resolutions}{section.2}% 4
-\BOOKMARK [1][-]{section.3}{Derived functors}{}% 5
-\BOOKMARK [1][-]{section.4}{Examples}{}% 6
-\BOOKMARK [1][-]{section.5}{The derived category and total derived functors}{}% 7
+\BOOKMARK [2][-]{subsection.2.2}{Replacing objects by projective / injective resolutions}{section.2}% 4
+\BOOKMARK [2][-]{subsection.2.3}{Replacing complexes by projective / injective resolutions}{section.2}% 5
+\BOOKMARK [1][-]{section.3}{Derived functors I}{}% 6
+\BOOKMARK [2][-]{subsection.3.1}{Computing derived functors via acyclic resolutions}{section.3}% 7
+\BOOKMARK [1][-]{section.4}{Examples}{}% 8
+\BOOKMARK [1][-]{section.5}{Derived functors II: Total derived functors}{}% 9

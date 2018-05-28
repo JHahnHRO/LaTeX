@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6650 64-bit) (preloaded format=pdflatex 2018.4.8)  26 MAY 2018 01:30
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6650 64-bit) (preloaded format=pdflatex 2018.4.8)  28 MAY 2018 03:44
 entering extended mode
 **./derived_functors.tex
 (derived_functors.tex
@@ -1064,7 +1064,7 @@ LaTeX Font Info:    Try loading font information for U+stmry on input line 9.
 
 {C:/Users/Johannes/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}] [2] [3] 
 [4]
-Overfull \hbox (16.79553pt too wide) in paragraph at lines 222--224
+Overfull \hbox (16.79553pt too wide) in paragraph at lines 235--237
 \T1/cmr/m/n/10.95 Therefore $\OML/cmm/m/it/10.95 [] \OMS/cmsy/m/n/10.95  \OML
 /cmm/m/it/10.95 @[] \OT1/cmr/m/n/10.95 : \OML/cmm/m/it/10.95 P[]\OT1/cmr/m/n/10
 .95 (\OML/cmm/m/it/10.95 A\OT1/cmr/m/n/10.95 ) \OMS/cmsy/m/n/10.95 ! \OML/cmm/m
@@ -1076,33 +1076,54 @@ mm/m/it/10.95 P[]\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 B\OT1/cmr/m/n/10.95 ))
  =
  []
 
-[5] [6] [7] [8] [9]
-LaTeX Font Info:    Try loading font information for U+euf on input line 466.
+[5] [6] [7] [8]
+Overfull \hbox (8.4132pt too wide) in paragraph at lines 385--386
+[]\T1/cmr/m/n/10.95 c. For unique-ness ob-serve that $\OML/cmm/m/it/10.95  \OM
+S/cmsy/m/n/10.95  \OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 [] \OMS/cmsy/m/n/10
+.95   \OML/cmm/m/it/10.95 []\OT1/cmr/m/n/10.95 ) \OMS/cmsy/m/n/10.95 ' \OT1/cm
+r/m/n/10.95 0$ \T1/cmr/m/n/10.95 so that there is a chain-map $\OML/cmm/m/it/10
+.95 P[]\OT1/cmr/m/n/10.95 [\OMS/cmsy/m/n/10.95  \OT1/cmr/m/n/10.95 1] []
+ []
+
+[9] [10]
+Overfull \hbox (14.69473pt too wide) in paragraph at lines 451--452
+[]\T1/cmr/m/n/10.95 Let $\OT1/cmr/m/n/10.95 ([]\OML/cmm/m/it/10.95 ; []\OT1/cmr
+/m/n/10.95 )$ \T1/cmr/m/n/10.95 be an-other $\OML/cmm/m/it/10.95 $\T1/cmr/m/n/
+10.95 -functor and as-sume that unique trans-for-ma-tions $\OML/cmm/m/it/10.95 
+t[]; [] ; t[]$
+ []
+
+[11] [12]
+Overfull \hbox (27.3931pt too wide) detected at line 563
+ $[]$ 
+ []
+
+[13]
+LaTeX Font Info:    Try loading font information for U+euf on input line 624.
  ("C:\Program Files\MiKTeX 2.9\tex\latex\amsfonts\ueuf.fd"
 File: ueuf.fd 2013/01/14 v3.01 Euler Fraktur
-)
-[10]
-Overfull \hbox (13.56534pt too wide) detected at line 495
+) [14]
+Overfull \hbox (13.56534pt too wide) detected at line 653
  $[] \OT1/cmr/m/n/10.95 = []$ 
  []
 
-[11]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 501.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 501.
+[15]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 671.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 671.
  (derived_functors.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 501.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 501.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 671.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 671.
 Package rerunfilecheck Info: File `derived_functors.out' has not changed.
-(rerunfilecheck)             Checksum: 3CA5A4291A95C88EDECD3E612429EE22;501.
+(rerunfilecheck)             Checksum: E2FD80A61F6970C8BBFF682850C557CA;691.
  ) 
 Here is how much of TeX's memory you used:
- 24131 strings out of 492980
- 468174 string characters out of 3136061
- 698141 words of memory out of 3000000
- 27487 multiletter control sequences out of 15000+200000
+ 24496 strings out of 492980
+ 476978 string characters out of 3136061
+ 689294 words of memory out of 3000000
+ 27821 multiletter control sequences out of 15000+200000
  22234 words of font info for 67 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 70i,23n,89p,9134b,1210s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 70i,23n,89p,9134b,1208s stack positions out of 5000i,500n,10000p,200000b,50000s
  <C:\Users\Johannes\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi6
 00\ecrm0800.pk> <C:\Users\Johannes\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jkn
 appen\ec\dpi600\ecti1095.pk> <C:\Users\Johannes\AppData\Local\MiKTeX\2.9\fonts\
@@ -1126,9 +1147,9 @@ msy6.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy8.pfb>
 <C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/euler/eufm10.pfb><C:/P
 rogram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/msam10.pfb><C:/Prog
 ram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on derived_functors.pdf (11 pages, 272032 bytes).
+Output written on derived_functors.pdf (15 pages, 306426 bytes).
 PDF statistics:
- 450 PDF objects out of 1000 (max. 8388607)
- 77 named destinations out of 1000 (max. 500000)
- 69 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 520 PDF objects out of 1000 (max. 8388607)
+ 108 named destinations out of 1000 (max. 500000)
+ 85 words of extra memory for PDF output out of 10000 (max. 10000000)
 
