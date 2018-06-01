@@ -790,10 +790,10 @@ However: If $A$ has enough projectives / injectives, then  $D^-(\mathsf{A})$ / $
 Let $\mathsf{A}$ be a small abelian category.
 \begin{multicols}{2}
 \begin{enumerate}
-\item Assume $\mathsf{A}$ has enough projectives and a projective resolution $P_\ast(A) \xrightarrow[\sim]{} A_\ast$ has been fixed for every object.
+\item Assume $\mathsf{A}$ has enough projectives and a projective resolution $P_\ast(A) \xrightarrow[\sim]{} A_\ast$ has been fixed for every complex.
 
 Then $P_\ast: D^-(\mathsf{A}) \to K^-(Proj(\mathsf{A}))$ is a well-defined functor which is a right inverse to the localisation functor.
-\item Assume a $\mathsf{A}$ has enough injectives and an injective resolution $0\to A \xrightarrow[\sim]{} I^\ast(A)$ has been fixed for every object.
+\item Assume a $\mathsf{A}$ has enough injectives and an injective resolution $A_\ast \xrightarrow[\sim]{} I^\ast(A)$ has been fixed for every complex.
 
 Then $I^\ast: D^+(\mathsf{A}) \to K^+(Inj(\mathsf{A}))$ is a well-defined functor which is a right inverse to the localisation functor.
 \end{enumerate}
@@ -815,9 +815,7 @@ Since $P_\ast(A)$ is termwise projective and $P_\ast(B) \xrightarrow[\sim]{}B \x
 \begin{remark}
 Given the way we constructed derived functors, we already worked with an object $LF(A)\in D^-(\mathsf{B})$, namely the complex $F(P_\ast(A))$ (which was also quasi-isomorphic to $F(Q_\ast)$ for any resolution of $A$ by $F$-acyclic objects).
 
-Simply by not taking homology at the end, we get a functor $\mathsf{A} \to D^-(\mathsf{B})$.
-
-We will now extend this functor to the much nicer functor $LF: D^-(\mathsf{A}) \to D^-(\mathsf{B})$, called the total derived functor.
+Simply by not taking homology at the end, we already have a functor $\mathsf{A} \to D^-(\mathsf{B})$. We will now extend this functor to the much nicer functor $LF: D^-(\mathsf{A}) \to D^-(\mathsf{B})$, called the total derived functor.
 
 Note that $\mathsf{A}$ embeds into $D^-(\mathsf{A})$ by identifying every $A\in\mathsf{A}$ with the complex $A[0] := \cdots \to 0 \to A\to 0\to\cdots$ having $A$ in degree $0$. In this sense this really is an extension of the functor to a larger category.
 \end{remark}
@@ -836,20 +834,20 @@ D^\pm(\mathsf{A}) \ar[r,dotted,"LF"',"RF"] & D^\pm(\mathsf{B})
 In this situation $LF$ / $RF$ is a right / left Kan-extension of $Q_\mathsf{B}\circ K(F)$ along the localisation $p_\mathsf{A}$. Concretely: $LF$ fits into a diagram
 \[\begin{tikzcd}[sep = large]
 K^-(\mathsf{A}) \ar[rr,"p_\mathsf{B}^\pm\circ K(F)"{name=top_arrow}] \ar[dr,"p_\mathsf{A}^-"] && D^-(\mathsf{B}) \\
- & D^-(\mathsf{A}) \ar[ur,dotted,"LF"{name=LF, description}] \ar[to=top_arrow,Rightarrow,"\isomorphic" description]
+ & D^-(\mathsf{A}) \ar[ur,dotted,"LF"{name=LF, description}] \ar[from=top_arrow,Rightarrow,"\isomorphic" description]
 \end{tikzcd}\]
-together with a natural transformation $LF \circ p_\mathsf{A} \to p_\mathsf{B} \circ K(F)$ (which happens to be an isomorphism in this case) such that for every other functor $D^-(\mathsf{A}) \xrightarrow{G} D^-(\mathsf{B})$ any given natural transformation $G \circ p_\mathsf{A} \xrightarrow{f} p_\mathsf{B} \circ K(F)$ factors uniquely through $LF$.
+together with a natural transformation $LF \circ p_\mathsf{A} \to p_\mathsf{B} \circ K(F)$ (which happens to be an isomorphism in this case) such that for every other functor $D^-(\mathsf{A}) \xrightarrow{G} D^-(\mathsf{B})$ any given natural transformation $G \circ p_\mathsf{A} \xrightarrow{f} p_\mathsf{B} \circ K(F)$ factors uniquely through $LF\icrc p_\mathsf{A}$.
 
 \[\begin{tikzcd}[sep = large]
 K^-(\mathsf{A}) \ar[rr,"p_\mathsf{B}^-\circ K(F)"{name=top_arrow}] \ar[dr,"p_\mathsf{A}^-"] && D^-(\mathsf{B}) \\
  & D^-(\mathsf{A}) \ar[ur,bend right=90,"G"{name=G, description}]
-\arrow[to=top_arrow,from=G, Rightarrow,"f" description]
+\arrow[from=top_arrow,to=G, Rightarrow,"f" description]
 \end{tikzcd}
 =
 \begin{tikzcd}[sep = large]
 K^-(\mathsf{A}) \ar[rr,"p_\mathsf{B}^-\circ K(F)"{name=top_arrow}] \ar[dr,"p_\mathsf{A}^-"] && D^-(\mathsf{B}) \\
- & D^-(\mathsf{A}) \ar[ur,dotted,"LF"{name=LF, description}] \ar[ur,bend right=90,"G"{name=G,description}] \ar[to=top_arrow,Rightarrow,"\isomorphic" description]
-\arrow[Rightarrow,dotted, to=LF, from=G,"\exists!"]
+ & D^-(\mathsf{A}) \ar[ur,dotted,"LF"{name=LF, description}] \ar[ur,bend right=90,"G"{name=G,description}] \ar[from=top_arrow,Rightarrow]
+\arrow[Rightarrow,dotted, from=LF, to=G,"\exists!"]
 \end{tikzcd}\]
 
 Therefore some authors \emph{define} $LF$ of \emph{any} additive functor $F$ as the right Kan extension $Ran_{p_\mathsf{A}^-}( p_\mathsf{B}^- \circ K(F))$ and $RF$ as the left Kan extension $Lan_{p_\mathsf{A}^+}(p_\mathsf{B}^+\circ K(F))$. In this situation however, even if they exist, $LF$ and $RF$ do in general not extend $F$ if $F$ is not right / left exact.
