@@ -1,0 +1,327 @@
+% !TeX root = adgc.tex
+% !TeX spellcheck = en_GB
+\documentclass[fontsize=11pt,fleqn,a4paper]{scrartcl}
+\input{_preamble/master_preamble.tex}
+
+\title{Broué's conjecture in a special case}
+
+\begin{document}
+
+\maketitle
+
+\begin{convention}
+Let $G$ be a finite group, $p$ a prime, $(\IK,\mathcal{O},\IF)$ a $p$-modular system with $\IK$ and $\IF$ large enough (e.g. algebraically closed).
+\end{convention}
+
+\section{What was Broué's conjecture again?}
+
+\begin{definition}[Derived category]
+$D^?(\mathsf{A}) := Q^{-1} K^?(\mathsf{A})$ (with $?\in\set{\text{unbounded},+,-,b}$ where $Q$ is the class of quasi-isomorphisms, i.e.
+\[Q:=\Set{f\in \operatorname{Mor}(K) | H(f) \,\text{isomorphism}}\]
+\end{definition}
+
+\begin{conjecture}[Abelian Defect Group Conjecture (Broué, Rickard)]
+Let $G$ be a finite group, $B\in Bl(G)$ a $p$-block of $G$, $D\leq G$ its defect group and $b\in Bl(N_G(D))$ the Brauer correspondent of $B$.
+
+If $D$ is abelian, then
+\[D^b(B) \isomorphic D^b(b)\]
+as triangulated categories.
+\end{conjecture}
+
+\section{Modular representation theory of $A_5$}
+
+\begin{theorem}[Ordinary character table of $A_5$]
+The character table of $A_5$ in characteristic zero is
+\[\begin{array}{c|ccccc}
+C & 1 & (12)(34) & (123) & (12345) & (13524) \\
+\hline
+ord(x) & 1 & 2 & 3 & 5 & 5 \\
+C_G(x) & A_5 & C_2\times C_2 & C_3 & C_5 & C_5 \\
+\abs{C} & 1 & 15 & 20 & 12 & 12 \\
+\hline\hline
+\chi_1 & 1 & 1 & 1 & 1 & 1\\
+\chi_2 & 3 & -1 & 0 & \alpha & \overline{\alpha} \\
+\chi_3 & 3 & -1 & 0 & \overline{\alpha} & \alpha \\
+\chi_4 & 4 & 0 & 1 & -1 & -1 \\
+\chi_5 & 5 & 1 & -1 & 0 & 0
+\end{array}\]
+with $\alpha:=\frac{1+\sqrt{5}}{2}$.
+\end{theorem}
+
+\begin{theorem}[$2$-modular representation theory of $A_5$]
+The $2$-modular Brauer character table of $A_5$ is
+\[\begin{array}{c|cccc}
+ & 1 & (123) & (12345) & (13524) \\
+ \hline\hline
+\phi_1 & 1 & 1 & 1 & 1 \\
+\phi_2 & 2 & -1 & \alpha-1 & \overline{\alpha}-1 \\
+\phi_3 & 2 & -1 & \overline{\alpha}-1 & \alpha-1 \\
+\phi_4 & 4 & -2 & -1 & -1 \\
+\end{array}
+\quad
+D=\begin{pmatrix}
+1 & 1 & 1 & . & 1 \\
+. & 1 & . & . & 1 \\
+. & . & 1 & . & 1 \\
+. & . & . & 1 & .
+\end{pmatrix}
+\quad
+C=\begin{pmatrix}
+4 & 2 & 2 & . \\
+2 & 2 & 1 & . \\
+2 & 1 & 2 & . \\
+. & . & . & 1
+\end{pmatrix}\]
+In particular there are two $2$-blocks:
+\begin{itemize}
+\item The principal block:
+$\IBr(B_0)=\set{\phi_1,\phi_2,\phi_3}$,
+$\Irr(B_0)=\set{\chi_1,\chi_2,\chi_3,\chi_5}$,
+$D=C_2\times C_2$, $N_G(D) = A_4=D\rtimes C_3$.
+\item One block of defect zero:
+$\IBr(B_1)=\set{\phi_4}$,
+$\Irr(B_1)=\set{\chi_4}$
+\end{itemize}
+\end{theorem}
+
+\begin{theorem}[$3$-modular representation theory of $A_5$]
+The $3$-modular character table of $A_5$ is
+\[\begin{array}{c|cccc}
+C & 1 & (12)(34) & (12345) & (13524) \\
+ \hline\hline
+\phi_1 & 1 & 1 & 1 & 1 \\
+\phi_2 & 3 & -1 & \alpha & \overline{\alpha} \\
+\phi_3 & 3 & -1 & \overline{\alpha} & \alpha \\
+\phi_4 & 4 & 1 & -1 & -1 \\
+\end{array}
+\quad
+D=\begin{pmatrix}
+1 & . & . & . & 1 \\
+. & 1 & . & . & . \\
+. & . & 1 & . & . \\
+. & . & . & 1 & 1
+\end{pmatrix}
+\quad
+C=\begin{pmatrix}
+2 &   &   & 1 \\
+  & 1 &   &   \\
+  &   & 1 &   \\
+1 &   &   & 2  
+\end{pmatrix}\]
+In particular there are three $3$-blocks:
+\begin{itemize}
+\item The principal block:
+$\IBr(B_0)=\set{\phi_1,\phi_4}$,
+$\Irr(B_0)=\set{\chi_1,\chi_4,\chi_5}$,
+$D=C_3$, $N_G(D) = C_3 \rtimes C_2$.
+\item Two blocks of defect zero:
+$\IBr(B_1)=\set{\phi_2}$,
+$\Irr(B_1)=\set{\chi_2}$,
+$\IBr(B_2)=\set{\phi_3}$,
+$\Irr(B_2)=\set{\phi_3}$
+\end{itemize}
+\end{theorem}
+
+\begin{theorem}[5-modular representation theory of $A_5$]
+The $5$-modular character table of $A_5$ is
+\[\begin{array}{c|cccc}
+C & 1 & (12)(34) & (123) \\
+ \hline\hline
+\phi_1 & 1 & 1 & 1 \\
+\phi_2 & 3 & -1 & 0 \\
+\phi_3 & 5 & 1 & -1 \\
+\end{array}
+\quad
+D=\begin{pmatrix}
+1 & . & . & 1 & . \\
+. & 1 & 1 & 1 & . \\
+. & . & . & . & 1 \\
+\end{pmatrix}
+\quad
+C=\begin{pmatrix}
+2 & 1 &   \\
+1 & 3 &   \\
+  &   & 1
+\end{pmatrix}\]
+In particular there are two $3$-blocks:
+\begin{itemize}
+\item The principal block:
+$\IBr(B_0)=\set{\phi_1,\phi_2}$,
+$\Irr(B_0)=\set{\chi_1,\chi_2,\chi_3,\chi_4}$,
+$D=C_5$, $N_G(D) = C_5\rtimes C_2$.
+\item One block of defect zero:
+$\IBr(B_1)=\set{\phi_5}$,
+$\Irr(B_1)=\set{\chi_5}$
+\end{itemize}
+\end{theorem}
+
+\section{Step minus one: Defect zero}
+
+\begin{remark}
+ADGC is trivially true for defect zero, because $N_G(1) = G$ and $B=b$ in this case.
+\end{remark}
+
+\begin{theorem}
+All blocks of defect zero are matrix rings.
+\end{theorem}
+\begin{proof}
+Standard theorem shows that blocks of $\IF G$ of defect zero are simply matrix rings $\IF^{a\times a}$.
+
+Sketch: Defect zero $\overset{V\leq D}{\implies}$ All vertices trivial $\implies$ all simple modules of this block are projective $\implies$ all modules are projective $\implies B$ is semisimple $\overset{Wedderburn}{\implies} B \isomorphic \IF^{\dim(S)\times\dim(S)}$ because $B$ is indecomposable.
+\end{proof}
+
+\section{Step 0: Different equivalences}
+
+\begin{theorem}[Morita]
+Let $A$ and $B$ be two $k$-algebras. TFAE:
+\begin{enumerate}
+\item $A\mathsf{-Mod} \isomorphic B\mathsf{-Mod}$.
+\item $A\mathsf{-proj} \isomorphic B\mathsf{-proj}$.
+\item There ex. bimodules ${}_A M_B$ and ${}_B N_A$ s.t.
+\[{}_A M_B \otimes {}_B N_A \isomorphic {}_A A_A \quad\text{and}\quad {}_B N_A\otimes {}_A M_B \isomorphic {}_B B_B\]
+In this case $M$ and $N$ determine each other via $N\isomorphic\Hom_{\mathsf{Mod-}B}(M,B)$ and $M\isomorphic\Hom_{\mathsf{Mod-}A}(N,A)$. Moreover $A\isomorphic\End_{\mathsf{Mod-}B}(M)$ and $B\isomorphic\End_{\mathsf{Mod-}A}(N)$.
+\item There ex. a \udot{progenerator}, i.e. a module $M$ s.t.
+\begin{enumerate}
+\item $M$ is f.g. projective and
+\item $M$ is a generators of $A\mathsf{-Mod}$, i.e. every module $X$ is a quotient of $\bigoplus_{i\in I} P$ for some sufficiently large $I$.
+\end{enumerate}
+which satisfies $B\isomorphic\End(M)$.
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+a.$\implies$b. because finite generation and projectivity can be categorically defined.
+
+b.$\implies$c. If an equivalence $A-\mathsf{proj} \xtofrom[G]{F} B-\mathsf{proj}$ is given, then $M:=G({}_A A)$ and $N:=F({}_B B)$ are the desired bimodules. In fact $F=N\otimes-$ and $G=M\otimes-$ because $F$ and $G$ are additive.
+
+c.$\implies$a. Conversely if $M,N$ are given, then $F:=N\otimes-$ and $G:=M\otimes-$ are pseudo-inverse functors.
+\end{proof}
+
+\begin{remark}
+$\Hom(M_B,B_B)$ is isomorphic to $M^\vee=\Hom_k(M,k)$ if $B$ is a symmetric $k$-algebra. Similarly $\Hom(N_A,A_A)\isomorphic N^\vee$ if $A$ is symmetric.
+\end{remark}
+
+\begin{theorem}[Rickard, Keller, ...]
+Let $A$ and $B$ be two $k$-algebras which are f.g. projective over $k$. TFAE:
+\begin{enumerate}
+\item $D^b(A) \isomorphic D^b(B)$ as triangulated categories.
+\item $K^b(A\mathsf{-proj}) \isomorphic K^b(B\mathsf{-proj})$ as triangulated categories.
+\item There exist $P$ of $A$-$B$-bimodules and $Q$ of $B$-$A$-bimodules s.t.
+\[P \otimes_B^L Q \sim A \quad\text{and}\quad Q \otimes_A^L P \sim B\]
+In this case $P$ and $Q$ determine each other via $Q=\Hom_{D^b(\mathsf{Mod-}B)}(P,B)$ and $P=\Hom_{D^b(\mathsf{Mod-}A)}(Q,A)$. Moreover $A\isomorphic\End_{D^b(B)}(P)$ and $B\isomorphic\End_{D^b(A)}(Q)$.
+\item There exists a \udot{tilting complex}, i.e. a bounded complex $P$ of $A$-modules s.t.
+\begin{enumerate}
+\item $P$ consists of f.g. projective $A$-modules
+\item $\operatorname{add}(P)$, the smallest full subcategory which contains $P$ and is closed under taking direct sums and direct summands, generates $K^b(A-\mathsf{proj})$ as a triangulated category.
+\item $P$ is \enquote{rigid}:
+\[\forall n\neq 0: \Hom(P,P[n]) = 0\]
+\end{enumerate}
+such that $B\isomorphic\End({}_A P)$
+\end{enumerate}
+\end{theorem}
+
+\begin{remark}
+Now it is not (known to be) true that every equivalence $F: D^b(A)\to D^b(B)$ is actually isomorphic to some $Q\otimes^L-$ as it is in the Morita case. If so, $F$ is called \enquote{standard}.
+\end{remark}
+
+\begin{definition}[Rickard]
+Let $G,H$ be two finite groups with a common (fixed) $p$-subgroup $D$.
+
+A \udot{splendid} tilting complex for two blocks $B\in Bl(\IF G)$ and $C\in Bl(\IF H)$ is a complex $B$-$b$-bimodules as above such that additionally the following hold:
+\begin{enumerate}
+\item Homotopy instead of quasi-isomorphism:
+\[P \otimes_b P^\vee \homotopic B \quad\text{and}\quad P^\vee \otimes_B P \homotopic b\]
+\item Each term of $P$ is a $p$-permutation module of $G\times H$ and is projective relative to $\Delta(D)$.
+\end{enumerate}
+\end{definition}
+
+\begin{theorem}[Rickard]
+Let $A$ be a self-injective $\IF$-algebra. The canonical functor $A\mathsf{-mod} \to D^b(A)$ which maps a module $M$ to the complex $\cdots\to0\to M\to 0\to\cdots$ with $M$ concentrated in $0$ induces an equivalence
+\[\underbrace{A\mathsf{-mod}/A\mathsf{-proj}}_{=A\mathsf{-\underline{mod}}} \to D^b(A) / K^b(A\mathsf{-proj})\]
+of triangulated categories.
+\end{theorem}
+
+\begin{corollary}
+Let $A$ and $B$ be finite-dimensional, self-injective $\IF$-algebras. If they are derived equivalent, they are also stably equivalent. In fact, there is a stable equivalence of Morita type.
+\end{corollary}
+
+\begin{theorem}[Okuyama, Rickard, ...]
+Let $A$ and $B$ be symmetric $k$-algebras over a field.
+
+If $\mathcal{F}: A\mathsf{-mod}\to B\mathsf{-mod}$ is an exact functor which induces a stable equivalence, $\Irr(A)=\set{S_1,\ldots,S_n}$ are and $\mathcal{X}=\set{X_1,\ldots,X_n}$ are objects in $D^b(B)$ s.t.
+\begin{enumerate}
+\item $\Hom(X_i,X_j[m]) = 0$ for all $m<0$ and all $i,j$.
+\item $\Hom(X_i,X_j) = \begin{cases} k & i=j \\ 0 & i\neq j\end{cases}$
+\item $\mathcal{X}$ generates $D^b(B)$ as triangulated category.
+\end{enumerate}
+and such that $X_i$ is stably isomorphic to $\mathcal{F}(S_i)$ for all $i$ (i.e. isomorphic in $D^b(A)/K^b(A\mathsf{-proj})$), then $\mathcal{F}$ also induces a derived equivalence.
+\end{theorem}
+
+\begin{remark}
+The proof is based on a theorem by Linckelmann that a stable equivalence of Morita type (i.e. induced by a tensor-functor) between indecomposable, finite-dimensional, self-injective $K$-algebras which also maps simples to simples is a Morita equivalence.
+\end{remark}
+
+\section{Step one: Cyclic defect}
+
+\begin{theorem}
+Blocks with cyclic defect group $D$ are Brauer tree algebras with $e=\abs{\IBr(B)}$ edges and multiplicity $\mu = \frac{\abs{D}-1}{e}$.
+\end{theorem}
+
+\begin{theorem}[Rickard]
+ADGC holds for blocks of cyclic defect. In fact, all Brauer tree algebras with the same number of edges and the same multiplicity are derived equivalent.
+\end{theorem}
+
+\section{Step two: Klein four defect}
+
+\begin{theorem}[$2$-modular representation theory of $A_4$]
+The $2$-modular Brauer character table of $A_4$ is
+\[\begin{array}{c|ccc}
+ & 1 & (123) & (132) \\
+\hline\hline
+\psi_1 & 1 & 1 & 1 \\
+\psi_2 & 1 & \zeta_3 & \zeta_3^2 \\
+\psi_3 & 1 & \zeta_3^2 & \zeta_3
+\end{array} \quad
+D=\begin{pmatrix}
+1 & . & . & 1 \\
+. & 1 & . & 1 \\
+. & . & 1 & 1
+\end{pmatrix}
+\quad
+C=\begin{pmatrix}
+2 & 1 & 1 \\
+1 & 2 & 1 \\
+1 & 1 & 2 
+\end{pmatrix}\]
+In particular there is only one $2$-block.
+\end{theorem}
+
+\begin{example}
+ADGC holds for $A_5$.
+\end{example}
+\begin{proof}
+$p=3$ and $p=5$ are already done because cyclic defect.
+
+Only other case is the principal $2$-block. We set $D:=V_4\in Syl_2(G)$, $H:=N_G(D) = A_4$.
+
+Since $D$ is a TI subgroup of $A_5$, Green correspondence gives a stable equivalence of Morita type
+\[\Set{M\in\IF H\mathsf{-\underline{mod}} | vx(M)\leq D} \xtofrom[\Res_H^G]{\Ind_H^G} \Set{M\in\IF G\mathsf{-\underline{mod}} | vx(M)\leq D}\]
+which restricts to a stable equivalence of Morita type
+\[b\mathsf{-\underline{mod}} \xtofrom[\Res_H^G]{\Ind_H^G} B\mathsf{-\underline{mod}}\]
+
+The restriction of the three simple $B$-modules $\phi_1,\phi_2,\phi_3$ are
+\[Y_1 := \psi_1 \quad Y_2 = \begin{array}{c}\psi_2\\\psi_3\end{array} \quad Y_3=\begin{array}{c}\psi_3\\\psi_2\end{array}\]
+which can be verified by explicit calculations. Simple constituents can be seen from the character tables. Which one is the socle and which the head of $Y_i$ can be calculated by looking at explicit modules.
+
+Then $X_1:=Y_1$ is already simple. Furthermore
+\[\Omega Y_2 = \begin{array}{c} \psi_1 \\ \psi_2 \end{array} \quad \Omega Y_3 = \begin{array}{c} \psi_1 \\ \psi_3 \end{array}\]
+Then we can set $X_2:=\Omega Y_2[1]$ and $X_3:=\Omega Y_3[1]$. These three generate $D^b(b)$ because $\psi_1=X_1$ is already in $\mathcal{X}$, $\psi_2$ and $\psi_3$ are kernels of $X_i \twoheadrightarrow X_1$. It is also easy to see that $\dim_k\Hom(X_i,X_j) = \delta_{ij}$ and that $\Hom(X_i,X_j[m])=0$ for $m<0$.
+
+Okuyama's method therefore upgrades the stable equivalence to a derived equivalence.
+\end{proof}
+
+\begin{remark}
+In fact, one can do the same with the cyclic defect groups instead of using the heavy guns.
+\end{remark}
+
+
+\end{document}
