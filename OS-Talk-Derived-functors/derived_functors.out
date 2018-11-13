@@ -1,12 +1,13 @@
 \BOOKMARK [1][-]{section.1}{Some categorial flavour to algebraic notions}{}% 1
 \BOOKMARK [1][-]{section.2}{Some homological algebra}{}% 2
-\BOOKMARK [2][-]{subsection.2.1}{Mapping cones}{section.2}% 3
+\BOOKMARK [2][-]{subsection.2.1}{Double Mapping cylinder and mapping cone}{section.2}% 3
 \BOOKMARK [2][-]{subsection.2.2}{Replacing objects by projective / injective resolutions}{section.2}% 4
 \BOOKMARK [2][-]{subsection.2.3}{Replacing complexes by projective / injective resolutions}{section.2}% 5
-\BOOKMARK [1][-]{section.3}{Derived functors I: -functors}{}% 6
-\BOOKMARK [2][-]{subsection.3.1}{Computing derived functors via acyclic resolutions}{section.3}% 7
-\BOOKMARK [1][-]{section.4}{Examples}{}% 8
-\BOOKMARK [1][-]{section.5}{Derived functors II: Total derived functors}{}% 9
-\BOOKMARK [2][-]{subsection.5.1}{Motivation}{section.5}% 10
-\BOOKMARK [2][-]{subsection.5.2}{The derived category}{section.5}% 11
-\BOOKMARK [2][-]{subsection.5.3}{Total derived functors}{section.5}% 12
+\BOOKMARK [1][-]{section.3}{The derived category}{}% 6
+\BOOKMARK [1][-]{section.4}{Derived functors I: -functors}{}% 7
+\BOOKMARK [2][-]{subsection.4.1}{Computing derived functors via acyclic resolutions}{section.4}% 8
+\BOOKMARK [1][-]{section.5}{Examples}{}% 9
+\BOOKMARK [1][-]{section.6}{Derived functors II: Total derived functors}{}% 10
+\BOOKMARK [2][-]{subsection.6.1}{Motivation}{section.6}% 11
+\BOOKMARK [2][-]{subsection.6.2}{The derived category}{section.6}% 12
+\BOOKMARK [2][-]{subsection.6.3}{Total derived functors}{section.6}% 13
