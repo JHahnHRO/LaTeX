@@ -1,0 +1,62 @@
+% !TeX root = adgc.tex
+% !TeX spellcheck = en_GB
+\documentclass[fontsize=11pt,fleqn,a4paper]{scrartcl}
+\input{_preamble/master_preamble.tex}
+
+\title{Self-injective serial algebras II}
+
+\begin{document}
+
+\maketitle
+
+\begin{convention}
+Let $K$ be a field of characteristic $p\in\IP\cup\set{0}$ and $A$ be a finite-dimensional $K$-algebra.
+\end{convention}
+
+\begin{lemmadef}[Lemma 11.3.1]
+Let $M$ be a finite-dimensional $A$-module. TFAE:
+\begin{enumerate}
+\item $M$ is \udot{uniserial}, i.e. it has exactly one composition series.
+\item $M > J(A)M > J(A)^2M > \ldots > 0$ is a composition series.
+\item Every submodule of $M$ is of the form $J(A)^sM$ for some $s\in\IN$.
+\item The submodules of $M$ are totally ordered.
+\item $M^\ast:=\Hom_K(M,K)$ is uniserial.
+\end{enumerate}
+In particular: If $M$ is uniserial, then all submodules and all quotients of $M$ are uniserial.
+\end{lemmadef}
+
+\begin{remark}
+In particular the radical and socle series of $M$ coincide:
+\[rad^k(M) = J(A)^kM = soc^{l-k}(M)\] 
+where $l=l(M)$ is the length of $M$.
+\end{remark}
+
+\begin{definition}
+$A$ is called \udot{serial} if all of it finite-dimensional, indecomposable modules are uniserial.
+\end{definition}
+
+\begin{theorem}[11.3.4]
+Let $A$ be a finite-dimensional, non-simple, serial, indecomposable, self-injective $K$-algebra.
+
+Furthermore let $S_1, \ldots, S_n$ be a full set of representatives of isomorphism classes of simple $A$-modules and let $P_1,\ldots, P_n$ be the corresponding projective covers.
+
+Then:
+\begin{enumerate}
+\item There is a unique $n$-cycle $\pi\in Sym(n)$ such that
+\[J(A)P_i / J(A)^2P_i \isomorphic S_{\pi(i)}\]
+\item The $P_i$ all have the same composition length $q$ and the composition factors in
+\[P_i > J(A)P_i > J(A)^2P_i > \ldots > J(A)^{q-1}P_i > 0\]
+are (in this order) $S_i, S_{\pi(i)}, S_{\pi^2(i)}, \ldots, S_{\pi^{q-1}(i)}$.
+\item For all $i$, there is a short exact sequence
+\[0 \to S_{\pi^q(i)} \to P_{\pi(i)} \to J(A)P_i \to 0\]
+\item If $A$ is symmetric, then $n \mid q-1$.
+\end{enumerate}
+\end{theorem}
+
+\begin{remark}
+Non-simple + indecomposable implies that all the $P_i$ have length $>1$: If $l(P_i)=1$, then $P_i=S_i$ is simple and lies in a single-element block so that $A$ must necessarily be equal to that block because it is indecomposable. In particular there is only one simple module, namely $P_i$ and ${_A A}$ is a sum of copies of $P_i$ and thus semisimple. Being indecomposable, it must be simple by Wedderburn's theorem.
+\end{remark}
+
+
+
+\end{document}
