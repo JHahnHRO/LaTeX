@@ -1,4 +1,4 @@
-% !TeX root = adgc.tex
+% !TeX root = serial_algebras.tex
 % !TeX spellcheck = en_GB
 \documentclass[fontsize=11pt,fleqn,a4paper]{scrartcl}
 \input{_preamble/master_preamble.tex}
@@ -12,6 +12,8 @@
 \begin{convention}
 Let $K$ be a field of characteristic $p\in\IP\cup\set{0}$ and $A$ be a finite-dimensional $K$-algebra.
 \end{convention}
+
+\section{Last week on Dragonball...}
 
 \begin{lemmadef}[Lemma 11.3.1]
 Let $M$ be a finite-dimensional $A$-module. TFAE:
@@ -27,7 +29,7 @@ In particular: If $M$ is uniserial, then all submodules and all quotients of $M$
 
 \begin{remark}
 In particular the radical and socle series of $M$ coincide:
-\[rad^k(M) = J(A)^kM = soc^{l-k}(M)\] 
+\[rad^k(M) = J(A)^kM = soc_{l-k}(M)\] 
 where $l=l(M)$ is the length of $M$.
 \end{remark}
 
@@ -57,6 +59,195 @@ are (in this order) $S_i, S_{\pi(i)}, S_{\pi^2(i)}, \ldots, S_{\pi^{q-1}(i)}$.
 Non-simple + indecomposable implies that all the $P_i$ have length $>1$: If $l(P_i)=1$, then $P_i=S_i$ is simple and lies in a single-element block so that $A$ must necessarily be equal to that block because it is indecomposable. In particular there is only one simple module, namely $P_i$ and ${_A A}$ is a sum of copies of $P_i$ and thus semisimple. Being indecomposable, it must be simple by Wedderburn's theorem.
 \end{remark}
 
+\begin{remark}
+After a suitable reindexing, $\pi=(0,1,2,3,...,n-1)$ and the $PIMs$ have the form
+\[\begin{array}{ccccc}
+P_0 &  P_1 & P_2 & \cdots & P_{n-1} \\
+\hline
+\begin{pmatrix}0\\1\\2\\\vdots\\q-1\end{pmatrix} &
+\begin{pmatrix}1\\2\\3\\\vdots\\q\end{pmatrix} &
+\begin{pmatrix}2\\3\\4\\\vdots\\q+1\end{pmatrix} &
+\cdots &
+\end{array}\]
+where all numbers are to be read modulo $n$.
+\end{remark}
 
+
+\section{And now for the conclusion}
+
+\begin{corollary}[11.3.5]
+Let $A$ be serial, self-injective, non-simple and indecomposable. Let $\pi$ and $q$ be as before. Then
+\[\Omega^2(S_i) = S_{\pi^q(i)}\]
+for all simple modules $S_i$.
+\end{corollary}
+\begin{proof}
+By definition $\Omega(S_i) = \ker(P_i\twoheadrightarrow S_i) = J(A)P_i$ and by the theorem
+\[0 \to S_{\pi^q(i)} \to P_{\pi(i)} \to J(A)P_i \to 0\]
+so that $\Omega(\Omega(S_i)) = \Omega(J(A)P_i) = S_{\pi^q(i)}$.
+\end{proof}
+
+\subsection{Recognising serial algebras}
+
+\begin{proposition}[11.3.6]
+Let $A$ be a finite-dimensional $K$-algebra. Then $A$ is serial iff every indecomposable projective $A$-module and every indecomposable injective $A$-module is uniserial.
+\end{proposition}
+\begin{proof}
+One direction is trivial by definition. For the other direction let $0\neq U\in A\mathsf{-mod}$ be f.g., indecomposable. We have to show that $U$ is uniserial. Let $V\leq U$ be uniserial submodule of maximal dimension.  We will prove $V=U$.
+
+Since all simple modules are uniserial $V\neq 0$. Let $I$ be the injective envelope of $V$ so that in particular $soc(I)=soc(V)$ is simple. Then $I$ is indecomposable and thus uniserial by assumption. Then $\alpha: V\hookrightarrow I$ extends by injectivity of $I$ to a homomorphism $\widehat{\alpha}: U\to I$. We set $X:=\ker(\widehat{\alpha})$. By construction $X\cap V = \ker(\widehat{\alpha}_{|V}) = \ker(\alpha)=0$.
+
+Since $U/X$ is isomorphic to a submodule of $I$, it is uniserial. Therefore its radical quotient is simple. Let $P$ be the projective cover of $U/X$. Because its radical quotient is simple, $P$ is indecomposable and uniserial by assumption. Since $P$ is projective, we can lift the quotient $P\to U/X$ to a map $\beta: P\to U$ such that $U=\im(\beta)+X=\im(\beta)+\ker(\widehat{\alpha})$.
+
+Now
+\begin{align*}
+\dim(V) &= \dim(\alpha(V)) &\text{because $\alpha$ is injective} \\
+&\leq\dim(\widehat{\alpha}(U)) &\text{because }\alpha=\widehat{\alpha}_{|V} \\
+&\leq\dim(\im(\beta)) &\text{because }U=\im(\beta)+\ker(\widehat{\alpha})
+\end{align*}
+and $\im(\beta)$ is a uniserial submodule of $U$ (because it is a quotient of $P$). Because $V$ is a uniserial submodule of maximal dimension, all inequalities are in fact equalities. Therefore, in particular $(V+X)/X=\alpha(V) = \widehat{\alpha}(U) = U/X$ and thus $V\oplus X=U$. Since $U$ is indecomposable and $V\neq 0$, we finally find $X=0$.
+\end{proof}
+
+\begin{lemma}[11.3.7]
+Let $A$ be a self-injective, finite-dimensional $K$-algebra. TFAE:
+\begin{enumerate}
+\item $J(A)e / J(A)^2e$ is either zero or simple for all primitive idempotents $e\in A$.
+\item $A$ is serial.
+\end{enumerate}
+\end{lemma}
+\begin{proof}
+a.$\implies$b. is known.
+
+b.$\implies$a.: By the previous proposition, it is enough to prove that all PIMs $P=Ae$ are uniserial, i.e.
+\[\forall s\in\IN: J(A)^s e / J(A)^{s+1} e\in\Irr(A)\cup\set{0}\]
+For $s=0$ this is by definition, for $s=1$ this is by assumption. We proceed by induction. If $J(A)^s e=0$, there is nothing to prove. Otherwise, the projective cover of $J(A)e$ is the projective cover of he simple module $J(A)e/J(A)^2e$, say $Af \twoheadrightarrow J(A)e$ for some primitive idempotent $f$. Therefore $J(A)^{s+1}e=J(A)^s\cdot(J(A)e)$ is a quotient of $J(A)^s Af = J(A)^s f$. By induction assumption, $J(A)^{s+1}e/J(A)^se \isomorphic J(A)^sf/J(A)^{s-1}f$ is simple or zero.
+\end{proof}
+
+\begin{lemma}
+Let $A$ be a symmetric $K$-algebra and $J\unlhd A$ a two-sided ideal. Then
+\[RAnn(J) = LAnn(J)\]
+\end{lemma}
+\begin{proof}
+Let $\tau$ be a symmetrising form.
+\begin{align*}
+x\in LAnn(J) &\iff \forall z\in J: xz=0 \\
+&\iff \forall y\in J \forall a\in A: xay=0 \\
+&\iff \forall y\in J\forall a,b\in A: \tau(bxay) = 0\\
+&\iff \forall y\in J\forall a,b\in A: \tau(aybx) = 0\\
+&\iff \forall y\in J\forall b\in A: ybx = 0\\
+&\iff \forall z\in J: zx=0 \\
+&\iff x\in RAnn(J) \qedhere
+\end{align*}
+\end{proof}
+
+\begin{lemma}[11.3.8]
+Let $A$ be a symmetric, indecomposable $K$-algebra. TFAE:
+\begin{enumerate}
+\item There is a $t \in A$ such that $J(A)=At$.
+\item There is a $t \in A$ such that $J(A)=tA$.
+\item $A$ is serial and all PIMs occur with the same multiplicity in $A$.
+\end{enumerate}
+In this case one can chosen to same $t$ in a. and b.
+\end{lemma}
+\begin{proof}
+a.$\iff$b. We prove only one direction. So assume $J(A)=At$. First we prove that $tA\to At, ta \mapsto at$ is a well-defined $K$-linear map. Namely if $ta=0$, then $J(A)a = Ata = 0$ so that $a\in RAnn(J(A)) \overset{A\text{ symm}}{=} LAnn(J(A))$. Thus $at\in aJ(A)=0$ which proves well-definedness.
+
+Obviously our map is surjective so that $\dim_K(At) \leq \dim_K(tA)$. But $At=J(A)$ by assumption and $tA \subseteq J(A)$ because $t\in J(A)$. Therefore equalities hold.
+
+\medbreak
+a.+b.$\implies$c. Let $1=\sum e_i$ be a decomposition into pairwise orthogonal, primitive idempotents. Then
+\[\bigoplus_{i=1}^n J(A)e_i = J(A) = At = \sum_{i=1}^n Ae_i t\]
+We claim that the sum on the RHS is direct. Namely let $a_i\in Ae_i$ such that $\sum_i a_i t = 0$. Then $\sum_i a_i \in LAnn(t) = LAnn(tA) = LAnn(J(A)) \overset{A\text{ symm}}{=} RAnn(J(A))$ so that $t\sum_i a_i = 0$ and therefore $ta_i = t(\sum_i a_i)e_i = 0$. This in turn means $a_i\in RAnn(t) = RAnn(At) = RAnn(J(A)) \overset{A\text{ symm}}{=} LAnn(J(A))$ so that $a_i t=0$ which proves that the sum is direct.
+
+\smallbreak
+Moreover $J(A)e_i$ is indecomposable because $soc(J(A)e_i) = soc(Ae_i)$ is simple ($A$ is self-injective). Furthermore $Ae_i t$ is indecomposable, because it is a quotient of $Ae_i$ and therefore has a simple head. The Krull-Schmidt theorem implies that there is a permutation $\pi\in Sym(n)$ such that $J(A)e_i =Ae_{\pi(i)}t$.
+
+Since $Ae_j$ has a simple head and $J(A)e_i$ is a quotient of one of these, $J(A)e_i / J(A)^2 e_i$ is either zero or simple. By the previous lemma, $A$ is serial.
+
+\smallbreak
+If $Ae_i \isomorphic Ae_j$, then $J(A)e_i \isomorphic J(A)e_j$ as well. Because $A$ is serial, the second layer in the radical filtration of these is $S_{\pi(i)}$ and $S_{\pi(j)}$, i.e. the head of $Ae_{\pi(i)}t$ (which is a quotient of $Ae_{\pi(i)}$). Therefore $Ae_{\pi(i)} \isomorphic Ae_{\pi(j)}$ so that $\pi$ is compatible with isomorphism classes. By the main theorem, $\pi$ permutes the isomorphism classes transitively. This proves that all PIMs occur with the same multiplicity.
+
+\medbreak
+c.$\implies$a. Let $m$ be the common multiplicity of the PIMs. Then ${_A A}=(\bigoplus_{i=1}^n Ae_i)^m=(Ae)^m$ for some pairwise orthogonal, non-isomorphic idempotents $e_i$ and $e:=e_1+\ldots+e_n$.
+
+Then $A/J(A) \isomorphic J(A)/J(A)^2$ as left modules by the main theorem, because every simple occurs exactly $m$ times in both semisimple modules. Choose $t+J(A)^2$ as the image of $1+J(A)$ under this isomorphism. Then $At+J(A)^2 = J(A)$ so that $At=J(A)$ by Nakayama.
+\end{proof}
+
+\subsection{Specific serial algebras}
+
+\begin{theorem}[11.3.2]
+Let $K$ be an algebraically closed field of characteristic $p$, $P$ a cyclic $p$-group and $E\leq\operatorname{Aut}(P)$ a $p'$-subgroup. Then
+\begin{enumerate}
+\item $K[P\rtimes E]$ is symmetric, indecomposable and serial.
+\item $K[P\rtimes E]$ has exactly $\abs{E}$ simples, all of which are one-dimensional. All PIMs have dimension $\abs{P}$ and occur with multiplicity one. In particular $K[P\rtimes E]$ is split basic.
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+a. Group algebras are always symmetric. It is a well-known fact that all Block idempotents of $K[N_G(P)]$ lie in $K[C_G(P)]^{N_G(G)}$. Here $G=N_G(P)$ and $C_{P\rtimes E}(P)=Z(P)=P$. Furthermore $K[P]$ is local so that the only non-zero idempotent is the identity. Thus $K[G]$ only has one block idempotent and is therefore indecomposable.
+
+The epi $P\rtimes E\twoheadrightarrow E$ induces an surjective morphism $\phi: K[P\rtimes E] \to K[E]$. Because $E$ is a $p'$-group and $K$ has char. $p$, this is a semisimple quotient so that $J(A) \subseteq\ker(\phi)$. In fact $\ker(\phi) = \braket{g-1 | g\in P} = J(K[P])A=AJ(K[P])$ so that $\ker(\phi)$ is a nilpotent ideal and therefore $J(A) = \ker(\phi)$. Moreover $\ker(\phi)=AJ(K[P]) = AK[P](y-1) = A(y-1)$ where $P=\braket{y}$. By the previous lemma, $A$ is serial.
+
+\medbreak
+b. It is a well known fact that $O_p(G)$ acts trivial on all simple $K[G]$-modules. In this case this means that all simple $K[G]$-modules are also simple $K[E]$-modules. Since $E$ is a $p'$-group and $K$ is algebraically closed, the Wedderburn decomposition of $K[E]$ is $K \times \ldots \times K = K^{\abs{E}}$. In other words, all simple modules are one-dimensional and there are exactly $\abs{E}$ of them.
+
+All PIMs have the same length, i.e. the same dimension $q$, and occur with the same multiplicity $m$. Since $K[G] \twoheadrightarrow K[E]$ has $J(A)$ as kernel, we can lift a orthogonal decomposition into primitive idempotents from $K[E]$ to $K[G]$. There are $\abs{E}$ many such idempotents. Therefore $m=1$. Thus $\abs{E}\abs{P} = \abs{G} = \dim(K[G]) = \sum_{i=1}^{\abs{E}} \dim(Ae_i) = \abs{E} q$ so that $\dim(Ae_i)=\abs{P}$.
+\end{proof}
+
+\subsection{Classification of serial algebras}
+
+\begin{lemma}
+Let $A$ be a $K$-algebra and $B\subseteq A$ a subalgebra such that $B+J(A)^2 = A$. Then $\forall r\geq 2: B+J(A)^r = A$. In particular, if $A$ is finite-dimensional, then $B=A$.
+\end{lemma}
+\begin{proof}
+Fix elements $t_1,\ldots,t_k\in B$ such that their images form a generating set of $J(A)/J(A)^2$ as a $K$-vectorspace. Then inductively $\operatorname{span}_K\Set{t_{i_1} \cdots t_{i_r} | 1\leq i_1,\ldots,i_r\leq k}= J(A)^r / J(A)^{r+1}$ for all $r\geq 1$. All those products are in $B$ so that $B+J(A)^{r+1}$ contains $J(A)^r$ for all $r\geq 1$. Therefore
+\[B+J(A)^{r+1} = B+J(A)^r = \ldots = B+J(A)^2\]
+as claimed. If $A$ is finite-dimensional, then there is some $r \gg 0$ with $J(A)^r=0$.
+\end{proof}
+
+\begin{theorem}[11.3.9, Serial algebras are Nakayama algebras]
+Let $A$ be a finite-dimensional, indecomposable, non-simple, self-injective, serial $K$-algebra. Let $n:=\abs{\Irr(A)}$ be the number of isomorphism classes of simples and let $q$ be the common length of the PIMs.
+
+The following holds:
+\begin{enumerate}
+\item The Ext-quiver of $A$ is a (oriented) $n$-cycle, namely just the cycle $\pi$.
+\item Let $I$ be the ideal of $K\mathcal{Q}$ spanned by all paths of length $\geq q$. If $A$ is split basic, then $A\isomorphic K\mathcal{Q}/I$.
+
+In particular, the isomorphism type of $A$ is uniquely determined by $n$ and $q$.
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+a. is clear because by the main theorem $Ext^1(S_i,S_j)\neq 0 \iff \exists s.e.s.: 0\to S_j \to X \to S_i \to 0\;\text{non-split}\iff e_j J(A)/J(A)^2 e_i \neq 0 \iff j=\pi(i)$.
+
+\medbreak
+b. Choose primitive idempotents $1=e_1+\cdots+e_n$ and elements $t_{ij}\in e_i J(A)e_j$ with $t_{\pi(i)i} \neq 0$. These induce an $K$-algebra homomorphism $\phi: K\mathcal{Q} \to A$.
+
+Since the $t_{ij}$ span $J(A)/J(A)^2$ (remember that $e_i J(A)/J(A)^2 e_j$ is zero- or one-dimensional for all $i,j$), $\im(\phi)$ is a subalgebra with $\im(\phi)+J(A)^2=A$ so that $\phi$ is surjective by the above lemma.
+
+Since $J(A)^q=\sum_i J(A)^q e_i = 0$, the ideal $I$ is contained in the kernel of $\phi$. Since $A$ is split basic, each of the $n$ PIMs occurs exactly once in ${_A A}$ and their composition length equals their dimension (because split basic $\implies$ all simples are one-dimensional). Thus $A$ is exactly $nq$-dimensional. $K\mathcal{Q}/I$ is also $nq$-dimensional. Therefore $\phi$ induces the desired isomorphism.
+\end{proof}
+
+\begin{remark}
+This already characterises all finite-dimensional, serial, self-injective, and \emph{split} algebras up to Morita equivalence.
+\end{remark}
+
+\begin{proposition}[11.3.10, upgrade to the non-split case]
+Let $A$ be a finite-dimensional, self-injective, serial $K$-algebra. 
+
+If $U$ is finite-dimensional and indecomposable, $S:=soc(U)$, $T:=U/rad(U)$. Then
+\[\left\{\begin{array}{ccccc}
+\End(S) & \xleftarrow{\isomorphic}& \End(U)/J(\End(U)) &\xrightarrow{\isomorphic}& \End(T) \\
+f_{|soc(U)} & \leftarrow & f & \mapsto & \overline{f}
+\end{array}\right.\]
+
+In particular, if $A$ is indecomposable, then all simples have isomorphic skewfields as endomorphism algebras.
+\end{proposition}
+\begin{proof}
+Socle and radical are characteristic submodules so that there are canonical morphism $\phi: \End(U) \to \End(S)$ and $\psi: \End(U)\to \End(T)$.
+
+$U$ is indecomposable so that $\End(U)$ is local. On the other hand, $\End(S)$ and $\End(T)$ are skew fields. Therefore the two morphisms must induce the claimed isomorphisms.
+\end{proof}
+
+\begin{remark}
+By using valued quivers, one can tweak the previous theorem to characterise all non-split serial, self-injective algebras as well.
+\end{remark}
 
 \end{document}
