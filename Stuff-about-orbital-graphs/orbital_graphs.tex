@@ -1,0 +1,215 @@
+% !TeX root = orbital_graphs.tex
+% !TeX spellcheck = en_GB
+\documentclass[fontsize=11pt,fleqn,a4paper]{scrartcl}
+\input{_preamble/master_preamble.tex}
+
+\title{Some stuff about orbital graphs}
+
+\begin{document}
+
+\maketitle
+
+\begin{definition}
+Let $G\leq Sym(\Omega)$ be a permutation group. Then an orbit of $G$ on $\Omega\times\Omega$ is called an \udot{orbital} of the action $G \curvearrowright \Omega$.
+
+If $\Gamma\subseteq\Omega\times\Omega$ is an orbital, the directed graph with vertex set $\Omega$ and edge set $\Gamma$ is called an \udot{orbital graph}.
+\end{definition}
+
+\begin{definition}
+Let $G\curvearrowright\Omega$ be a transitive action. A $G_\omega$-orbit of this action is called a \udot{suborbit}. The sizes of the suborbits are called the \udot{subdegree}s of $G$.
+\end{definition}
+
+\section{Orbital graph, suborbits and double cosets}
+
+\begin{theorem}
+Let $G \curvearrowright \Omega$ be transitive, $\omega\in\Omega$ any element and $H:=G_\omega$ its stabiliser.
+
+There are inclusion-preserving bijections between the following sets
+\begin{enumerate}
+\item $G$-invariant subsets $\Gamma\subseteq\Omega\times\Omega$.
+\item $H$-invariant subsets $\Delta\subseteq\Omega$
+\item Subsets $D\subseteq G$ invariant under left- and right-multiplication by $H$.
+\end{enumerate}
+given in the following dictionary
+\[\begin{array}{c|c|c}
+\Gamma\subseteq\Omega\times\Omega & \Delta\subseteq\Omega & D\subseteq G \\
+\hline
+\Gamma & \Gamma(\omega) := \set{\alpha | (\alpha,\omega)\in\Gamma} & \set{ y\in G | (\omega,{^y \omega})\in\Gamma} \\
+\set{({^g \alpha},{^g \omega}) | \alpha\in\Delta,g\in G} & \Delta & \set{y\in G | {^y \omega}\in\Delta} \\
+\set{({^{g_0}\omega}, {^{g_1}\omega}) | Hg_0^{-1} g_1 H \subseteq D} & {^D\omega} & D \\
+\end{array}\]
+In particular the minimal non-empty elements of these posets, namely the orbitals, the suborbitals and the $H$-$H$-double cosets respectively, are mapped bijectively onto each other.
+
+Moreover, these bijections translate the following properties:
+\[\begin{array}{c|c|c}
+\Gamma\subseteq\Omega\times\Omega & \Delta\subseteq\Omega & D\subseteq G \\
+\hline
+\set{(\alpha,\alpha) | \alpha\in\Omega} & \set{\omega} & H \\
+\Gamma^{op} & \Delta^\ast & D^{-1} \\
+\abs{\Gamma}/\abs{\Omega} & \abs{\Delta} & \abs{D}/\abs{H} \\
+\Gamma \circ \Gamma' & \Delta \circ_\omega \Delta' & DD'
+\end{array}\]
+where
+\[\Delta^\ast :=\set{{^{g^{-1}}\omega} | {^g \omega}\in\Delta}\]
+\[\Delta \circ_\omega \Delta' := \set{\alpha | \exists g\in G, \beta\in\Delta': {^g \alpha}\in\Delta \wedge {^g\beta}=\omega}\]
+\end{theorem}
+\begin{proof}
+\end{proof}
+
+\begin{corollary}
+Let $G \curvearrowright \Omega$ be transitive.
+
+\begin{enumerate}
+\item The connected components of the orbital graph $(\Omega,\Gamma)$ with associated double coset $HyH$ are exactly the $U$-orbits, where $U:=\langle H,y\rangle$.
+\item $(\Omega,\Gamma)$ is connected iff $\langle H,y\rangle = G$.
+\item $G$ acts primitively iff all non-trivial orbital graphs are connected.
+\end{enumerate}
+\end{corollary}
+\begin{proof}
+Identify $\Omega$ with $G/H$ and $\Gamma$ with $\Gamma_y$ as above. Set $U:=\langle H,y\rangle$. Note that $U=H\cup HyH\cup HyHyH\cup\ldots$ because the order of $y$ is finite.
+
+\medbreak
+a. Now $xH$ and $x'H$ are connected iff there exists a sequence $x=x_0,x_1,\ldots,x_k=x'$ such that $(x_{i-1}H,x_i H)\in\Gamma_y$, i.e. $x_{i-1}^{-1} x_i \in HyH$.
+
+In particular: If $xH$ and $x'H$ are connected, then $x_{i-1}U = x_i U$ for all $i\in\set{1,\ldots,k}$. Therefore $xU=x_0U = x_k U = x'U$.
+
+Conversely: If $xU=x'U$, then there exists an element $h_0 y h_1 \cdots y h_k \in U$ with $h_i\in H$ such that $x' = x(h_0 y h_1 \cdots y h_k)$. Now we can define $x_i := x \cdot (h_0 y h_1 \cdots y h_i)$ for $i\in\set{0,\ldots,k}$ and have found a sequence connecting $xH=x_0H$ and $x'H$ in the orbital graph.
+
+\medbreak
+b. follows directly from a.
+
+\medbreak
+c. follows directly from the fact that $G$ acts primitively on $\Omega$ iff $H$ is a maximal subgroup.
+\end{proof}
+
+\begin{remark}
+This lemma allows for easy identification of at least one block system for the action of $G$ on $\Omega$, namely the connected components of $(\Omega,\Gamma)$. They coincide with the sets ${^U \omega}$.
+
+Moreover: ${^U \omega}$ is the smallest possible block containing both $\omega$ and ${^y \omega}$.
+\end{remark}
+
+
+\section{Orbital graphs and representation theory}
+
+\begin{definition}
+Let $\Omega$ be a finite $G$-set. Then define $\IK^\Omega$ is defined  as the $\mathbb{K}$-vector space with basis $\Omega$. This vector space is naturally a $\IK G$-module by extending the action of $G$ on the basis elements linearly to the whole space.
+
+We also define $Perm(\Omega) \leq GL(\IK^\Omega)$ to be the set of all permutation matrices acting on $\IK^\Omega$.
+
+The representation $G\to Perm(n)$ will be denoted by $\rho_\Omega$.
+\end{definition}
+
+\begin{remark}
+We mainly introduce $Perm(\Omega)$ to have a clean notational distinction between a permutation and its associated permutation matrix.
+\end{remark}
+
+\begin{theorem}
+$\End_{\IK G}(\IK^\Omega)$ has a natural $\IK$-basis $\set{X_\Gamma | \Gamma\subseteq\Omega^2\;\text{orbital}}$ defined as
+\[(X_\gamma)_{ij} := \begin{cases} 1 & \text{if}\;(i,j)\in\Gamma \\ 0 & \text{otherwise}\end{cases}\]
+
+The structure constants w.r.t. this basis, i.e. the numbers $d_{ij}^k$ such that
+\[X_{\Gamma_i} \cdot X_{\Gamma_j} = \sum_{k} d_{ij}^k X_{\Gamma_k},\]
+are given by $d_{ij}^k := \abs{\Set{\beta\in\Omega | (\alpha,\beta)\in\Gamma_i \wedge (\beta,\gamma) \in \Gamma_j}}$ where $(\alpha,\gamma)$ is any element of $\Gamma_k$.
+\end{theorem}
+\begin{remark}
+In other words: $X_\Gamma$ is the adjacency matrix of the orbital graph $(\Omega,\Gamma)$.
+
+Note that the right hand side in the definition of $d_{ij}^k$ really is independent of the choice of the element $(\alpha,\gamma)\in\Gamma_k$, because $G$ acts transitively on $\Gamma_k$.
+
+Also note that multiplication is connected to composition via
+\[X_{\Gamma_i} \cdot X_{\Gamma_j} \in \LinHull_\IK\set{X_\Gamma | \Gamma\subseteq \Gamma_i\circ\Gamma_j}\]
+\end{remark}
+\begin{proof}
+Writing out the defining condition
+\[X\in\End_{\IK G}(\IK^\Omega) \iff \forall g\in G: gXg^{-1} = X\]
+in components shows that every $\IK G$-linear endomorphism is a linear combination of the $X_\Gamma$. They are obviously linear independent and therefore a basis.
+
+The structure constants similarly follow by writing out the definition of matrix multiplication in this case.
+\end{proof}
+
+\begin{remark}
+$\End_{\IC G}(\IK^\Omega)$ is by definition the centraliser algebra of the subalgebra $\LinHull_\IK(\rho_\Omega(G)) \subseteq \IK^{\Omega\times\Omega}$.
+
+If $\IK$ has characteristic zero, $\IK G$ is semisimple and therefore all modules have the double centraliser property so that $C(\End_{\IK G}(\IK^\Omega)) = \LinHull_\IK(\rho_\Omega(G))$.
+\end{remark}
+
+\begin{definition}
+The \udot{2-closure} of a permutation group $G\leq Sym(\Omega)$ is defined as the largest subgroup $\widehat{G}\subseteq Sym(\Omega)$ that has the same orbits as $G$ on $\Omega^2$, i.e.
+\[\widehat{G} := \Set{\pi\in Sym(\Omega) | \forall \Gamma\in \Omega^2/G: \pi(\Gamma) = \Gamma}\]
+$G$ is called \udot{2-closed} iff $G=\widehat{G}$ holds.
+\end{definition}
+
+\begin{lemma}[2-closure in terms of endomorphism algebras]\label{two_closure:in_terms_of_endomorphisms}
+The 2-closure of $G$ is the largest subgroup $H\leq Sym(\Omega)$ that still satisfies $End_{\IK G}(\IK^\Omega) = End_{\IK H}(\IK^\Omega)$, i.e.
+\[\widehat{G} = Perm(\Omega) \cap C(\End_{\IK G}(\IK^\Omega)).\]
+In particular, $G$ is 2-closed if no permutation matrix outside $G$ commutes with all endomorphisms of $\IK^\Omega$.
+\end{lemma}
+\begin{proof}
+Let $\widehat{G}$ be the 2-closure of $G$. By definition $\pi\in\widehat{G}$ if and only if $\pi X_\Gamma \pi^{-1} = X_\Gamma$ for all $\Gamma\in\Omega^2/G$. In other words $\pi$ is in the 2-closure iff it is a permutation and an element of the centraliser of the endomorphism ring of the $\IK G$-module $\IK^\Omega$.
+\end{proof}
+
+\begin{theorem}[2-closure in terms of invariant subspaces]\label{two_closure:in_terms_of_subspaces}
+$\widehat{G} = \Set{\gamma\in Perm(\Omega) | \forall U\leq\IC^\Omega: U\;G\text{-invariant} \implies U\;\gamma\text{-invariant}}$
+\end{theorem}
+\begin{proof}
+We consider the standard scalar product on $\IC^\Omega$ defined by declaring $\Omega$ to be an orthonormal basis.
+
+Then all permutation matrices are unitary. In particular, $\LinHull_\IC(\rho_\Omega(G))$ is closed under taking adjoints and its centraliser $\End_{\IC G}(\IC^\Omega)$ is also closed under taking adjoints. Both are therefore $C^\ast$-algebras. In particular, both are isomorphic to a direct product of matrix rings. It is a consequence of the spectral theorem that $\prod_i \IC^{n_i\times n_i}$ is spanned by all the self-adjoint idempotents it contains.
+
+\medbreak
+Self-adjoint idempotent matrices correspond bijectively to subspaces by identifying $U$ with the orthogonal projection $p_U$ onto $U$. A subspace $U$ is $g$-invariant if $g$ centralises $p_U$.
+
+Therefore
+\[\End_{\IC G}(\IC^\Omega) = \LinHull_\IC\Set{p_U | U\leq\IC^G\;G\text{-invariant}}\]
+and
+\[\widehat{G} = Perm(\Omega) \cap C(\End_{\IC G}(\IC^\Omega)) = Perm(\Omega) \cap \bigcap_{\substack{U\leq\IC^\Omega \\ G\text{-invariant}}} C(p_U)\]
+which proves the claim.
+\end{proof}
+
+\begin{definition}
+A permutation group $G\leq Sym(\Omega)$ is
+\begin{itemize}
+\item \udot{reconstructible from $\mathcal{X}\subseteq\End_{\IK G}(\IK^\Omega)$} if $G = Perm(\Omega) \cap \bigcap_{X\in\mathcal{X}} C(X)$,
+\item \udot{orbital-graph-reconstructible} if $G$ is reconstructible from $\Set{X_\Gamma | \Gamma\in\Omega^2/G}$,
+\item \udot{strongly orbital-graph-reconstructible from  $\Gamma\in\Omega^2/G$} iff it is reconstructible from $X_\Gamma$ alone,
+\item \udot{absolutely orbital-graph-reconstructible} iff it is strongly orbital-graph-reconstrucible from any non-diagonal $\Gamma\in\Omega^2$.
+\item \udot{subspace-reconstructible} from a set $\mathcal{U}$ of $G$-invariant subspaces of $\IK^\Omega$ if $G$ is reconstructible from $\Set{p_U | U\in\mathcal{U}}$.
+\item \udot{strongly subspace-reconstructible} from $U\leq\IK^\Omega$ if $G$ is reconstructible from $p_U$ alone,
+\item \udot{absolutely subspace-reconstructible over $\IK$} if $G$ is strongly subspace-reconstructible from any $p_U$ where $U\leq\IK^G$ is a minimal, non-zero $G$-invariant subspace which is not $\LinHull_\IK\set{(1,1,\ldots,1)}$.
+\end{itemize}
+\end{definition}
+
+\begin{corollary}
+$G\leq Sym(\Omega)$ is 2-closed iff it is orbital-graph reconstructible iff it is subspace-reconstructible over $\IC$.
+\end{corollary}
+\begin{proof}
+The first equivalence follows from the fact that $X_\Gamma$ is a basis of $\End_{\IC G}(\IC^\Omega)$. The second follows from theorem \ref{two_closure:in_terms_of_subspaces}.
+\end{proof}
+
+\begin{example}
+A regular permutation group is always 2-closed.
+
+This is because a regular $G$-set is isomorphic to $G$ itself endowed with left multiplication. The orbitals of this action are given by $\Gamma_h:=\set{(x,y)\in G^2 | x^{-1} y=h}$ for $h\in G$ and one can readily verify that the only permutations fixing all the orbitals are the left multiplication maps themselves.
+\end{example}
+
+\begin{lemma}
+Let $\Gamma$ be an orbital. Then $G$ is strongly orbital-graph-reconstructible from $\Gamma$ iff if strongly orbital-graph-reconstructible from $\Gamma^{op}$ iff it is subspace-reconstrucible from
+\[\Set{\operatorname{Eig}_\lambda(\Re(X_\Gamma)),\operatorname{Eig}_\lambda(\Im(X_\Gamma)) | \lambda\in\IR}.\]
+\end{lemma}
+\begin{proof}
+Permutation matrices are unitary. Therefore $g\in Perm(n)$ centralises $X$ iff it centralises $X^\ast$. The adjoint of $X_\Gamma$ is exactly $X_{\Gamma^{op}}$ as we have previously observed.
+
+$\Re(X) = \frac{1}{2}(X+X^\ast)$ and $\Im(X)=\frac{1}{2i}(X-X^\ast)$ are self-adjoint matrices with $X=\Re(X)+i\Im(X)$ and for a self-adjoint matrices $Y$ the spectral theorem shows
+\[Y = \sum_{\lambda\in\IR} \lambda e_\lambda\]
+where $e_\lambda=p_{\operatorname{Eig}_\lambda(Y)}$ is the orthogonal projection onto the $\lambda$-eigenspace. Moreover $e_\lambda$ is a polynomial of $Y$ by Lagrange-interpolation.
+
+Therefore if $g\in GL(\IK^\Omega)$ commutes with $Y$ it must commute with all $e_\lambda$ and vice versa. Thus
+\[C(X_\Gamma) = C(X_\Gamma,X_\Gamma^\ast) = C(\Re(X_\Gamma),\Im(X_\Gamma))=\bigcap_{\lambda} C(p_{\operatorname{Eig}_\lambda(\Re(X_\Gamma))}) \cap C(p_{\operatorname{Eig}_\lambda(\Im(X_\Gamma))})\]
+which proves the lemma.
+\end{proof}
+
+\begin{remark}
+The concept of subspace reconstructibility also makes sense if we replace $Perm(\Omega)$ by some other finite subgroup, for example the subgroup of monomial matrices.
+\end{remark}
+
+\end{document}
