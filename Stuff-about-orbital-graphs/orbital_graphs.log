@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6930 64-bit) (preloaded format=pdflatex 2019.1.24)  21 FEB 2019 21:37
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6930 64-bit) (preloaded format=pdflatex 2019.1.24)  21 FEB 2019 23:23
 entering extended mode
 **./orbital_graphs.tex
 (orbital_graphs.tex
@@ -1107,35 +1107,48 @@ LaTeX Font Info:    Try loading font information for U+stmry on input line 11.
 
 {C:/Users/Johannes/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}] [2] [3] 
 [4]
-Overfull \hbox (2.35216pt too wide) in paragraph at lines 175--176
-[]|   []   |   [] \T1/cmr/m/n/10.95 iff it is strongly orbital-graph-reconstruc
-ible
+Overfull \hbox (20.10194pt too wide) in paragraph at lines 188--189
+[]\T1/cmr/m/n/10.95 ... |   []   |   [] iff it is strongly orbital-graph-recons
+tructible
  []
 
 
-Overfull \hbox (11.82065pt too wide) in paragraph at lines 183--184
+Overfull \hbox (10.54477pt too wide) in paragraph at lines 192--193
+[]\T1/cmr/m/n/10.95 ... |   []   |   []   |   []   |   [] if $\OML/cmm/m/it/10.
+95 G$ \T1/cmr/m/n/10.95 is strongly subspace-reconstructible
+ []
+
+
+Overfull \hbox (1.26147pt too wide) in paragraph at lines 192--193
+\T1/cmr/m/n/10.95 from any min-i-mal, non-zero, $\OML/cmm/m/it/10.95 G$\T1/cmr/
+m/n/10.95 -invariant $\OML/cmm/m/it/10.95 U \OMS/cmsy/m/n/10.95  \U/msb/m/n/10
+.95 K[]$ \T1/cmr/m/n/10.95 which is not $[][] []$. 
+ []
+
+[5]
+Overfull \hbox (11.82065pt too wide) in paragraph at lines 197--198
 []$\OML/cmm/m/it/10.95 G \OMS/cmsy/m/n/10.95  \OML/cmm/m/it/10.95 Sym\OT1/cmr/
 m/n/10.95 (
 )$ \T1/cmr/m/n/10.95 is 2-closed iff it is orbital-graph re-con-structible iff 
 it is subspace-reconstructible
  []
 
-LaTeX Font Info:    Try loading font information for U+euf on input line 197.
+LaTeX Font Info:    Try loading font information for U+euf on input line 213.
 ("C:\Program Files\MiKTeX 2.9\tex/latex/amsfonts\ueuf.fd"
 File: ueuf.fd 2013/01/14 v3.01 Euler Fraktur
-) [5] [6]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 215.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 215.
+) [6]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 231.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 231.
 
 (orbital_graphs.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 215.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 215.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 231.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 231.
 Package rerunfilecheck Info: File `orbital_graphs.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 23329 strings out of 492946
- 444733 string characters out of 3135518
+ 23330 strings out of 492946
+ 444739 string characters out of 3135518
  643007 words of memory out of 3000000
  26751 multiletter control sequences out of 15000+200000
  20899 words of font info for 64 fonts, out of 3000000 for 9000
@@ -1162,9 +1175,9 @@ lic/amsfonts/cm/cmsy6.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfo
 nts/cm/cmsy8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/euler
 /eufm10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/ms
 bm10.pfb>
-Output written on orbital_graphs.pdf (6 pages, 194065 bytes).
+Output written on orbital_graphs.pdf (6 pages, 197812 bytes).
 PDF statistics:
- 306 PDF objects out of 1000 (max. 8388607)
- 33 named destinations out of 1000 (max. 500000)
+ 314 PDF objects out of 1000 (max. 8388607)
+ 34 named destinations out of 1000 (max. 500000)
  29 words of extra memory for PDF output out of 10000 (max. 10000000)
 
