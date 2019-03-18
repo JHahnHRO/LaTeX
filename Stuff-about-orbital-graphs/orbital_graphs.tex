@@ -1,6 +1,12 @@
 % !TeX root = orbital_graphs.tex
 % !TeX spellcheck = en_GB
 \documentclass[fontsize=11pt,fleqn,a4paper]{scrartcl}
+
+\author{Johannes Hahn}
+\title{Some stuff about orbital graphs}
+%\subtitle{}
+%\date{\today}
+
 \input{_preamble/master_preamble.tex}
 
 \title{Some stuff about orbital graphs}
@@ -10,9 +16,9 @@
 \maketitle
 
 \begin{definition}
-Let $G\curvearrowright\Omega$ be any group action on a set $\Omega$. An orbit of the induced action of $G$ on $\Omega^2=\Omega\times\Omega$ is called an \udot{orbital} of the action $G \curvearrowright \Omega$.
+Let $G\curvearrowright\Omega$ be any group action on a set $\Omega$. An orbit of the induced action of $G$ on $\Omega^2=\Omega\times\Omega$ is called an \udot{orbital} of the action $G \curvearrowright \Omega$. The number of orbitals is called the \udot{rank} of the action.
 
-If $\Gamma$ is any orbital, then the directed graph with vertex set $\Omega$ and edge set $\Gamma$ is called an \udot{orbital graph} of the action.
+If $\Gamma$ is any orbital, then the directed graph with vertex set $\Omega$ and an edge $\alpha\leftarrow\beta$ iff $(\alpha,\beta)\in\Gamma$ is called an \udot{orbital graph} of the action.
 \end{definition}
 
 \begin{definition}
@@ -21,135 +27,391 @@ Let $G\curvearrowright\Omega$ be a transitive action and $\omega\in\Omega$. A $G
 
 
 \begin{convention}
-For everything that follows, fix a non-empty, finite set $\Omega$ and a permutation group $G\leq Sym(\Omega)$. In other words, from now on we consider only faithful permutation actions of $G$.
+For everything that follows, fix a finite, non-empty set $\Omega$ and a permutation group $G\leq Sym(\Omega)$. In other words, from now on we consider only faithful permutation actions of $G$.
+
+Set $n:=\abs{\Omega}$, let $l$ be the number of $G$-orbits on $\Omega$ and let $r$ be the rank.
+
+In those cases where $G\curvearrowright\Omega$ is transitive, we will denote the subdegrees by $1=n_1,n_2,\ldots,n_r$. (We will see in the next theorem that there are in fact exactly $r$ suborbits)
 \end{convention}
 
 
-\section{Orbital graphs vs. suborbits and double cosets}
+\section{Orbital graphs vs. suborbits vs. double cosets -- A dictionary}
 
-\begin{theorem}
-Let $G \curvearrowright \Omega$ be transitive, $\omega\in\Omega$ a fixed element and $H:=G_\omega$ its stabiliser.
+\begin{theoremdef}[Dictionary theorem]\label{dictionary:theorem}
+Let $G \curvearrowright \Omega$ be a group action, $\Omega = Q_1\sqcup\ldots\sqcup Q_l$ its orbit decomposition, $\omega_i\in Q_i$ fixed orbit-representatives, and $H_i:=G_{\omega_i}$ their stabilisers.
 
-There are inclusion-preserving bijections between the following sets
 \begin{enumerate}
-\item $G$-invariant subsets $\Gamma\subseteq\Omega\times\Omega$.
-\item $H$-invariant subsets $\Delta\subseteq\Omega$
-\item Subsets $D\subseteq G$ invariant under left- and right-multiplication by $H$.
-\end{enumerate}
-given in the following dictionary
-\[\begin{array}{c|c|c}
-\Gamma\subseteq\Omega\times\Omega & \Delta\subseteq\Omega & D\subseteq G \\
-\hline
-\Gamma & \Gamma(\omega) := \set{\alpha | (\alpha,\omega)\in\Gamma} & \set{ y\in G | (\omega,{^y \omega})\in\Gamma} \\
-\set{({^g \alpha},{^g \omega}) | \alpha\in\Delta,g\in G} & \Delta & \set{y\in G | {^y \omega}\in\Delta} \\
-\set{({^{g_0}\omega}, {^{g_1}\omega}) | Hg_0^{-1} g_1 H \subseteq D} & {^D\omega} & D \\
-\end{array}\]
-In particular the minimal non-empty elements of these posets, namely the orbitals, the suborbitals and the $H$-$H$-double cosets respectively, are mapped bijectively onto each other.
+\item There are bijections between the following sets
+\begin{itemize}
+\item $\mathscr{P}(\Omega\times\Omega)^G$, the set of all $G$-invariant subsets $\Gamma\subseteq\Omega\times\Omega$,
+\item $\prod_{1\leq i\leq l} \mathscr{P}(\Omega)^{H_i}$, the set of all $l$-tuples $(\Delta_1,\ldots,\Delta_l)$ where $\Delta_i$ is an $H_i$-invariant subset of $\Omega$.
+\item $\prod_{1\leq i,j\leq l} \mathscr{P}(G)^{H_i\times H_j}$, the set of all $l\times l$-tuples $(D_{ij})$ where $D_{ij}\subseteq G$ is invariant under left-multiplication by $H_i$ and right-multiplication by $H_j$.
+\end{itemize}
+given in the upper block of table \ref{dictionary:table}.
 
-Moreover, these bijections translate the following properties:
-\[\begin{array}{c|c|c}
-\Gamma\subseteq\Omega\times\Omega & \Delta\subseteq\Omega & D\subseteq G \\
-\hline
-\set{(\alpha,\alpha) | \alpha\in\Omega} & \set{\omega} & H \\
-\Gamma^{op} & \Delta^\ast & D^{-1} \\
-\abs{\Gamma}/\abs{\Omega} & \abs{\Delta} & \abs{D}/\abs{H} \\
-\Gamma \circ \Gamma' & \Delta \circ_\omega \Delta' & DD'
-\end{array}\]
-where
-\[\Delta^\ast :=\set{{^{g^{-1}}\omega} | {^g \omega}\in\Delta}\]
-\[\Delta \circ_\omega \Delta' := \set{\alpha\in\Omega | \exists g\in G, \beta\in\Delta': {^g \alpha}\in\Delta \wedge {^g\beta}=\omega}\]
-\end{theorem}
+\item Moreover, these bijections also translate the properties listed in the rest of table \ref{dictionary:table}.
+\end{enumerate}
+\end{theoremdef}
 \begin{proof}
+It is a tedious, but straight-forward exercise to verify that the given mappings in the first three lines of the table are well-defined, compatible bijections and translate the listed properties as stated.
 \end{proof}
 
 \begin{corollary}
-Let $G \curvearrowright \Omega$ be transitive, let $\Gamma\subseteq\Omega^2$ be any orbital, and let $HyH$ be its associated double coset.
+The three sets in the dictionary theorem are posets w.r.t. (component-wise) inclusion and the bijections are order-isomorphisms.
+
+In particular the sets of minimal non-empty elements in these posets, namely
+\begin{itemize}
+\item $\Omega^2/G$, the set of orbitals,
+\item $\bigsqcup_{i=1}^l \Omega/H_i$, the set of suborbits, where we distinguish ${^{H_i}\omega}$ and ${^{H_j}\omega}$ for $i\neq j$ even if $H_i$ and $H_j$ happen to be identical subgroups.
+\item $\bigsqcup_{1\leq i,j\leq l} H_i\backslash G/H_j$, the set of double cosets, where we distinguish $H_i y H_j$ and $H_i' y H_j'$ for $(i,j)\neq(i',j')$ even if $H_i=H_i'$ or $H_j=H_j'$.
+\end{itemize}
+are mapped bijectively onto each other. Table \ref{dictionary:table_for_minimal_elements} lists the consequences of the general translations for orbital, suborbits and double-cosets.
+\end{corollary}
+
+\begin{landscape}
+
+\begin{table}[htp]
+\[\renewcommand{\arraystretch}{1.5}
+\begin{array}{ c | c | c}
+\mathscr{P}(\Omega\times\Omega)^G & \prod_{1\leq i\leq l} \mathscr{P}(\Omega)^{H_i} & \prod_{1\leq i,j\leq l} \mathscr{P}(G)^{H_i\times H_j} \\
+
+\hline
+\hline
+
+\Gamma & \Delta_i:=\Gamma(\omega_i) := \set{\alpha | (\alpha,\omega_i)\in\Gamma} & D_{ij}:=\set{ y\in G | ({^y \omega_j},\omega_i)\in\Gamma} \\
+
+\hline
+
+\displaystyle\bigcup_{\substack{1\leq i\leq l \\ g\in G}} {^g(\Delta_i\times\set{\omega_i})} & (\Delta_i) & D_{ij}:=\set{y\in G | {^y \omega_j}\in\Delta_i} \\
+
+\hline
+
+\displaystyle\bigcup_{1\leq i,j\leq l}\set{({^x\omega_j}, {^y\omega_i}) | y^{-1}x \in D_{ij}} & \displaystyle\Delta_i:=\bigcup_{1\leq j\leq l} {^{D_{ij}}\omega_j} & (D_{ij}) \\
+
+\hline
+\hline
+
+\set{(\alpha,\alpha) | \alpha\in Q_i} & (\emptyset,\ldots,\emptyset,\set{\omega_i},\emptyset,\ldots,\emptyset) &  \diag(\emptyset,\ldots,\emptyset,H_i\emptyset,\ldots,\emptyset) \\
+
+\hline
+
+\Gamma^{op} & \Delta_i^\ast:=\set{\alpha | \exists j,g: \alpha={^g\omega_j} \wedge {^{g^{-1}}\omega_j}\in\Delta_i} & (D^\ast)_{ij} := D_{ji}^{-1} \\
+
+\hline
+
+\abs{\Gamma \cap Q_i\times Q_j} & \abs{Q_j}\abs{\Delta_j\cap Q_i}=\abs{Q_i}\abs{\Delta_i^\ast\cap Q_j} & \frac{\abs{G}\abs{D_{ji}}}{\abs{H_i}\abs{H_j}} \\
+
+\hline
+
+\Gamma \circ \Gamma' & (\Delta \circ \Delta')_i := \set{\alpha | \exists j,g: (\alpha,\omega_j)\in{^g\Delta_j}\times{^{g^{-1}}\!\Delta_i'}} & \big(\bigcup_{k} D_{ik} D_{kj}'\big)_{i,j=1..l} \\
+
+\hline
+\hline
+
+\Gamma \;\text{reflexive} & (\set{\omega_1},\ldots,\set{\omega_l})\subseteq\Delta & \diag(H_1,\ldots,H_l) \subseteq D \\
+
+\hline
+
+\Gamma \;\text{transitive} & \Delta\circ\Delta\subseteq\Delta & \forall i,j,k: D_{ij}D_{jk}\subseteq D_{ik} \\
+
+\hline
+
+\Gamma \;\text{symmetric} & \Delta=\Delta^\ast & D_{ij}=D_{ji}^{-1} \\
+
+\hline
+
+\Gamma \;\text{antisymmetric} & \Delta_i\cap\Delta_i^\ast \subseteq\set{\omega_i} & D_{ij}\cap D_{ji}^{-1} \subseteq H_i \\
+
+\hline
+
+\Gamma \;\text{equiv.relation} & \Delta_i \;\text{block} & \parbox[t]{8cm}{\centering $\forall i: H_i\leq D_{ii}\leq G $ \\ $\forall i,j: D_{ij}=\emptyset \vee \exists g\in G: D_{ii}g=D_{ij}=gD_{jj}$} \\
+\end{array}\]
+
+\caption{The relationship between $G$-invariant binary relations between points, $H_i$-invariant point sets, and $H_i$-$H_j$-invariant subsets of $G$}
+\label{dictionary:table}
+\end{table}
+
+\begin{table}[htp]
+\[\renewcommand{\arraystretch}{1.5}
+\begin{array}{ c | c | c}
+\text{Orbitals}\;\Omega^2/G & \text{Suborbits} & \text{double cosets} \\
+
+\hline
+\hline
+
+\Gamma & \Delta\in \Omega/H_i\;\text{with}\;\Delta=\Gamma(\omega_i) & H_i y H_j\;\text{with}\;({^y \omega_j},\omega_i)\in\Gamma \\
+
+\hline
+
+\bigcup_{g\in G} {^g(\Delta\times\set{\omega_i})} & \Delta\in \Omega/H_i & H_i y H_j\;\text{with}\;{^y \omega_j} \in \Delta \\
+
+\hline
+
+\set{({^x\omega_j}, {^{x'}\omega_i}) | H_i x'^{-1}x H_j = H_i y H_j} & {^{H_i y}\omega_j}\in \Omega/H_i & H_i y H_j \\
+
+\hline
+\hline
+
+(i,j)\;\text{with}\;\Gamma\subseteq Q_j\times Q_i & \Delta\in\Omega/H_i \wedge \Delta\subseteq Q_j & H_i y H_j \in H_i\backslash G /H_j \\
+
+\hline
+
+\abs{\Gamma} & \abs{Q_i}\abs{\Delta}=\abs{\Delta^\ast}\abs{Q_j} & \abs{G: H_i \cap {^y H_j}}=\abs{G: {^{y^{-1}}H_i}\cap H_j}
+
+\end{array}\]
+
+\caption{The relationship between orbitals, suborbits and double-cosets}
+\label{dictionary:table_for_minimal_elements}
+
+\end{table}
+
+\end{landscape}
+
+
+\begin{lemma}
+Let $G \curvearrowright \Omega$ be transitive, $\omega\in\Omega$ a fixed element and $H:=G_\omega$ its stabiliser.
+
+The set of $H$-invariant subsets of $\Omega$ is a monoid w.r.t. $\circ_\omega$, $\set{\omega}$ is the neutral element, $\emptyset$ is a zero element, and $\Delta\mapsto\Delta^\ast$ is an antiautomorphism of order two of this monoid.
+
+Moreover the monoid is filtered by size of the subsets:
+\[\forall\Delta,\Delta'\neq\emptyset: \max\set{\abs{\Delta},\abs{\Delta'}}\leq\abs{\Delta\circ_\omega\Delta'} \leq \abs{\Delta}\abs{\Delta'}\]
+\end{lemma}
+\begin{proof}
+The first few claims all follows from the dictionary theorem after translation into the language of binary relations on $\Omega$. The bounds on the size follow from translating to double cosets.
+\end{proof}
+
+\begin{corollary}
+Let $G \curvearrowright \Omega$ be transitive, $\omega\in\Omega$ be fixed, $\Gamma=\Gamma_i\subseteq\Omega^2$ be any orbital, $n_i$ its subdegree, and let $HyH$ be its associated double coset.
 
 \begin{enumerate}
 \item Connected components of $(\Omega,\Gamma)$ are automatically strongly connected.
-\item The connected components of $(\Omega,\Gamma)$ are exactly the $U$-orbits on $\Omega$, where $U:=\langle H,y\rangle$.
+\item The connected component of $\omega$ in $(\Omega,\Gamma)$ is exactly ${^U\omega}$, where $U:=\langle H,y\rangle$.
 \item $(\Omega,\Gamma)$ is connected iff $\langle H,y\rangle = G$.
+\item If $(\Omega,\Gamma)$ is connected and the rank is $r$, then $\abs{\Omega} \leq \frac{n_i^r-1}{n_i-1}$.
 \item $G$ acts primitively iff all non-diagonal orbital graphs are connected.
 \end{enumerate}
 \end{corollary}
 \begin{proof}
-a. If that were not the case, there would be a connected component $\emptyset\neq C\subseteq\Omega$ which decomposes further $C=X_0 \sqcup \ldots \sqcup X_n$ into strongly connected components such that only edges from $X_i$ into $X_j$ exist where $i<j$ but not the other way around. Pick any $x_0\in X_0$, $x_k\in X_k$. Since $G$ is transitive, there would be a $g\in G$ such that ${^g x_0} =x_k$. In particular ${^g C}=C$, since $C$ is connected component. Hence $\langle g\rangle$ acts as graph automorphisms on $C$ and must permute the strongly connected components. But that means it must map $X_0$ to $X_k$ which is impossible because the former only only has in-coming edges, while the latter only has out-going edges.
+a. If that were not the case, there would be a connected component $\emptyset\neq C\subseteq\Omega$ which decomposes further $C=X_0 \sqcup \ldots \sqcup X_n$ into strongly connected components. Wlog we number them such that edges from $X_i$ into $X_j$ exist only if $i<j$. Pick any $x_0\in X_0$, $x_k\in X_k$. Since $G$ is transitive, there would be a $g\in G$ such that ${^g x_0} =x_k$. In particular ${^g C}=C$, since $C$ is connected component. Hence $\langle g\rangle$ acts as graph automorphisms on $C$ and must permute the strongly connected components. But that means it must map $X_0$ to $X_k$ which is impossible because the former only only has out-going edges, while the latter only has in-coming edges.
 
 \medbreak
-Now identify $\Omega$ with $G/H$ and $\Gamma$ with $\Gamma_y=\Set{(g_0H,g_1H) | Hg_0^{-1}g_1H = HyH}$ as above. Set $U:=\langle H,y\rangle$. Note that $U=H\cup HyH\cup HyHyH\cup\ldots$ because the order of $y$ is finite.
+Because of a. we determine the strongly connected components. A direct path $\alpha=\alpha_0\leftarrow\alpha_1\leftarrow\ldots\leftarrow\alpha_l=\beta$ exists iff $(\alpha,\beta)\in\Gamma^{\circ l}$, i.e. $\Gamma^{\infty}:=\bigcup_{l\geq 0} \Gamma^{\circ l}$ is the equivalence relation which induces the partition into connected components on $\Omega$.
+
+By our dictionary, this equivalence relation corresponds to the subgroup $H\cup HyH \cup HyHyH \cup \ldots=U$. The component $D$ of $\omega$ is the corresponding suborbit $\Gamma^\infty(\omega)=D={^U \omega}$.
 
 \medbreak
-b. Now $xH$ and $x'H$ are connected by a directed path iff there exists a sequence $x=x_0,x_1,\ldots,x_k=x'$ such that $(x_{i-1}H,x_i H)\in\Gamma_y$, i.e. $x_{i-1}^{-1} x_i \in HyH$.
+d. follows directly from c. The upper bound for the size follows from the same idea: If $(\Omega,\Gamma)$ is connected and the action has finite rank, then $\Omega^2 = \bigcup_{l\geq 0} \Gamma^{\circ l} = \bigcup_{l=0}^{r-1} \Gamma^{\circ l}$ because the union gets stationary when no new orbitals are added and there are only $r$ of them.
 
-In particular: If $xH$ and $x'H$ are connected by a directed path, then $x_{i-1}U = x_i U$ for all $i\in\set{1,\ldots,k}$. Therefore $xU=x_0U = x_k U = x'U$.
-
-Conversely: If $xU=x'U$, then there exists an element $h_0 y h_1 \cdots y h_k \in U$ with $h_i\in H$ such that $x' = x(h_0 y h_1 \cdots y h_k)$. Now we can define $x_i := x \cdot (h_0 y h_1 \cdots y h_i)$ for $i\in\set{0,\ldots,k}$ and have found a sequence connecting $xH=x_0H$ and $x'H=x_kH$ in the orbital graph.
+Thus
+\[\Omega = \Gamma^\infty(\omega) = \bigcup_{l=0}^{r-1} \Gamma^{\circ l}(\omega) = \set{\omega} \cup \Delta \cup (\Delta\circ_\omega\Delta) \cup (\Delta\circ_\omega\Delta\circ_\omega\Delta) \cup \ldots\]
+so that
+\[\abs{\Omega} \leq 1 + n_i + n_i^2 + n_i^3 + \ldots + n_i^{r-1} = \frac{n_i^r-1}{n_i-1}\]
+Note that $n_i>1$, otherwise $\Gamma$ would be diagonal and $(\Omega,\Gamma)$ couldn't be connected.
 
 \medbreak
-c. follows directly from b.
-
-\medbreak
-d. follows directly from c. and the fact that $G$ acts primitively on $\Omega$ iff $H$ is a maximal subgroup.
+e. follows directly from c. and the fact that $G$ acts primitively on $\Omega$ iff $H$ is a maximal subgroup.
 \end{proof}
 
 \begin{remark}
-This lemma allows for easy identification of at least one block system for the action of $G$ on $\Omega$, namely the connected components of $(\Omega,\Gamma)$. They coincide with the sets ${^U \omega}$.
+This lemma allows for easy identification of at least one block system for the action of $G$ on $\Omega$, namely the connected components of $(\Omega,\Gamma)$. They coincide with the sets ${^{gU}\omega}$.
 
 Moreover: ${^U \omega}$ is the smallest possible block containing both $\omega$ and ${^y \omega}$.
 \end{remark}
 
+\section{The $k$-closure of a permutation group}
+
+\begin{definition}[$k$-closure]
+Let $k\in\IN$. The \udot{$k$-closure} of $G$ is defined as the largest subgroup $G^{(k)}\subseteq Sym(\Omega)$ that has the same orbits as $G$ on $\Omega^k$, i.e.
+\[G^{(k)} := \Set{\pi\in Sym(\Omega) | \forall \Gamma\in \Omega^k/G: {^\pi\Gamma} = \Gamma}\]
+$G$ is called \udot{$k$-closed} iff $G=G^{(k)}$ holds.
+\end{definition}
+
+\begin{remark}
+Some immediate properties of $k$-closure include:
+\begin{itemize}
+\item Taking $k$-closures is idempotent: $(G^{(k)})^{(k)} = G^{(k)}$.
+
+\item If $Q_1,\ldots,Q_l$ are the orbits of $G$ on $\Omega$, then $G^{(1)} = Sym(Q_1) \times \cdots\times Sym(Q_l)$. An equally simple and straight forward description of the other $G^{(k)}$, even of $G^{(2)}$ is not available in general.
+
+\item If $n:=\abs{\Omega}$, then
+\[G = G^{(n)} \leq G^{(n-1)} \leq \ldots \leq G^{(2)}\leq G^{(1)} \leq G^{(0)} = Sym(\Omega)\]
+because the action of $G$ on $\Omega^k$ is isomorphic to the action on $\set{(\alpha,\alpha) | \alpha\in\Omega} \times \Omega^{k-1} \subseteq\Omega^{k+1}$.
+
+\item In particular if $k\geq 1$, then $G^{(k)}$ has the same orbits as $G$, has the same fixed points as $G$ and is transitive if and only if $G$ is.
+
+\item $G$ is primitive iff $G^{(2)}$ is, because both groups have the same invariant subsets of $\Omega\times\Omega$, in particular they have the same invariant equivalence relations.
+
+\item $G$ is $k$-transitive iff $G^{(k)} = Sym(\Omega)$.
+\end{itemize}
+\end{remark}
+
+\begin{lemma}[Elementary properties of the $k$-closure]\label{k_closure:monotony_products}
+Let $G,G_0,G_1\leq Sym(\Omega)$ be permutation groups and $k\in\IN$.
+\begin{enumerate}
+\item If $G_0\leq G_1$, then $G_0^{(k)} \leq G_1^{(k)}$.
+\item If $\Omega=\Omega_0\sqcup\Omega_1$ and $G=G_0\times G_1$ with $G_i\leq Sym(\Omega_i)$, then $G^{(k)} = G_0^{(k)} \times G_1^{(k)}$.
+\item If $\Omega=\Omega_0\sqcup\Omega_1$ with disjoint, $G$-invariant subsets, let $G_{|\Omega_i} \leq Sym(\Omega_i)$ be the permutation group induced by the action of $G$ on $\Omega_i$. Then $G^{(k)} \leq (G_{|\Omega_0})^{(k)} \times (G_{|\Omega_1})^{(k)}$.
+\end{enumerate}
+\end{lemma}
+\begin{proof}
+a. Let $g\in G_0^{(k)}$ be arbitrary and let $\Gamma\subseteq\Omega^k$ be $G_1$-invariant. Because $G_0\leq G_1$, $\Gamma$ is also $G_0$-invariant and therefore ${^g \Gamma} = \Gamma$. Since $\Gamma$ was arbitrary, $g\in G_1^{(k)}$.
+
+\medbreak
+b. Every $G_i$-orbit $\Gamma\subseteq\Omega_i^k$ is also a $G_0\times G_1$-orbit so that $(G_0\times G_1)^{(k)} \leq \bigcap_{\Gamma \in \Omega_i^k / G_i} \Aut(\Omega,\Gamma) = \bigcap_{\Gamma\in\Omega_i^k/G_i} \Aut(\Omega_i,\Gamma) \times Sym(\Omega_{1-i})$ which proves $(G_0 \times G_1)^{(k)} \leq G_0^{(k)} \times G_1^{(k)}$.
+
+Conversely, let $g=g_0g_1\in G_0^{(k)}\times G_1^{(k)}$ be arbitrary and $\Gamma\subseteq\Omega^k$ any $G$-orbit. There are unique $s,t\in\IN$ with $s+t=k$ such that, up to reordering of the components in this product (which does not change the stabiliser of $\Gamma$), $\Gamma\subseteq \Omega_0^s\times\Omega_1^t$.
+
+Let $\Gamma = {^G(\alpha_1,\ldots,\alpha_s,\beta_1,\ldots,\beta_t)}$ for some points $\alpha_1,\ldots,\alpha_s\in\Omega_0$, $\beta_1,\ldots,\beta_t\in\Omega_1$. Then
+\[\Gamma = \underbrace{^{G_0}(\alpha_1,\ldots,\alpha_s)}_{=:\Gamma_0}\times\underbrace{^{G_1}(\beta_1,\ldots,\beta_t)}_{=:\Gamma_1}\]
+so that ${^g \Gamma} = {^{g_0}\Gamma_0}\times{^{g_1}\Gamma_1}$. Because $g_0\in G_0^{(k)} \leq G_0^{(s)}$ and $g_1\in G_1^{(k)}\leq G_1^{(t)}$, we find that ${^g\Gamma} = \Gamma_0\times\Gamma_1 = \Gamma$ so that $g\in G^{(k)}$.
+
+\medbreak
+c. follows from combining a. and b. because $G\leq G_{|\Omega_0} \times G_{|\Omega_1}$ holds by construction.
+\end{proof}
+
+\subsection{The 2-closure - examples and non-examples}
+
+\begin{example}\label{two_closure:regular_actions}
+A regular permutation group is always 2-closed.
+\end{example}
+\begin{proof}
+A regular $G$-set is isomorphic to $G$ itself endowed with left multiplication. The orbitals of this action are given by $\Gamma_h:=\set{(x,y)\in G^2 | x^{-1}y=h}$ for $h\in G$ and one can readily verify that the only permutations fixing all the orbitals are the left multiplication maps themselves.
+\end{proof}
+
+\begin{example}
+Let $\Omega=\set{0,1,\ldots,2n-1}$ with $n\geq 3$, $\Omega_0=\Omega\cap 2\IN$, $\Omega_1=\Omega\setminus\Omega_0$.
+
+Let $G=\Set{\pi_0\pi_1 | \pi_i\in Sym(\Omega_i), \sgn(\pi_0)=\sgn(\pi_1)}.\langle\sigma\rangle$ where $\sigma:=\prod_{i\in\Omega_0} (i,i+1)$. This group is transitive, since it contains $Alt(\Omega_0)\times Alt(\Omega_1)$ which is transitive on both sets individually, and it contains at least the permutation $\sigma$ which switches both sets. Clearly $\Omega_0$ and $\Omega_1$ are blocks for this action so that $G$ is imprimitive.
+
+The stabiliser $G_0$ cannot switch these blocks. Therefore
+\[G_0 = \Set{\pi_0\pi_1 | \pi_i\in Sym(\Omega_i), \pi_0(0)=0, \sgn(\pi_0)=\sgn(\pi_1)}.\]
+The suborbits are $\set{0}, \Omega_0\setminus\set{0}$ and $\Omega_1$. Therefore the subdegrees are $1$,$n-1$ and $n$.
+
+The two non-diagonal orbitals are 
+\[\Gamma_{n-1} = {^G(0,2)} = \Set{(\alpha,\beta) | \alpha\equiv\beta \mod 2}\]
+\[\Gamma_n = {^G(0,1)} = \Set{(\alpha,\beta) | \alpha \not\equiv \beta \mod 2}\]
+The first orbital graph consists therefore of two disjoint, complete graphs on odd and even numbers. The second graph is the complete bipartite graph $K_{n,n}$.
+
+Both graphs have $(Sym(\Omega_0)\times Sym(\Omega_1)).\langle\sigma\rangle$ as automorphism groups which is therefore the 2-closure of $G$. We see that $G$ is of index 2 in $G^{(2)}$.
+\end{example}
+
+\begin{example}[Rank $\leq 4$]\label{two_closure:rank_2_3_and_4}
+If $G$ is 2-transitive, then $G^{(2)}=Sym(\Omega)$. Thus essentially all 2-transitive groups are not 2-closed.
+
+\smallbreak
+If $G$ has rank 3, then $G^{(2)} = \Aut(\Omega,\Gamma)$ for both of the two non-diagonal orbitals, because they are complementary graphs and therefore have identical automorphism groups.
+
+\smallbreak
+If $G$ has rank 4 and one orbit $\Gamma$ that is not self-paired, then $G^{(2)}=\Aut(\Omega,\Gamma)$ as well, because $\Aut(\Omega,\Gamma) = \Aut(\Omega,\Gamma^{op})$ so that the automorphism group already stabilises two of the four orbitals. It also stabilises the diagonal for trivial reasons so that the fourth one also must be stabilised.
+\end{example}
+
+\begin{corollary}[Size estimates]
+$\abs{G^{(2)}}$ divides $\prod_{i=1}^l \abs{Q_i} \prod_{\Delta \in Q_i / H_i} \abs{\Delta}!$
+\end{corollary}
+\begin{proof}
+Using the notation in lemma \ref{k_closure:monotony_products}, we find $G^{(2)} \leq (G_{|Q_1})^{(2)} \times \ldots \times (G_{|Q_l})^{(2)}$.
+
+Therefore we can assume that $G$ is transitive. Set $\omega=\omega_1$, $H=H_1$, and let $\Delta_1,\ldots,\Delta_r$ be the $H$-orbits on $\Omega$. Then $G=\abs{G:H}\abs{H} = \abs{\Omega}\abs{H}$. And because $H\leq H^{(1)} = Sym(\Delta_1)\times \ldots\times Sym(\Delta_r)$, we find that $\abs{H}$ divides $\prod_{\Delta \in \Omega/H} \abs{\Delta}!$ which proves the lemma.
+\end{proof}
+
+\begin{remark}
+This bound is rarely sharp, because $H$ is rarely 1-closed. And even if that is the case, then the inclusion $G^{(2)} \leq (G_{|Q_1})^{(2)} \times \ldots \times (G_{|Q_l})^{(2)}$ can still be strict.
+\end{remark}
+
+\begin{theorem}
+Cyclic permutation groups are 2-closed.
+\end{theorem}
+\begin{proof}
+Let $G=\langle \sigma \rangle \leq Sym(n)$ and $\sigma = \sigma_1 \cdots \sigma_l$ the cycle decomposition of $\sigma$. We argue by induction on $l$. For $l=0$ there is nothing to prove. If $l=1$ then $G$ acts regular on its non-trivial orbit and is therefore 2-closed.
+
+By the previous lemma $G^{(2)} \leq \langle\sigma_1\cdots\sigma_{l-1}\rangle^{(2)} \times \langle\sigma_l\rangle^{(2)}$. By the induction hypothesis and because $\langle\sigma_l\rangle$ acts regularly on its non-trivial orbit, we find $G^{(2)}\leq \langle\sigma_1\cdots\sigma_{l-1}\rangle \times \langle\sigma_l\rangle$.
+
+Let $g = (\sigma_1\cdots\sigma_{l-1})^a \sigma_l^b \in G^{(2)}$ be arbitrary with $a,b\in\IZ$. We want to show $g\in G$. By replacing $g$ by $\sigma^{-a} g$, we can assume wlog that $a=0$. Then $g \in G$ is equivalent to $b\equiv 0 \mod ord(\sigma_1\cdots\sigma_{l-1})$ which is equivalent to $\forall i<l: b\equiv 0 \mod ord(\sigma_i)$.
+
+Number the non-trivial orbits of $G$ according to the cycles $Q_1,\ldots,Q_l$ and pick any pair $(\alpha,\beta)\in Q_i\times Q_l$ for some $1\leq i<l$ and let $\Gamma := {^G(\alpha,\beta)}$ its orbital. Wlog we can assume $i=1$, $\alpha=0$, $\sigma_1=(0,1,2,\ldots,k-1)$, $\beta=k$ and $\sigma_l=(k,k+1,k+2,\ldots,k+m-1)$ so that $ord(\sigma_1)=k$ and $ord(\sigma_l)=m$.
+
+Because $g$ is a power of $\sigma_l$ it fixes the point $0$. The pairs of the form $(0,\gamma)$ which are contained in $\Gamma$ are all given by ${^{\sigma^{sk}}(0,\beta)} = (0,{^{\sigma_l^{sk}}k}) = (0,k+(sk \mod m))$ for $s\in\IZ$, i.e. they correspond bijectively to elements of the subgroup $T:=\langle k+m\IZ\rangle \leq \IZ/m$. Since we could replace $b$ by any $b+tm$ without changing $g$, we only have to show that $b+m\IZ$ is contained in this subgroup.
+
+Since $g\in G^{(2)}$ is a graph automorphism of $(\Omega,\Gamma)$ and fixes the point $0$, it must also map these edges amongst themselves. In particular ${^g k}=k+(sk\mod m)$ for some $s\in\IZ$. But since $g=\sigma_l^b$, this is only possible if $b+m\IZ\in\langle k+m\IZ\rangle$ which is exactly what we wanted to prove.
+\end{proof}
+
 \section{Orbital graphs vs. representation theory}
 
 \begin{definition}
-Now let $V:=V$ be the $\mathbb{K}$-vector space with basis $\Omega$. This vector space is naturally a $\IK G$-module by extending the action of $G$ on the basis elements linearly to the whole space.
+Now let $V:=\IK^\Omega$ be the $\IK$-vector space with basis $\Omega$. This vector space is naturally a $\IK G$-module by extending the action of $G$ on the basis elements linearly to the whole space.
 
 We will identify $\End_\IK(V)$ with the space $\IK^{\Omega\times\Omega}$ of matrices indexed by $\Omega\times\Omega$. We will also identify $Sym(\Omega)$ with the group of permutation matrices.
 \end{definition}
 
-\begin{theorem}
-$\End_{\IK G}(V)$ has a natural $\IK$-basis $\set{X_\Gamma | \Gamma\subseteq\Omega^2\;\text{orbital}}$ defined as
+\begin{theoremdef}
+For $\Gamma\subseteq\Omega^2$ define the matrix $X_\Gamma\in\IK^{\Omega\times\Omega}$ as follows:
 \[(X_\Gamma)_{\alpha\beta} := \begin{cases} 1 & \text{if}\;(\alpha,\beta)\in\Gamma \\ 0 & \text{otherwise}\end{cases}\]
-
-The structure constants w.r.t. this basis, i.e. the numbers $d_{ij}^k$ such that
+With this notation, the set $\set{X_\Gamma | \Gamma\subseteq\Omega^2\;\text{orbital}}$ is a $\IK$-basis of $\End_{\IK G}(V)$. The structure constants w.r.t. this basis, i.e. the numbers $d_{ij}^k$ such that
 \[X_{\Gamma_i} \cdot X_{\Gamma_j} = \sum_{k} d_{ij}^k X_{\Gamma_k},\]
 are given by $d_{ij}^k := \abs{\Set{\beta\in\Omega | (\alpha,\beta)\in\Gamma_i \wedge (\beta,\gamma) \in \Gamma_j}}$ where $(\alpha,\gamma)$ is any element of $\Gamma_k$.
-\end{theorem}
+\end{theoremdef}
 \begin{remark}
-In other words: $X_\Gamma$ is the adjacency matrix of the orbital graph $(\Omega,\Gamma)$.
-
-Note that the right hand side in the definition of $d_{ij}^k$ really is independent of the choice of the element $(\alpha,\gamma)\in\Gamma_k$, because $G$ acts transitively on $\Gamma_k$.
-
-Also note that multiplication is connected to composition via
-\[X_{\Gamma_i} \cdot X_{\Gamma_j} \in \LinHull_\IK\set{X_\Gamma | \Gamma\subseteq \Gamma_i\circ\Gamma_j}\]
+In other words: $X_\Gamma$ is the adjacency matrix of the directed graph $(\Omega,\Gamma)$. In particular: The automorphism group of $(\Omega,\Gamma)$ is the group of those permutations which centralise $X_\Gamma$, i.e. $Sym(n) \cap C(X_\Gamma)$.
 \end{remark}
-\begin{proof}
+
+\begin{remark}
+Note that the right hand side in the definition of $d_{ij}^k$ really is independent of the choice of the element $(\alpha,\gamma)\in\Gamma_k$, because $G$ acts transitively on $\Gamma_k$.
+\end{remark}
+
+\begin{proof}[Proof of the theorem]
 Writing out the defining condition
 \[X\in\End_{\IK G}(V) \iff \forall g\in G: gXg^{-1} = X\]
-in components shows that every $\IK G$-linear endomorphism is indeed a linear combination of the $X_\Gamma$. The $X_\Gamma$ are obviously linearly independent and therefore a basis.
+in components shows that every $\IK G$-linear endomorphism is indeed a linear combination of the $X_\Gamma$ where $\Gamma$ is a $G$-orbit on $\Omega^2$. The $X_\Gamma$ are linearly independent, because the orbitals are disjoint, and therefore they are a basis.
 
-The structure constants similarly follow by writing out the definition of matrix multiplication in this case.
+The formula for the structure constants similarly follows by writing out the definition of matrix multiplication in this case.
 \end{proof}
 
-\begin{definition}
-The \udot{2-closure} of $G$ is defined as the largest subgroup $\widehat{G}\subseteq Sym(\Omega)$ that has the same orbits as $G$ on $\Omega^2$, i.e.
-\[\widehat{G} := \Set{\pi\in Sym(\Omega) | \forall \Gamma\in \Omega^2/G: \pi(\Gamma) = \Gamma}\]
-$G$ is called \udot{2-closed} iff $G=\widehat{G}$ holds.
-\end{definition}
+\begin{lemmadef}[Support of matrices]
+\newcommand{\supp}{\operatorname{supp}}
+The \udot{support} of a matrix $X\in\IK^{\Omega\times\Omega}$ is defined as
+\[\supp(X) := \set{(\alpha,\beta)\in\Omega\times\Omega | X_{\alpha\beta}\neq 0}\]
+
+$\supp$ is a homomorphism of semirings $(\IN^{\Omega\times\Omega},+,\cdot) \to (\mathscr{P}(\Omega\times\Omega),\cup,\circ)$ that is $Sym(n)$-equivariant. In particular it maps matrices centralised by $G$ to $G$-invariant subsets.
+\end{lemmadef}
+\begin{proof}trivial.\end{proof}
+
+\begin{theorem}
+Let $\Gamma\subseteq\Omega^2$ be $G$-invariant. Let $d\in\IN$ be the degree of the minimal polynomial of $X_\Gamma \in \End_{\IQ G}(V)$ and let $\delta$ be the maximum of the directed diameters of the connected components of  $(\Omega,\Gamma)$, i.e.
+\[\delta := \max_{C\;\text{component}}\min\set{l\in\IN | \forall\alpha,\beta\in C \exists \text{dir.path}\; \alpha=\alpha_0 \leftarrow \ldots \leftarrow \alpha_k = \beta\;\text{with}\;k\leq l}\]
+With these notations:
+\[\delta < d \leq r\]
+\end{theorem}
+\begin{proof}
+The inequality $d\leq r$ follows immediately from $\dim \End_{\IQ G}(V) = r$. Thus we only have to prove the other one.
+
+Let $\Gamma_0$ be the diagonal (which may a proper union of orbitals if $G$ does not act transitively) and set $\widetilde{\Gamma} := \Gamma \cup \Gamma_0$. This is the support of $X_\Gamma+1$, because $X_{\Gamma_0}$ is the identity matrix. Note that $\widetilde{\Gamma}^{\circ s} \subseteq \widetilde{\Gamma}^{\circ(s+1)}$ for all $s\in\IN$ and if equality holds for some $s\in\IN$, then $\widetilde{\Gamma}^{\circ s} = \widetilde{\Gamma}^{\circ t}$ for all $t\geq s$.
+
+Now it is easy to see that $\delta$ is the number of steps in this chain with proper inclusions, i.e.
+\[\Gamma_0 = \widetilde{\Gamma}^{\circ 0} \subsetneq \widetilde{\Gamma} \subsetneq \widetilde{\Gamma}^{\circ 2} \subsetneq \ldots \subsetneq \widetilde{\Gamma}^{\circ\delta} = \widetilde{\Gamma}^{\circ(\delta+1)} = \widetilde{\Gamma}^{\circ(\delta+2)} = \ldots\]
+Thus $1, X_\Gamma+1, ..., (X_\Gamma+1)^\delta$ are linearly independent, because the support of these elements is strictly increasing. Therefore the minimal polynomial of $X_\Gamma+1$ has at least degree $\delta+1$ and the minimal polynomial of $X_\Gamma$ has the same degree.
+\end{proof}
 
 \begin{remark}
-One can rephrase this definition by saying that the 2-closure of $G$ is the largest subgroup $H\leq Sym(\Omega)$ that still satisfies $End_{\IK G}(V) = End_{\IK H}(V)$
+Using the notation in the proof, the differences $\Gamma_s:=\widetilde{\Gamma}^{\circ s} \setminus \widetilde{\Gamma}^{\circ(s-1)}$ contains exactly those pairs $(\alpha,\beta)$ that can be connected by a directed path of length $s$, not by a path of length $\leq s-1$, i.e. the directed distance from $\beta$ to $\alpha$ equals $s$.
+
+It is clear that the automorphism group of the graph $(\Omega,\Gamma)$ fixes these sets. But we can say more: The automorphism group also stabilises each part of the partition $\Gamma_s = A_1 \sqcup A_2 \sqcup \ldots$ where $A_k$ is the set of $(\alpha,\beta)$ of directed distance $s$ which are connected by exactly $k$ directed paths of length $s$.
+
+$\Gamma_s$ is exactly the piece by which the support grows when going from $(X_\Gamma+1)^{s-1}$ to $(X_\Gamma+1)^s$. A quick calculations shows that \[(X_\Gamma+1)^s - (X_\Gamma+1)^{s-1} = \sum_{k\in\IN} k X_{A_k}\]
+This is an algebraic analogue of the combinatorial consideration above: The automorphism group of $(\Omega,\Gamma)$ centralises $X_\Gamma$ and therefore also centralises the left hand side of the equation. Since it only permutes the entries of the matrix, the set of entries with a given value must be invariant under all graph automorphisms.
 \end{remark}
 
-\begin{lemma}[2-closure in terms of endomorphism algebras]\label{two_closure:in_terms_of_endomorphisms}
-$\widehat{G} = Sym(\Omega)\cap C(\End_{\IK G}(V))$.
-\end{lemma}
+\subsection{Computing the 2-closure}
+
+\begin{theorem}[2-closure in terms of endomorphism algebras]\label{two_closure:in_terms_of_endomorphisms}
+$G^{(2)} = Sym(\Omega)\cap C(\End_{\IK G}(V))$.
+\end{theorem}
 \begin{proof}
-Let $\widehat{G}$ be the 2-closure of $G$. By definition $\pi\in\widehat{G}$ if and only if $\pi X_\Gamma \pi^{-1} = X_\Gamma$ for all $\Gamma\in\Omega^2/G$. In other words $\pi$ is in the 2-closure iff it is a permutation matrix and an element of the centraliser of the endomorphism ring of the $\IK G$-module $V$. This proves the first equation.
+Let $G^{(2)}$ be the 2-closure of $G$. By definition $\pi\in Sym(\Omega)$ is in $G^{(2)}$ if and only if $\pi X_\Gamma \pi^{-1} = X_\Gamma$ for all $\Gamma\in\Omega^2/G$. But the $X_\Gamma$ are a $\IK$-basis of the endomorphism algebra. Therefore $\pi$ is in the 2-closure iff it is a permutation matrix and an element of the centraliser of the endomorphism ring of the $\IK G$-module $V$.
 \end{proof}
 
 \begin{lemma}[2-closure in terms of linear algebra]
-$\widehat{G}  = Sym(\Omega)\cap\LinHull_\IK(G)$.
-
+$G^{(2)}  = Sym(\Omega)\cap\LinHull_\IK(G)$.
+\todo{Maybe remove, not useful at the moment}
 In particular, $G$ is 2-closed if no permutation matrix outside of $G$ is a linear combination of elements of $G$.
 \end{lemma}
 \begin{proof}
@@ -158,22 +420,92 @@ Observe that $\End_{\IK G}(V)$ is by definition the centraliser algebra of the s
 $V$ is a faithful $\IK G$-module and $\IK G$ is a symmetric algebra. Therefore $V$ has the double centraliser property so that $C(\End_{\IK G}(V)) = C(C(\LinHull_\IK(G))) = \LinHull_\IK(G)$.
 \end{proof}
 
+
+
+\begin{remark}
+Let $\Gamma_1,\ldots,\Gamma_r$ be the orbitals of $G$.
+
+We have already seen that
+\[G^{(2)} = Sym(n) \cap C(\End_{\IK G}(V))=Sym(n)\cap \bigcap_{i=1}^r C(X_{\Gamma_i}) = \bigcap_{i=1}^r \operatorname{Aut}(\Omega,\Gamma_i)\]
+Since it is expensive to compute all automorphism groups of all orbital graphs and many orbital graphs in fact have the same automorphism group (for example $\Gamma$ and $\Gamma^{op}$), it is desirable to compute as few of these groups as possible. Using that $\End_{\IK G}(V)$ is a $\ast$-algebra, we can ignore some of the orbitals in the computation of the 2-closure.
+
+\medbreak
+More precisely: If $g\in Sym(n)$ centralises $X_1,\ldots,X_s$, it also centralises the $\IK$-algebra generated by $X_1,\ldots,X_s$. Therefore it is sufficient to restrict our attention to a set $\set{X_1,\ldots,X_s}$ that generate $\End_{\IK G}(V)$.
+
+Since $gXg^{-1} = X \iff gX^tg^{-1} = X^t$, we can further restrict to a set of matrices $X_1,\ldots,X_s$ such that $\set{X_1,X_1^t, \ldots, X_s, X_s^t}$ generates $\End_{\IK G}(V)$.
+
+\medbreak
+Furthermore: Every matrix $X\in\IK^{\Omega\times\Omega}$ centralised by $g\in Sym(n)$ defines a collection of $G$-invariant, disjoint subsets $A_k := \set{(\alpha,\beta) | X_{\alpha\beta}=k}$ for all $k\in\IK$. Clearly $X$ decomposes as the sum $\sum_{k\in\IK} kX_{A_k}$ in this case and the non-zero summands are even linearly independent because they have disjoint support.
+
+\medbreak
+This suggest an algorithm that uses matrix calculations to refine a partition of $\Omega^2$ into $G$-subsets the hopes of arriving at the orbit-partition at the end. If $\Aut(\Omega,\Gamma_1)\cap\ldots\cap \Aut(\Omega,\Gamma_i)$ is already known, then $\Aut(\Omega,\Gamma_1)\cap\ldots\cap \Aut(\Omega,\Gamma_i)\cap \Aut(\Omega,\Gamma_{i+1})$ can only be smaller if $\Gamma_{i+1}$ is not already one of the parts of the partition that is defined by the $\ast$-algebra generated by $X_{\Gamma_1},\ldots,X_{\Gamma_i}$.
+\end{remark}
+
+\begin{algorithm}[Computing the two-closure, version 1]
+The idea is to maintain a set of \enquote{important} orbitals and group the orbitals into two subsets
+\[\Omega\times\Omega = \bigsqcup_{\Gamma\in\mathcal{A}} \Gamma \sqcup \bigsqcup_{\Gamma\in\mathcal{B}} \Gamma\]
+such that $\mathcal{A}^{op}=\mathcal{A}$, $\mathcal{B}^{op}=\mathcal{B}$ and $\bigcap_{\Gamma\;\text{important}} \Aut(\Omega,\Gamma) = \bigcap_{\Gamma\in\mathcal{A}} \Aut(\Omega,\Gamma)$ holds.
+
+\medbreak
+The algorithm works as follows:
+\begin{enumerate}[label=\arabic*.)]
+\item Initialise the two sets with $\mathcal{A}:=\emptyset$ and $\mathcal{B}$ all orbitals. Initialise the set of important orbitals as the empty set.
+
+\item While $\mathcal{B}\neq\emptyset$ repeat:
+\begin{enumerate}[label=\roman*.)]
+\item Pick any $\Gamma\in\mathcal{B}$, move $\Gamma$ and $\Gamma^{op}$ from $\mathcal{B}$ into $\mathcal{A}$
+
+If $\mathcal{B}$ is then empty, break out of the loop, otherwise remember $\Gamma$ as important.
+
+\item Set $\mathcal{C} := \emptyset$ and $\mathcal{C}' := \Set{\Omega^2 \setminus \bigcup_{\Gamma\in\mathcal{A}} \Gamma}$.
+
+While $\abs{\mathcal{C}}<\abs{\mathcal{C}'}$ repeat
+	\begin{enumerate}[label=\alph*.)]
+	\item Replace $\mathcal{C}$ by $\mathcal{C}'$.
+	\item Compute the $\IK$-algebra $E$ generated by $\set{X_{\Gamma}, X_C | \Gamma\in\mathcal{A}, C\in\mathcal{C}}$.
+	
+	\item Compute the coarsest partition $\mathcal{C}''$ of $\Omega^2 \setminus \left(\bigsqcup_{\Gamma\in\mathcal{A}} \Gamma\right)$ such that every $X\in E$ is in $\LinHull_\IK\set{X_{\Gamma}, X_{C''} | \Gamma\in\mathcal{A}, C''\in\mathcal{C}''}$.
+	
+	\item Replace $\mathcal{C}'$ by $\mathcal{C}''$.
+	\end{enumerate}
+
+\item Move all $\Gamma$ from $\mathcal{B}$ into $\mathcal{A}$ that are also parts of the partition $\mathcal{C}$, i.e. replace $(\mathcal{A},\mathcal{B})$ by $(\mathcal{A} \cup (\mathcal{B}\cap\mathcal{C}), \mathcal{B}\setminus\mathcal{C})$.
+\end{enumerate}
+
+\item Compute $G^{(2)}$ as the intersection $\bigcap_{\Gamma\;\text{important}} \Aut(\Omega,\Gamma)$.
+\end{enumerate}
+\end{algorithm}
+
+\begin{lemma}
+\begin{enumerate}
+\item Let $\Gamma\subseteq Q_1\times Q_2$ if a $G$-orbital such that $\operatorname{gcd}(\abs{Q_1},\abs{Q_2})=1$. Then $\Gamma=Q_1\times Q_2$ and $\Aut(\Omega,\Gamma) = Sym(Q_1)\times Sym(Q_2) \times Sym(\Omega\setminus(Q_1\cup Q_2))$.
+
+In particular $(G_{|Q_1})^{(2)} \times (G_{|Q_2})^{(2)} \times Sym(\Omega\setminus(Q_1\cup Q_2)) \leq \Aut(\Omega,\Gamma)$.
+
+\item $(G_{|Q})^{(2)} = \bigcap_{\substack{\Gamma\in Q^2/G \\ \Gamma \;\text{non-diagonal}}} \Aut(Q,\Gamma)$
+\end{enumerate}
+\end{lemma}
+
+\begin{algorithm}[Computing the 2-closure, version II]
+
+\end{algorithm}
+
+\subsection{Invariant subspaces and reconstruction problems}
+
 \begin{theorem}[2-closure in terms of invariant subspaces]\label{two_closure:in_terms_of_subspaces}
 Let $G\leq Sym(\Omega)$ be a permutation group and assume $\IK=\IC$. Then
-\[\widehat{G} = \Set{\pi\in Sym(\Omega) | \forall U\leq\IC^\Omega: U\;G\text{-invariant} \implies U\;\pi\text{-invariant}}.\]
+\[G^{(2)} = \Set{\pi\in Sym(\Omega) | \forall U\leq\IC^\Omega: U\;G\text{-invariant} \implies U\;\pi\text{-invariant}}.\]
 \end{theorem}
 \begin{proof}
 We consider the standard scalar product on $V$ defined by declaring $\Omega$ to be an orthonormal basis so that $V$ becomes a finite-dimensional Hilbert space.
 
-Then all permutation matrices are unitary. In particular, $\LinHull_\IC(G)\subseteq\IC^{\Omega\times\Omega}$ is closed under taking adjoints and its centraliser $\End_{\IC G}(V)$ is also closed under taking adjoints. Both are therefore $C^\ast$-algebras. In particular, both are isomorphic to a direct product of matrix rings. It is a consequence of the spectral theorem that $\prod_i \IC^{n_i\times n_i}$ is spanned by all the self-adjoint idempotents it contains.
+Then all permutation matrices are unitary. In particular, $\LinHull_\IC(G)\subseteq\IC^{\Omega\times\Omega}$ is closed under taking adjoints and its centraliser $\End_{\IC G}(V)$ is also closed under taking adjoints. Both are therefore $C^\ast$-algebras. In particular, both are isomorphic to a direct product of matrix rings. It is a consequence of the spectral theorem that $\prod_i \IC^{d_i\times d_i}$ is spanned by all the self-adjoint idempotents it contains.
 
 \medbreak
-Self-adjoint idempotent matrices correspond bijectively to subspaces by identifying $U$ with the orthogonal projection $p_U$ onto $U$. A subspace $U$ is $g$-invariant if $g$ centralises $p_U$.
-
-Therefore
+Self-adjoint idempotent matrices correspond bijectively to subspaces by identifying $U$ with the orthogonal projection $p_U$ onto $U$. A subspace $U$ is $G$-invariant if $G$ centralises $p_U$. Therefore
 \[\End_{\IC G}(V) = \LinHull_\IC\Set{p_U | U\leq\IC^G\;G\text{-invariant}}\]
 and
-\[\widehat{G} = Sym(\Omega) \cap C(\End_{\IC G}(V)) = Sym(\Omega) \cap \bigcap_{\substack{U\leq V \\ G\text{-invariant}}} C(p_U)\]
+\[G^{(2)} = Sym(\Omega) \cap C(\End_{\IC G}(V)) = Sym(\Omega) \cap \bigcap_{\substack{U\leq V \\ G\text{-invariant}}} C(p_U)\]
 which proves the claim.
 \end{proof}
 
@@ -184,11 +516,11 @@ A permutation group $G\leq Sym(\Omega)$ is \udot{reconstructible from $\mathcal{
 Similarly, we define that $G$ is ...
 \begin{itemize}
 \item ... \udot{orbital-graph-reconstructible} if $G$ is reconstructible from $\Set{X_\Gamma | \Gamma\in\Omega^2/G}$,
-\item ... \udot{strongly orbital-graph-reconstructible} from  $\Gamma\in\Omega^2/G$ iff it is reconstructible from $X_\Gamma$ alone,
+\item ... \udot{strongly orbital-graph-reconstructible from  $\Gamma\in\Omega^2/G$} iff it is reconstructible from $X_\Gamma$ alone,
 \item ... \udot{absolutely orbital-graph-reconstructible} iff it is strongly orbital-graph-reconstructible from any non-diagonal orbital $\Gamma\in\Omega^2/G$.
 \item ... \udot{subspace-reconstructible from $\mathcal{U}$}, a set of $G$-invariant subspaces of $V$, if $G$ is reconstructible from $\Set{p_U | U\in\mathcal{U}}$.
 \item ... \udot{subspace-reconstructible over $\IK$} if $G$ is reconstructible from the set of all $G$-invariant subspaces of $\IK^\Omega$.
-\item ... \udot{strongly subspace-reconstructible} from $U\leq V$ if $G$ is reconstructible from $U$ alone,
+\item ... \udot{strongly subspace-reconstructible from $U\leq V$} if $G$ is reconstructible from $p_U$ alone,
 \item ... \udot{absolutely subspace-reconstructible over $\IK$} if $G$ is strongly subspace-reconstructible from any minimal, non-zero, $G$-invariant $U\leq\IK^\Omega$ which is not $\LinHull_\IK\set{(1,1,\ldots,1)}$.
 \end{itemize}
 \end{definition}
@@ -197,20 +529,14 @@ Similarly, we define that $G$ is ...
 $G\leq Sym(\Omega)$ is 2-closed iff it is orbital-graph reconstructible iff it is subspace-reconstructible over $\IC$.
 \end{corollary}
 \begin{proof}
-The first equivalence follows from the fact that $X_\Gamma$ is a basis of $\End_{\IC G}(V)$. The second follows from theorem \ref{two_closure:in_terms_of_subspaces}.
+The first equivalence follows from the fact that $X_\Gamma$ is a basis of $\End_{\IC G}(V)$. The second is a rephrasing of theorem \ref{two_closure:in_terms_of_subspaces}.
 \end{proof}
 
-\begin{example}
-A regular permutation group is always 2-closed.
+\begin{lemma}[Subspace reconstructibility over $\IC$ is sufficient]
+Let $\IK=\IC$ and $\mathcal{X}\subseteq\End_{\IC G}(V)$ be arbitrary.
 
-This is because a regular $G$-set is isomorphic to $G$ itself endowed with left multiplication. The orbitals of this action are given by $\Gamma_h:=\set{(x,y)\in G^2 | x^{-1} y=h}$ for $h\in G$ and one can readily verify that the only permutations fixing all the orbitals are the left multiplication maps themselves.
-\end{example}
-
-\begin{lemma}[Subspace reconstructibility is sufficient]
-Let $\IK=\IC$ and $X\in\End_{\IC G}(V)$ be arbitrary.
-
-Then $G$ is reconstructible from $X$ iff it is subspace-reconstructible from
-\[\Set{\operatorname{Eig}_\lambda(\Re(X)),\operatorname{Eig}_\lambda(\Im(X)) | \lambda\in\IR}.\]
+Then $G$ is reconstructible from $\mathcal{X}$ iff it is subspace-reconstructible from
+\[\Set{\operatorname{Eig}_\lambda(\Re(X)),\operatorname{Eig}_\lambda(\Im(X)) | \lambda\in\IR, X\in\mathcal{X}}.\]
 \end{lemma}
 \begin{proof}
 Permutation matrices are unitary. Therefore $g\in Sym(\Omega)$ centralises $X$ iff it centralises $X^\ast$.
@@ -225,7 +551,67 @@ which proves the lemma.
 \end{proof}
 
 \begin{remark}
-The concept of subspace reconstructibility also makes sense if we replace $Sym(n)$ by some other finite subgroup of $U_n(\IC)$, for example the subgroup of monomial matrices with $m$-th roots of unity as entries. This is the complex reflection group called $G(n,1,m)$.
+One could use different matrices instead of $\Re(X)$ and $\Im(X)$. For example $g$ centralises $X\in GL_n(\mathbb{C})$ iff it centralises the two factors in the polar decomposition $X=UP$ (i.e. $U$ is unitary and $P$ hermitian and positive definite) iff it stabilises their eigenspaces.
 \end{remark}
 
+\begin{corollary}
+There is a single hermitian matrix $X\in\IZ[i]^{\Omega\times\Omega}$ such that
+\[G^{(2)} = Sym(n) \cap\bigcap\Set{C(p_U) | \exists \lambda\in\IR: U=Eig_\lambda(X)}\]
+\end{corollary}
+\begin{proof}
+Let $\Gamma_1,\ldots,\Gamma_s$ be all self-paired orbitals of $G$ and $\Gamma_{s+1}, \ldots,\Gamma_{s+t}$ be such that $\Gamma_{s+1}, \Gamma_{s+1}^{op}, \ldots,\Gamma_{s+t}, \Gamma_{s+t}^{op}$ is a complete list of the non-self-paired orbitals.
+
+Then set
+\[X := \sum_{a=1}^s aX_{\Gamma_a} + \sum_{b=1}^t bi(X_{\Gamma_{s+b}} -  X_{\Gamma_{s+b}^{op}})\]
+and note that $gXg^{-1} = X \iff \forall \Gamma: gX_\Gamma g^{-1}=X_\Gamma \iff g\in C(\End_{\IC G}(V))$. Therefore $G^{(2)}$ is reconstructible from $X$ alone and the previous lemma shows it is reconstructible from the eigenspaces of $X$.
+\end{proof}
+
+\begin{theoremdef}[More about $\End_{\IK G}(V)$ and the intersection algebra]
+Assume $G\curvearrowright\Omega$ is transitive and $\CharFld(\IK) \nmid \abs{G}$. Let $\Gamma_1,\ldots,\Gamma_r$ be a complete list of all orbitals, wlog starting with $\Gamma_1$ the diagonal, and let $1=n_1, \ldots, n_r$ be the corresponding subdegrees, i.e. $n_i:=\frac{\abs{\Gamma_i}}{\abs{\Omega}}$. Let $\ast$ be the permutation of $\set{1,\ldots,r}$ which satisfies $\Gamma_{i^\ast} = \Gamma_i^{op}$.
+\begin{enumerate}
+\item $\End_{\IK G}(V)$ is a symmetric algebra w.r.t. the trace map. $X_\Gamma^\vee := \frac{1}{\abs{\Gamma}}X_\Gamma^T$ is the dual basis to $X_\Gamma$.
+\item The structure constants satisfy
+	\begin{enumerate}
+	\item $\forall w,x,y,z\in\set{1,\ldots,r}: \sum_{t=1}^r d_{xt}^w d_{yz}^t = \sum_{t=1}^r d_{xy}^t d_{tz}^w$
+	\item $\forall i,j,k\in\set{1,\ldots,r}: d_{ij}^k = d_{j^\ast i^\ast}^{k^\ast}$.
+	\item $\forall i,j,k\in\set{1,\ldots,r}: n_k d_{ij}^k = n_i d_{kj^\ast}^i$
+	\item $\forall i,j\in\set{1,\ldots,r}: d_{ij}^1 = \begin{cases} n_i & \text{if}\;i = j^\ast \\ 0 & \text{otherwise}\end{cases}$.
+	\end{enumerate}
+\item Define the matrices $D_k := (\delta_{ij}^k) \in \IK^{r\times r}$ by $\delta_{ij}^k := \tfrac{n_k}{n_i}d_{ij^\ast}^k$.
+
+With this notation $X_{\Gamma_k} \mapsto D_k$ is an embedding of $\IK$-algebras. Its image is called the \udot{intersection algebra} of $V$.
+\end{enumerate}
+\end{theoremdef}
+\begin{proof}
+For brevity set $E:=\End_{\IK G}(V)$.
+
+a. follows from direct computation:
+\[\tr(X_\Gamma X_{\Gamma'}^T) = \sum_{\alpha,\beta\in\Omega} (X_\Gamma)_{\alpha\beta} (X_{\Gamma'}^T)_{\beta\alpha} = \sum_{\alpha,\beta} (X_\Gamma)_{\alpha\beta} (X_{\Gamma'})_{\alpha\beta} = \sum_{(\alpha,\beta) \in \Gamma \cap\Gamma'} 1\]
+so that $\tr(X_\Gamma X_{\Gamma'}^T) = \begin{cases} \abs{\Gamma} & \text{if}\;\Gamma'=\Gamma \\ 0 & \text{otherwise}\end{cases}$ which proves that the trace is non-degenerate on $E$.
+
+\medbreak
+b. The first equation is simply the associative law
+\[(X_{\Gamma_x} X_{\Gamma_y}) X_{\Gamma_z} = X_{\Gamma_x} (X_{\Gamma_y} X_{\Gamma_z})\]
+expanded in the basis $X_{\Gamma_w}$.
+
+The second equation follows from the fact that $X\mapsto X^T$ is an anti-automorphism of $E$ that maps $X_{\Gamma_i}$ to $X_{\Gamma_{i^\ast}}$.
+
+The third equation follows from a direct computation:
+\begin{align*}
+d_{ij}^k &= \tr(X_iX_j \cdot X_k^\vee) \overset{a.}{=} \tr( X_i X_j \cdot \tfrac{1}{\abs{\Gamma_k}}X_k^T) \\
+&= \tfrac{1}{\abs{\Gamma_k}}\tr(X_j X_k^T X_i) & \tr(AB)=\tr(BA) \\
+&= \tfrac{1}{\abs{\Gamma_k}}\tr(X_i^T X_k X_j^T) & \tr(A)=\tr(A^T) \\
+&= \tfrac{1}{\abs{\Gamma_k}}\tr(X_k X_j^T X_i^T ) & \tr(AB)=\tr(BA) \\
+&= \tfrac{\abs{\Gamma_i}}{\abs{\Gamma_k}}\tr(X_k X_{j^\ast} \cdot  \tfrac{1}{\abs{\Gamma_i}}X_i^T ) & \\
+&\overset{a.}{=} \tfrac{\abs{\Gamma_i}}{\abs{\Gamma_k}} d_{kj^\ast}^i = \tfrac{n_i}{n_k} d_{kj^\ast}^i
+\end{align*}
+Cancelling $\abs{\Omega}$ and rearranging proves the third equation.
+
+The fourth equation follows from $(\omega,\omega)\in\Gamma_1$ so that $d_{ij}^1 = \abs{\set{\beta\in\Omega | (\omega,\beta)\in\Gamma_i \wedge (\beta,\omega)\in\Gamma_j}} = \begin{cases} \abs{\Gamma_j(\omega)} & \text{if}\;\Gamma_i=\Gamma_j^{op} \\ 0 &\text{otherwise}\end{cases} = \begin{cases} n_i & \text{if}\;i=j^\ast \\ 0 &\text{otherwise}\end{cases}$.
+
+\medbreak
+c. Consider the left regular representation of $E$, i.e. $\lambda: E\to\End_\IK(E), x\mapsto(a\mapsto xa)$. The definition of the structure constants
+\[X_{\Gamma_k} X_{\Gamma_j} = \sum_i d_{kj}^i X_{\Gamma_k}\]
+together with b.iii. show that $D^k$ is exactly the matrix representing $\lambda(A_k)$ w.r.t. the basis $\set{X_{\Gamma_j}}$. Therefore $X_{\Gamma_k} \mapsto D_k$ is nothing else than the left regular representation of $E$. It is therefore an injective algebra homomorphism.
+\end{proof}
 \end{document}
