@@ -19,7 +19,7 @@ function(G)
 	op := Gamma -> Set(Gamma, t -> [t[2],t[1]] );
 	adjacencyMatrix := function(Gamma)
 		local X;
-		X:=NullMat(n);
+		X:=NullMat(n,n,Integers);
 		for ii in [1..n] do
 		for jj in [1..n] do
 			if( [Omega[ii],Omega[jj]] in Gamma) then
@@ -31,19 +31,19 @@ function(G)
 	
 	# Step 1: Initialise
 	processedOrbitals := Set([]);
-	unprocessedOrbitals := OrbitsDomain(G,Omega,OnPairs);
+	unprocessedOrbitals := Set(OrbitsDomain(G,Cartesian(Omega,Omega),OnPairs));
 	importantOrbitals := Set([]);
 	
 	algebraGens := [];
 	
 	while not(IsEmpty(unprocessedOrbitals)) do
 		# Step 2.i: Pick any orbital \Gamma and move it from the unprocessed pile
-		# the to pile of processed orbitals. Remember \Gamma as important.
+		# the to pile of processed orbitals.
 		Gamma := unprocessedOrbitals[1];
-		AddSet(processedOrbitals,Gamma);
-		AddSet(processedOrbitals,op(Gamma));
-		RemoveSet(unprocessedOrbitals,Gamma);
-		RemoveSet(unprocessedOrbitals,op(Gamma));
+		AddSet(processedOrbitals, Gamma);
+		AddSet(processedOrbitals, op(Gamma));
+		RemoveSet(unprocessedOrbitals, Gamma);
+		RemoveSet(unprocessedOrbitals, op(Gamma));
 		
 		# 2.i.a. & 2.i.b. If \Gamma=\Gamma^{op} is the only unprocessed orbitals left, we're already done here. If \Gamma and \Gamma^{op} are the only two unprocessed orbitals left, then we are also done, but we have to remember \Gamma as important.
 		if(IsEmpty(unprocessedOrbitals)) then
@@ -93,5 +93,5 @@ function(G)
 	# Step 3: TwoClosure(G) is the intersection of Aut(Omega,Gamma) for all important orbitals Gamma.
 	return Intersection(importantOrbitals, Gamma ->
 		AutomorphismGroup(Digraph(adjacencyMatrix(Gamma))) );
-end;
+end
 );
