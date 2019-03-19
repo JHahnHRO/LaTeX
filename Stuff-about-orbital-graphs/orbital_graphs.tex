@@ -453,9 +453,13 @@ The algorithm works as follows:
 
 \item While $\mathcal{B}\neq\emptyset$ repeat:
 \begin{enumerate}[label=\roman*.)]
-\item Pick any $\Gamma\in\mathcal{B}$, move $\Gamma$ and $\Gamma^{op}$ from $\mathcal{B}$ into $\mathcal{A}$
+\item Pick any $\Gamma\in\mathcal{B}$, move $\Gamma$ and $\Gamma^{op}$ from $\mathcal{B}$ into $\mathcal{A}$.
 
-If $\mathcal{B}$ is then empty, break out of the loop, otherwise remember $\Gamma$ as important.
+	\begin{enumerate}[label=\alph*.)]
+	\item If $\mathcal{B}$ is now empty and $\Gamma=\Gamma^{op}$, then break out of the loop without doing anything else.
+	\item If $\mathcal{B}$ is now empty and $\Gamma\neq\Gamma^{op}$, then break out of the loop, but remember $\Gamma$ as important.
+	\item If $\mathcal{B}$ is still non-empty, then remember $\Gamma$ as important and carry on with the next steps.
+	\end{enumerate} 
 
 \item Set $\mathcal{C} := \emptyset$ and $\mathcal{C}' := \Set{\Omega^2 \setminus \bigcup_{\Gamma\in\mathcal{A}} \Gamma}$.
 
