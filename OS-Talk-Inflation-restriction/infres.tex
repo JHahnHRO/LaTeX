@@ -1,0 +1,413 @@
+% !TeX root = infres.tex
+% !TeX spellcheck = en_GB
+\documentclass[fontsize=11pt,fleqn,a4paper]{scrartcl}
+\input{_preamble/master_preamble.tex}
+
+\title{Inflation and restriction morphisms}
+
+\begin{document}
+
+\maketitle
+
+\setcounter{section}{2}
+\section{The long exact sequence (continued)}
+
+\setcounter{theoremnumber}{9}
+\begin{proposition}[Induced modules are a tensor ideal]
+If $H\leq G$ is a subgroup (of finite index) then
+\[\forall A\in H\textsf{-Mod}, B\in G\textsf{-Mod}: \Ind_H^G(A) \otimes_k B \isomorphic \Ind_H^G(A\otimes_k \Res_H^G(B))\]
+\end{proposition}
+\begin{proof}
+Remember that $\Ind_G^H(X) = kG \otimes_{kG} X$ where $G$ acts only on the left factor and $G$ acts on $A \otimes_k B$ on both factors. With this in mind, 
+$(g\otimes a)\otimes b \mapsto g\otimes(a\otimes g^{-1} b)$ is an isomorphism.
+\end{proof}
+
+\begin{proposition}[Trivial source modules are well-behaved]
+If $A$ is induced from the trivial group, then...
+\begin{enumerate}
+\item Compatibility with restriction: ... $\Res_H^G(A)$ is induced from the trivial group too.
+\item Compatibility with fixed points: ... $A^H$ as a $G/H$-module is induced from the trivial group too if $H\unlhd G$.
+\end{enumerate}
+\end{proposition}
+\begin{proof}
+a. Mackey isomorphism.
+
+b. If $A=\Ind_1^G(B)$, then $A = \bigoplus_{g\in G} gB$ as $\IZ$-modules. $B':=N_H B$ is obviously contained in $A^H$ so that $\sum_{gH\in G/H} gB'$ is as well. This is in fact a direct sum. On the other hand, if $a=\sum_{g\in G} gb_g \in A^H$, then $g\mapsto b_g$ must be constant on $N$-cosets so that $a\in \sum_{gH\in G/H} gN_H b_g$. Therefore $A^H = \bigoplus_{gH\in G/H} g B' = \Ind_1^{G/H}(B')$.
+\end{proof}
+
+\begin{definition}
+$A$ has \udot{trivial cohomology} if
+\[\forall H\leq G: \hat{H}^\ast(H,\Res_H^G(A)) = 0\]
+\end{definition}
+
+\begin{theorem}[Trivial source modules have trivial Tate cohomology]
+If $A\in G\mathsf{-Mod}$ is induced from the trivial module, then $A$ has trivial cohomology.
+\end{theorem}
+\begin{proof}
+If $A=\Ind_1^G(B) = \IZ[G]\otimes B$, then
+\[C^\ast = \Hom_{\IZ G}(X_\ast, A) = \Hom_{\IZ G}(X_\ast,\IZ[G]\otimes_\IZ B) = \Hom_\IZ(X_\ast,B)\]
+where we have used that the projection $\bigoplus_{g\in G} gB \xtwoheadrightarrow{\pi} B$ induces a natural isomorphism $\Hom_{\IZ G}(X,\IZ[G]\otimes B) \to \Hom_\IZ(X,B), f\mapsto \pi\circ f$.
+
+Now $X_\ast$ is an exact sequence of finitely generated $\IZ$-modules and therefore $\Hom(X_\ast,B)$ is also exact.
+\end{proof}
+
+\begin{theorem}[Dimension shifting]
+For every subgroup $H\leq G$:
+\begin{enumerate}
+\item $\hat{H}^\ast(H,-) \isomorphic \hat{H}^{\ast-1}(H,I_G\otimes -)$
+\item $\hat{H}^\ast(H,-) \isomorphic \hat{H}^{\ast+1}(H,J_G\otimes -)$
+\end{enumerate}
+\end{theorem}
+\begin{theorem}
+[Similarly for longer shifts $\hat{H}^\ast \to \hat{H}^{\ast+k}$.]
+\end{theorem}
+\begin{proof}
+We have two exact sequences
+\[0\to I_G\to\IZ[G]\xrightarrow{\epsilon} \IZ\to 0\]
+\[0\to \IZ \xrightarrow{\mu} \IZ[G] \to J_G \to 0\]
+of f.g. free $\IZ$-modules from which we get the exact sequences
+\[0 \to I_G \otimes_\IZ A \to \IZ[G]\otimes_\IZ A \to \IZ\otimes_\IZ A \to 0\]
+\[0 \to \IZ\otimes_\IZ A\to \IZ[G]\otimes_\IZ A\to J_G\otimes_\IZ A\to 0\]
+of $G$-modules. Since $\IZ[G]=\Ind_1^G(\IZ)$, the middle module has trivial cohomology. The long exact sequences for Tate cohomology imply that the connecting homomorphisms are isomorphisms. THe naturality of the long exact sequences proves the naturality of the dimension shifting isomorphism.
+\end{proof}
+
+\begin{corollary}[Cohomology groups are torsion]
+$\forall A\in G\mathsf{-Mod}: \abs{G} \cdot \hat{H}^\ast(G,A) = 0$
+\end{corollary}
+\begin{proof}
+By dimension shifting it is sufficient to prove only $\abs{G} \cdot \hat{H}^0(G,A) = 0$ for all $A\in G\mathsf{-Mod}$.
+
+By the explicit description $\hat{H}^0(G,A) = A^G/N_G A$. If $a\in A^G$ and $n=\abs{G}$, then $na = \sum_{g\in G} ga = N_G a \in N_G A$ which proves the claim.
+\end{proof}
+
+\begin{corollary}[Divisible groups]
+If $A$ is a uniquely divisible group, then $A$ has trivial cohomology. In particular the trivial module $\IQ$ has trivial cohomology.
+\end{corollary}
+\begin{proof}
+Being uniquely divisible entails that multiplication by $n$ is an automorphism of $A$ and therefore an automorphism of $\hat{H}^\ast(G,A)$.
+\end{proof}
+
+\begin{corollary}[$H^1$ and $H^2$]
+$H^2(G,\IZ) \isomorphic H^1(G,\IQ/\IZ) = \Hom(G,\IQ/\IZ)$
+\end{corollary}
+\begin{proof}
+Consider the short exact sequence of trivial $G$-modules
+$0\to\IZ\to\IQ\to\IQ/\IZ\to 0$.
+Since $\IQ$ has trivial cohomology, the connecting homomorphism of the long exact sequence induces the desired isomorphism.
+\end{proof}
+
+\begin{theorem}[$H^{-2}$]
+$\hat{H}^{-2}(G,\IZ) \isomorphic G^{ab}$.
+\end{theorem}
+\begin{proof}
+Dimension shifting gives us $\hat{H}^{-2}(G,\IZ) = \hat{H}^{-1}(G,I_G)$. And by explicit descriptions $H^{-1}(G,I_G) = I_G/I_G^2$.
+
+We claim that $(G^{ab},\cdot) \to (I_G/I_G^2,+), gG'\mapsto \overline{g-1}$ is an isomorphism. For this note that $gh-1 = (g-1)(h-1) + (g-1) + (h-1)$ so that we certainly have a homomorphism which also clearly factors through $G/G'$. For the other direction $g-1 \mapsto gG'$ is certainly a well-defined group homomorphism $I_G \to G^{ab}$ since $g-1$ is a $\IZ$-basis of $I_G$. And with the same calculation we see that $(g-1)(h-1)$ gets mapped to $(gh)g^{-1}h^{-1} = [g,h]$.
+\end{proof}
+
+\section{Inflation, restriction and corestriction}
+
+\begin{lemmadef}[Inflation]
+Let $N\unlhd G$. Then the \udot{inflation} $inf$ is the natural morphism
+\[\hat{H}^q(G/N,(-)^N) \to \hat{H}^q(G,-)\]
+for $q\geq 1$ which is given on cochains by the chain map
+\[inf_q: \left\{\begin{array}{rcl}
+C^q(G/N,A^N) &\to& C^q(G,A) \\
+((G/N)^{\times q} \xrightarrow{x} A^N) &\mapsto& (G^{\times q}\xrightarrow{x\circ\pi^{\times q}} A)
+\end{array}\right.\]
+where $\pi: G\to G/N$ is the quotient.
+\end{lemmadef}
+
+\begin{lemmadef}[Restriction]
+Let $G\xrightarrow{f^\ast}\tilde{G}$ any group homomorphism. Then there is a restriction of scalars functor $ \tilde{G}\mathsf{-Mod} \xrightarrow{f^\ast} G\mathsf{-Mod}$. There is an induced functor on the right derived functors, i.e. natural maps
+\[f^\ast: \hat{H}^q(\tilde{G},-) \to \hat{H}^q(G,f^\ast -)\]
+for $q\geq 1$. Explicitly it is given on cochains by the chain map
+\[f^\ast: \left\{\begin{array}{rcl}
+C^q(\tilde{G},A) &\to& C^q(G,f^\ast A) \\
+(\tilde{G}^{\times q} \xrightarrow{x} A) &\mapsto& (G^{\times q}\xrightarrow{x\circ f^{\times q}} A)
+\end{array}\right.\]
+
+In particular this gives the \udot{restriction} morphisms
+\[res: H^q(G,-) \to H^q(U,\Res_U^G(-))\]
+for $q\geq 1$ and $U\leq G$.
+\end{lemmadef}
+
+\begin{proposition}
+[inf and res are natural]
+\end{proposition}
+
+\begin{proposition}[Inflation is sometimes a morphism of $\delta$-functors]
+Let $N\unlhd G$. If $0\to A\to B\to C\to 0$ is a s.e.s. of $G$-modules such that $0\to A^N\to B^N\to C^N\to 0$ is also exact, then
+\[\begin{tikzcd}%[row sep=huge]
+\hat{H}^q(G/N,C^N) \arrow[r,"inf^q"] \arrow[d,"\delta"] & \hat{H}^q(G,C) \arrow[d,"\delta"]\\
+\hat{H}^{q+1}(G/N,A^N) \arrow[r,"inf^{q+1}"] & \hat{H}^{q+1}(G,A)
+\end{tikzcd}\]
+commutes.
+\end{proposition}
+
+\begin{proposition}[Restriction is always a morphism of $\delta$-functors]
+Let $G\xrightarrow{f}\tilde{G}$. If $0\to A\to B\to C\to 0$ is a s.e.s. of $\tilde{G}$-modules, then $0\to f^\ast A\to f^\ast B\to f^\ast C\to 0$ is also exact and
+\[\begin{tikzcd}%[row sep=huge]
+\hat{H}^q(\tilde{G},C) \arrow[r,"f^q"] \arrow[d,"\delta"] & \hat{H}^q(G,f^\ast C) \arrow[d,"\delta"]\\
+\hat{H}^{q+1}(\tilde{G},A) \arrow[r,"f^{q+1}"] & \hat{H}^{q+1}(G,f^\ast A)
+\end{tikzcd}\]
+commutes.
+\end{proposition}
+
+\begin{proof}
+Diagram chase in all three cases. Naturality of $f^\ast$ and that it is a morphism of $\delta$-functors also follows from the fact that cohomology is the right derived functor (and thus a universal $\delta$-functor) of the fixed points functor and that Tate cohomology equals ordinary cohomology in degrees $\geq 1$.
+\end{proof}
+
+\begin{theorem}[Inflation-restriction-sequence]
+Let $N\unlhd G$. Then
+\[ 0 \to H^1(G/N,A^N) \xrightarrow{inf} H^1(G,A) \xrightarrow{res} H^1 (N,\Res_N^G(A))\]
+is exact.
+\end{theorem}
+\begin{proof}
+Step 1: $inf$ is injective.
+
+Let $x: G/N\to A^N$ be a 1-cocycle in the kernel of $inf$, say $inf(x)=\partial(y)$ for some $y: G^0\to A$. Then
+\[\forall \sigma\in G: x(\sigma N) = inf(x)(\sigma) = \partial(y)(\sigma) = \sigma y-y\]
+and the left hand side is constant on cosets so that $\sigma y - y = \sigma\tau y - y$ for all $\tau\in N$. This is only possible if $y\in A^N$. Therefore $x$ is also a coboundary.
+
+\medbreak
+Step 2: $\im(inf)\subseteq\ker(res)$.
+
+Let $x: G/N\to A^N$ be a 1-cocycle. Then
+\[res(inf(x)) = \left\{\begin{array}{rcl} N&\to&A \\ \sigma&\mapsto&x(\sigma N)\end{array}\right. = x(1N)\]
+is constant. But a constant 1-cocycle must be zero because $x(1) = x(1\cdot 1) = x(1)+x(1)$.
+
+\medbreak
+Step 3: $\ker(res)\subseteq\im(inf)$.
+
+Let $x: G\to A$ be a 1-cocycle such that $res(x)=\partial(y)$ for some $y: N^0\to A$. We consider $y$ as an element of $A$ and look at the 1-coboundary $\rho:=\partial(y): G\to A, $. By replacing $x$ by $x-\rho$ we obtain a 1-cocycle $x'$ in the same cohomology class with
+\[\forall\tau\in N: x'(\tau) = 0\]
+so that
+\[\forall\sigma\in G,\tau\in N: x'(\sigma\tau) = x'(\sigma)+\sigma x'(\tau) = x'(\sigma)\]
+which means that $x'$ is constant on cosets. On the other hand
+\[\forall\tau\in N,\sigma\in G: x'(\tau\sigma) = x'(\tau) + \tau x'(\sigma) = \tau x'(\sigma)\]
+so that $x'$ takes values in $A^N$. Therefore we can define $\tilde{x}: G/N\to A^N$ by $\tilde{x}(\sigma N):=x'(\sigma)$ and get a 1-cocycle with $inf(\tilde{x}) = x'$.
+\end{proof}
+
+\begin{theorem}
+Let $N\unlhd G$ and $A\in G\mathsf{-Mod}$ with $0=H^1(N,\Res_N^G(A))=H^2(N,\Res_N^G(A)) = \cdots = H^{q-1}(N,\Res_N^G(A))$. Then
+\[ 0 \to H^1(G/N,A^N) \xrightarrow{inf} H^1(G,A) \xrightarrow{res} H^1 (N,\Res_N^G(A))\]
+is exact.
+\end{theorem}
+
+Both of these theorems are hinting at the existence of the Lyndon-Hochschild-Serre spectral sequence $H^p(G/N, H^q(N,A)) = E_2^{pq} \Rightarrow H^{p+q}(G,A)$. The inflation-restriction-sequence in fact continues to
+\[ 0 \to H^1(G/N,A^N) \xrightarrow{inf} H^1(G,A) \xrightarrow{res} H^1(N,\Res_N^G(A))^{G/N} \to H^2(G/N,A^N) \xrightarrow{ind} H^2(G,A)\]
+
+
+\begin{proof}
+We proceed by dimension shifting and induction. For $q=1$ we have nothing to prove. For $q>1$, consider $0\to\IZ\to\IZ[G]\to J_G\to 0$ and the induced short exact sequence
+\[0\to A \to \underbrace{\IZ[G]\otimes_\IZ A}_{=:B} \to \underbrace{J_G\otimes_\IZ A}_{=:C} \to 0\]
+which gives us the following commutative diagram
+\[\begin{tikzcd}
+0 \arrow[r] & H^{q-1}(G/N,C^N) \arrow[r,"inf"] \arrow[d,"\delta"] & H^{q-1}(G,C) \arrow[r,"res"] \arrow[d,"\delta"] & H^{q-1}(N,\Res_N^G(C)) \arrow[d,"\delta"] \\ 
+0 \arrow[r] & H^q(G/N,A^N) \arrow[r,"inf"] & H^q(G,A) \arrow[r,"res"] & H^q(N,\Res_N^G(A)) 
+\end{tikzcd}\]
+where he have used $H^1(N,A) = 0$ (i.e. the exactness of $0\to A^N \to B^N\to C^N \to 0$) for the commutativity of the left hand square.
+
+By construction $B=\IZ[G]\otimes A = \Ind_1^G(\IZ)\otimes A = \Ind_1^G(\IZ\otimes \Res_1^G(A))$ is induced from the trivial group and therefore cohomologically trivial. Thus $B^N$ and $\Res_N^G(B)$ are also cohomologically trivial. The long exact sequence implies that all the $\delta$s are isomorphisms.
+
+It follows that $H^i(N,\Res_N^G(C)) \isomorphic H^{i+1}(N,\Res_N^G(C)) = 0$ for $i=1,\ldots,q-2$. By induction the upper row of the diagram is exact. Therefore the lower row is too.
+\end{proof}
+
+\subsection{Extending cohomoligcal restriction and homological restriction to Tate cohomology}
+
+\begin{lemmadef}[Degree-zero-part of restriction]
+Let $U\leq G$ be a subgroup. Then define $res^0: \hat{H}^0(G,A) \to \hat{H}^0(U,\Res_U^G(A))$ by
+\[res^0:  A^G/N_GA \to A^U/N_UA, \overline{a} \mapsto \overline{a}\]
+(If $G\xrightarrow{f}\tilde{G}$ is injective, then $A^{\tilde{G}}/N_{\tilde{G}} A \to (f^\ast A)^G/N_G(f^\ast A), \overline{a} \mapsto \overline{a}$ is well-defined so that a pullback is still defined. If $f$ isn't injective, then there is a factor of $\abs{\ker(f)}$ is missing to make this work)
+
+If $0\to A\to B \to C\to 0$ is a s.e.s. of $G$-modules, then
+\[\begin{tikzcd}
+\hat{H}^0(G,C) \arrow[r,"res^0"] \arrow[d,"\delta"] & \hat{H}^0(U,\Res_U^G(C)) \arrow[d,"\delta"] \\
+\hat{H}^1(G,A) \arrow[r,"res^1"] & \hat{H}^1(U,\Res_U^G(A))
+\end{tikzcd}\]
+commutes.
+\end{lemmadef}
+\begin{proof}
+Diagram chase.
+\end{proof}
+
+\begin{theoremdef}[Restriction on all of Tate cohomology]
+Let $U\leq G$ be a subgroup. There is a unique family of natural homomorphisms
+\[res^q: \hat{H}^q(G,-) \to \hat{H}^q(U,\Res_U^G(-))\]
+satisfying the following conditions:
+\begin{enumerate}
+\item For $q=0$ it coincides with $res^0$ from the previous definition.
+\item For every s.e.s. $0\to A \to B\to C \to 0$ of $G$-modules and all $q\in\IZ$ the diagram
+\[\begin{tikzcd}
+\hat{H}^q(G,C) \arrow[r,"res^q"] \arrow[d,"\delta"] & \hat{H}^q(U,\Res_U^G(C)) \arrow[d,"\delta"] \\
+\hat{H}^{q+1}(G,A) \arrow[r,"res^{q+1}"] & \hat{H}^{q+1}(U,\Res_U^G(A))
+\end{tikzcd}\]
+commutes.
+\end{enumerate}
+\end{theoremdef}
+\begin{proof}
+Existence is already known for $q\geq 0$. We use dimension shifting to show that it works for $q<0$ as well.
+
+Consider again the s.e.s. $0\to\IZ\to\IZ[G]\to J_G\to 0$ from which we obtain a commutative diagram of six s.e.s.
+\[\begin{tikzcd}
+& 0 \arrow[d] & 0 \arrow[d] & 0 \arrow[d] & \\
+0 \arrow[r] & A \arrow[d]\arrow[r] & B \arrow[d]\arrow[r] & C \arrow[d]\arrow[r] & 0 \\
+0 \arrow[r] & \IZ[G]\otimes A \arrow[d]\arrow[r] & \IZ[G]\otimes B \arrow[d]\arrow[r] & \IZ[G]\otimes C \arrow[d]\arrow[r] & 0 \\
+0 \arrow[r] & J_G\otimes A \arrow[d]\arrow[r] & J_G\otimes B \arrow[d]\arrow[r] & J_G\otimes C \arrow[d]\arrow[r] & 0 \\
+& 0 & 0 & 0 & 
+\end{tikzcd}\]
+
+The middle row consists of modules induced from the trivial subgroup and are therefore cohomologically trivial. We already know that $\hat{H}^\ast(G,A) \xrightarrow[\isomorphic]{\delta} \hat{H}^\ast(G,J_G\otimes A)$ is an iso. We use the shorthand $A^1 := J_G\otimes A$ and define $res^q$ recursively by:
+\[\begin{tikzcd}
+\hat{H}^q(G,A) \arrow[r,dotted,"res^q"] \arrow[d,"(-1)^q\delta","\isomorphic"'] & \hat{H}^q(U,\Res_U^G(A)) \arrow[d,"(-1)^q\delta","\isomorphic"'] \\
+\hat{H}^{q+1}(G,A) \arrow[r,"res^{q+1}"] & \hat{H}^{q+1}(U,\Res_U^G(A))
+\end{tikzcd}\]
+
+This gives us the following diagram
+\begin{figure}[tp]
+\centering
+\begin{tikzpicture}
+\matrix (m)[matrix of math nodes,row sep=2em,column sep=2em]{
+ & \hat{H}^q(U,A) && \hat{H}^{q+1}(U,A^1) \\
+\hat{H}^q(G,A) && \hat{H}^{q+1}(G,A^1) \\
+ & \hat{H}^q(U,B) && \hat{H}^{q+1}(U,B^1) \\
+\hat{H}^q(G,B) && \hat{H}^{q+1}(G,B^1) \\
+ & \hat{H}^q(U,C) && \hat{H}^{q+1}(U,C^1) \\
+\hat{H}^q(G,C) && \hat{H}^{q+1}(G,C^1) \\
+ & \hat{H}^{q+1}(U,A) && \hat{H}^{q+2}(U,A^1) \\
+\hat{H}^{q+1}(G,A) && \hat{H}^{q+2}(G,A^1) \\
+};
+
+\path[->,font=\scriptsize]
+(m-1-2) edge node[near start,above]{$(-1)^q\delta$} node[near start,below]{$\isomorphic$} (m-1-4)
+(m-2-1) edge node[near start,above]{$(-1)^q\delta$} node[near start,below]{$\isomorphic$} (m-2-3)
+(m-3-2) edge node[near start,above]{$(-1)^q\delta$} node[near start,below]{$\isomorphic$} (m-3-4)
+(m-4-1) edge node[near start,above]{$(-1)^q\delta$} node[near start,below]{$\isomorphic$} (m-4-3)
+(m-5-2) edge node[near start,above]{$(-1)^q\delta$} node[near start,below]{$\isomorphic$} (m-5-4)
+(m-6-1) edge node[near start,above]{$(-1)^q\delta$} node[near start,below]{$\isomorphic$} (m-6-3)
+(m-7-2) edge node[near start,above]{$(-1)^{q+1}\delta$} node[near start,below]{$\isomorphic$} (m-7-4)
+(m-8-1) edge node[near start,above]{$(-1)^{q+1}\delta$} node[near start,below]{$\isomorphic$} (m-8-3)
+
+(m-2-1) edge (m-4-1)
+(m-4-1) edge (m-6-1)
+(m-6-1) edge node[desc]{$\delta$} (m-8-1)
+
+(m-2-3) edge (m-4-3)
+(m-4-3) edge (m-6-3)
+(m-6-3) edge node[desc]{$\delta$} (m-8-3)
+
+(m-1-2) edge (m-3-2)
+(m-3-2) edge (m-5-2)
+(m-5-2) edge node[near start,desc]{$\delta$} (m-7-2)
+
+(m-1-4) edge (m-3-4)
+(m-3-4) edge (m-5-4)
+(m-5-4) edge node[near start, desc]{$\delta$} (m-7-4);
+
+\path[->]
+(m-2-1) edge node[desc]{$res^q$} (m-1-2)
+(m-2-3) edge node[desc]{$res^{q+1}$} (m-1-4)
+
+(m-4-1) edge node[desc]{$res^q$} (m-3-2)
+(m-4-3) edge node[desc]{$res^{q+1}$} (m-3-4)
+
+(m-6-1) edge node[desc]{$res^q$} (m-5-2)
+(m-6-3) edge node[desc]{$res^{q+1}$} (m-5-4)
+
+(m-8-1) edge node[desc]{$res^{q+1}$} (m-7-2)
+(m-8-3) edge node[desc]{$res^{q+2}$} (m-7-4);
+
+\end{tikzpicture}
+\end{figure}
+
+By definition, the horizontal squares commute. By induction, the right facing squares commute. Since all the horizontal $\delta$'s are natural isomorphisms, the upper and middle front and back facing squares commute. The two squares with four $\delta$s are also commutative because of the sign.
+
+This proves that the left facing square are also all commutative which concludes the downward induction.
+
+Similarly dimension shifting in the other direction shows that $res^q$ for $q>0$ is also determined by $res^0$ and the commutative square.
+\end{proof}
+
+\begin{theoremdef}[Verlagerung]
+Let $U\leq G$ be a subgroup. Then
+\[res^{-2}: \hat{H}^{-2}(G,\IZ) = G^{ab} \to U^{ab} = \hat{H}^{-2}(U,\IZ)\]
+is the Verlagerung morphism.
+\end{theoremdef}
+
+
+\begin{lemmadef}[Degree-zero and (-1)-part of corestriction]
+Let $U\leq G$ be a subgroup. For $q=-1$ and $q=0$ we define $cor_q: \hat{H}^q(U,\Res_U^G(-)) \to \hat{H}^q(G,-)$ by
+\[cor_{-1}: Ann_A(N_U)/I_G A \to Ann_A(N_G)/I_G A, \overline{a}\mapsto\overline{a}\]
+\[cor_0: A^U/N_U A \to A^G/N_G A, \overline{a} \mapsto N_{G/U}\overline{a}\]
+where $N_{G/U}$ is the sum over a set of coset representatives.
+
+Then[...] commutes.
+\end{lemmadef}
+
+\begin{theoremdef}[Corestriction / relative trace]
+Let $U\leq G$ be a subgroup. There is a unique family of natural transformations $cor_q: \hat{H}^q(U,\Res_U^G(-)) \to \hat{H}^q(G,-)$ that
+\begin{enumerate}
+\item ... extends $cor_0$ and $cor_{-1}$ and 
+\item For every s.e.s. $0\to A \to B\to C \to 0$ of $G$-modules and all $q\in\IZ$ the diagram
+\[\begin{tikzcd}
+\hat{H}^q(U,\Res_U^G(C)) \arrow[r,"cor_q"] \arrow[d,"\delta"] & \hat{H}^q(G,C) \arrow[d,"\delta"] \\
+\hat{H}^{q+1}(U,\Res_U^G(A)) \arrow[r,"cor_{q+1}"] & \hat{H}^{q+1}(G,A)
+\end{tikzcd}\]
+commutes.
+\end{enumerate}
+\end{theoremdef}
+\begin{proof}
+Similar.
+\end{proof}
+
+\begin{theorem}
+$cor_{-2}: \hat{H}^{-2}(U,\IZ) = U^{ab} \to G^{ab} = \hat{H}^{-2}(G,\IZ)$ is just the natural morphism induces from the inclusion.
+\end{theorem}
+\begin{proof}
+\begin{tikzcd}
+\hat{H}^{-2}(U,\IZ) \arrow[r,"\delta","\isomorphic"'] \arrow[dd,"cor_{-2}"] & \hat{H}^{-1}(U,I_U) = I_U/I_U^2 \arrow[d,"\subseteq_\ast"] & U^{ab} \arrow[l,"\isomorphic"] \arrow[dd,"canonical"] \\
+& \hat{H}^{-1}(U,I_G)=I_G/I_U I_G \arrow[d,"cor_{-1}"] & \\
+\hat{H}^{-2}(G,I_G) \arrow[r,"\delta","\isomorphic"'] & \hat{H}^{-1}(G,I_G) = I_G/I_G^2 & G^{ab} \arrow[l,"\isomorphic"]
+\end{tikzcd}
+\end{proof}
+
+\subsection{Applications}
+
+\begin{theorem}
+Let $U\leq G$ be a subgroup. The composition
+\[\hat{H}^\ast(G,-) \xrightarrow{res^\ast} \hat{H}^\ast(U,\Res_U^G(-)) \xrightarrow{cor_\ast} \hat{H}^\ast(G,-)\]
+equals $\abs{G:U}\cdot\id$.
+\end{theorem}
+\begin{proof}
+That is true by definition for $q=0$ and follows for general $q$ be dimension shifting / the inductive construction.
+\end{proof}
+
+\begin{theorem}[Naturality of restriction and corestriction]
+\end{theorem}
+
+\begin{theorem}
+Let $G_p\leq G$ a $p$-sylow subgroup. Then
+\[\hat{H}^\ast(G,A)_p \xtwoheadrightarrow{res^\ast} \hat{H}^\ast(G_p,A) \xhookrightarrow{cor_\ast} \hat{H}(G,A)_p\]
+\end{theorem}
+\begin{proof}
+The composition equals $\abs{G:G_p}\id$ which is an automorphism on the $p$-part of the abelian group $\hat{H}^\ast(G,A)$.
+\end{proof}
+
+\begin{corollary}
+$\hat{H}^q(G,A)=0$ if $\forall p\in\mathbb{P}: \hat{H}^q(G_p,A)=0$.
+\end{corollary}
+
+\begin{definition}[Induced from a subgroup]
+\end{definition}
+
+\begin{theorem}[Shapiro's lemma]
+If $A=\Ind_U^G(D)$ for some subgroup $U\leq G$, then
+\[\hat{H}^\ast(G,A) \xrightarrow{res^\ast} \hat{H}^\ast(U,\Res_U^G(A)) \xrightarrow{\pi_\ast} \hat{H}^\ast(U,D)\]
+is an isomorphism where $\pi: \Ind_U^G(D) = \bigoplus_{gU\in G/U} g\otimes D \xtwoheadrightarrow{pi} D$ is the projection onto $1\otimes D$.
+\end{theorem}
+\begin{proof}
+Both $res^\ast$ and $\pi_\ast$ are compatible with dimension shifting. It is therefore sufficient to prove the case $q=0$.
+
+For this define $\nu: D^U / N_U D \to A^G/N_G A, \overline{d} \mapsto N_{G/U} \overline{d}$ and find that $\nu=(\pi\circ res)^{-1}$. 
+\end{proof}
+\end{document}
