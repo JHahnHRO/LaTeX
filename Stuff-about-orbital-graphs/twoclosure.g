@@ -91,7 +91,7 @@ function(G)
 	od;
 	
 	# Step 3: TwoClosure(G) is the intersection of Aut(Omega,Gamma) for all important orbitals Gamma.
-	return Intersection(importantOrbitals, Gamma ->
-		AutomorphismGroup(Digraph(adjacencyMatrix(Gamma))) );
+	return Intersection(List(importantOrbitals, Gamma ->
+		AutomorphismGroup(DigraphByAdjacencyMatrix(adjacencyMatrix(Gamma))) ));
 end
 );
