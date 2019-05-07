@@ -1,0 +1,39 @@
+%%% Language preamble for german
+
+% Language itself
+\usepackage[ngerman]{babel}
+% Font encoding to represent umlauts correct in PDFs documents instead of combining them from other
+% characters like "u instead of ü
+\usepackage[T1]{fontenc}
+% Encoding of the source code.
+\usepackage[utf8]{inputenc}
+
+
+% Language specific strings
+%   Names of theorem environments
+
+%\makeatletter
+\addto\captionsngerman{
+	% \see command from makeidx
+%	\@ifpackageloaded{makeidx}{
+%		\renewcommand{\seename}{siehe}
+%	}{}
+	\renewcommand{\captionstringtheorem}{Satz}
+	\renewcommand{\captionstringlemma}{Lemma}
+	\renewcommand{\captionstringcorollary}{Korollar}
+	\renewcommand{\captionstringlemmadef}{Lemma und Definition}
+	\renewcommand{\captionstringtheoremdef}{Satz und Definition}
+	\renewcommand{\captionstringdefinition}{Definition}
+	\renewcommand{\captionstringproposition}{Proposition}
+	\renewcommand{\captionstringexample}{Beispiel}
+	\renewcommand{\captionstringconjecture}{Vermutung}
+	\renewcommand{\captionstringconvention}{Vereinbaring}
+	\renewcommand{\captionstringremark}{Bemerkung}
+}
+%\@ifpackageloaded{biblatex}{
+%\DefineBibliographyStrings{german}{
+%	bibliography = {Bibliographie},
+%	references = {Referenzen}
+%}
+%}{}
+%\makeatother

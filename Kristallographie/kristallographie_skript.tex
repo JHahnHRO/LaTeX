@@ -1,0 +1,29 @@
+% !TeX root = kristallographie_skript.tex
+% !TeX spellcheck = de_DE
+\documentclass[fontsize=11pt,fleqn,a4paper]{scrartcl}
+\input{_preamble/master_preamble.tex}
+
+\title{Kristallographie}
+\author{Johannes Hahn \and Andrea Hanke}
+
+\begin{document}
+
+\maketitle
+
+\section{Gruppentheorie}
+
+\section{Kristalle}
+
+\begin{definition}[Kristalle]
+Ein \udot{Kristall} (auch \udot{Kristallgitter}) ist eine Punktmenge $\Lambda\subseteq\IR^3$ (gedacht als die Menge aller Atome im Kristall), die ...
+\begin{enumerate}
+\item ... Translationssymmetrie hat, d.h. es gibt Vektoren $t_1,t_2,t_3\in\IR^3$ in drei unabhängige Richtungen, sodass immer, wenn $x\in\Lambda$ ein Punkt im Kristall ist, $x+k_1 t_1+k_2t_2+k_3t_3$ auch ein Punkt im Kristall ist für alle ganzen Zahlen $k_1,k_2,k_3\in\IZ$.
+\item ... besteht aus isolierten Punkten, d.h. es gibt einen Mindestabstand $\delta>0$, sodass sich keine zwei Punkte $x,y\in\Lambda$ näher als $\delta$ kommen: $\norm{x-y}\geq\delta$.
+\end{enumerate}
+\end{definition}
+
+\begin{remark}
+Insbesondere bedeutet dass, dass es nur abzählbar viele Punkte im Gitter gibt.
+\end{remark}
+
+\end{document}
