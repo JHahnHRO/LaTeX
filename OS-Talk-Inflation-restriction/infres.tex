@@ -14,34 +14,34 @@
 
 \setcounter{theoremnumber}{9}
 \begin{proposition}[Induced modules are a tensor ideal]
-If $H\leq G$ is a subgroup (of finite index) then
-\[\forall A\in H\textsf{-Mod}, B\in G\textsf{-Mod}: \Ind_H^G(A) \otimes_k B \isomorphic \Ind_H^G(A\otimes_k \Res_H^G(B))\]
+If $U\leq G$ is a subgroup (of finite index) then
+\[\forall A\in U\textsf{-Mod}, B\in G\textsf{-Mod}: \Ind_U^G(A) \otimes_k B \isomorphic \Ind_U^G(A\otimes_k \Res_U^G(B))\]
 \end{proposition}
 \begin{proof}
-Remember that $\Ind_G^H(X) = kG \otimes_{kG} X$ where $G$ acts only on the left factor and $G$ acts on $A \otimes_k B$ on both factors. With this in mind, 
+Remember that $\Ind_G^U(X) = kG \otimes_{kG} X$ where $G$ acts only on the left factor and $G$ acts on $A \otimes_k B$ on both factors. With this in mind, 
 $(g\otimes a)\otimes b \mapsto g\otimes(a\otimes g^{-1} b)$ is an isomorphism.
 \end{proof}
 
 \begin{proposition}[Trivial source modules are well-behaved]
 If $A$ is induced from the trivial group, then...
 \begin{enumerate}
-\item Compatibility with restriction: ... $\Res_H^G(A)$ is induced from the trivial group too.
-\item Compatibility with fixed points: ... $A^H$ as a $G/H$-module is induced from the trivial group too if $H\unlhd G$.
+\item Compatibility with restriction: ... $\Res_U^G(A)$ is induced from the trivial group too.
+\item Compatibility with fixed points: ... $A^U$ as a $G/U$-module is induced from the trivial group too if $U\unlhd G$.
 \end{enumerate}
 \end{proposition}
 \begin{proof}
 a. Mackey isomorphism.
 
-b. If $A=\Ind_1^G(B)$, then $A = \bigoplus_{g\in G} gB$ as $\IZ$-modules. $B':=N_H B$ is obviously contained in $A^H$ so that $\sum_{gH\in G/H} gB'$ is as well. This is in fact a direct sum. On the other hand, if $a=\sum_{g\in G} gb_g \in A^H$, then $g\mapsto b_g$ must be constant on $N$-cosets so that $a\in \sum_{gH\in G/H} gN_H b_g$. Therefore $A^H = \bigoplus_{gH\in G/H} g B' = \Ind_1^{G/H}(B')$.
+b. If $A=\Ind_1^G(B)$, then $A = \bigoplus_{g\in G} gB$ as $\IZ$-modules. $B':=N_U B$ is obviously contained in $A^U$ so that $\sum_{gU\in G/U} gB'$ is as well. This is in fact a direct sum. On the other hand, if $a=\sum_{g\in G} gb_g \in A^U$, then $g\mapsto b_g$ must be constant on $N$-cosets so that $a\in \sum_{gU\in G/U} gN_U b_g$. Therefore $A^U = \bigoplus_{gU\in G/U} g B' = \Ind_1^{G/U}(B')$.
 \end{proof}
 
 \begin{definition}
 $A$ has \udot{trivial cohomology} if
-\[\forall H\leq G: \hat{H}^\ast(H,\Res_H^G(A)) = 0\]
+\[\forall U\leq G: \hat{H}^\ast(U,\Res_U^G(A)) = 0\]
 \end{definition}
 
 \begin{theorem}[Trivial source modules have trivial Tate cohomology]
-If $A\in G\mathsf{-Mod}$ is induced from the trivial module, then $A$ has trivial cohomology.
+If $A\in G\mathsf{-Mod}$ is induced from the trivial subgroup, then $A$ has trivial cohomology.
 \end{theorem}
 \begin{proof}
 If $A=\Ind_1^G(B) = \IZ[G]\otimes B$, then
@@ -52,10 +52,10 @@ Now $X_\ast$ is an exact sequence of finitely generated $\IZ$-modules and theref
 \end{proof}
 
 \begin{theorem}[Dimension shifting]
-For every subgroup $H\leq G$:
+For every subgroup $U\leq G$:
 \begin{enumerate}
-\item $\hat{H}^\ast(H,-) \isomorphic \hat{H}^{\ast-1}(H,I_G\otimes -)$
-\item $\hat{H}^\ast(H,-) \isomorphic \hat{H}^{\ast+1}(H,J_G\otimes -)$
+\item $\hat{H}^\ast(U,-) \isomorphic \hat{H}^{\ast-1}(U,I_G\otimes -)$
+\item $\hat{H}^\ast(U,-) \isomorphic \hat{H}^{\ast+1}(U,J_G\otimes -)$
 \end{enumerate}
 \end{theorem}
 \begin{theorem}
@@ -68,7 +68,7 @@ We have two exact sequences
 of f.g. free $\IZ$-modules from which we get the exact sequences
 \[0 \to I_G \otimes_\IZ A \to \IZ[G]\otimes_\IZ A \to \IZ\otimes_\IZ A \to 0\]
 \[0 \to \IZ\otimes_\IZ A\to \IZ[G]\otimes_\IZ A\to J_G\otimes_\IZ A\to 0\]
-of $G$-modules. Since $\IZ[G]=\Ind_1^G(\IZ)$, the middle module has trivial cohomology. The long exact sequences for Tate cohomology imply that the connecting homomorphisms are isomorphisms. THe naturality of the long exact sequences proves the naturality of the dimension shifting isomorphism.
+of $G$-modules. Since $\IZ[G]=\Ind_1^G(\IZ)$, the middle module has trivial cohomology. The long exact sequences for Tate cohomology imply that the connecting homomorphisms are isomorphisms. The naturality of the long exact sequences proves the naturality of the dimension shifting isomorphism.
 \end{proof}
 
 \begin{corollary}[Cohomology groups are torsion]
@@ -96,11 +96,11 @@ $0\to\IZ\to\IQ\to\IQ/\IZ\to 0$.
 Since $\IQ$ has trivial cohomology, the connecting homomorphism of the long exact sequence induces the desired isomorphism.
 \end{proof}
 
-\begin{theorem}[$H^{-2}$]
+\begin{theorem}[$\hat{H}^{-2}$]
 $\hat{H}^{-2}(G,\IZ) \isomorphic G^{ab}$.
 \end{theorem}
 \begin{proof}
-Dimension shifting gives us $\hat{H}^{-2}(G,\IZ) = \hat{H}^{-1}(G,I_G)$. And by explicit descriptions $H^{-1}(G,I_G) = I_G/I_G^2$.
+Dimension shifting gives us $\hat{H}^{-2}(G,\IZ) \isomorphic \hat{H}^{-1}(G,I_G)$. And by explicit descriptions $H^{-1}(G,I_G) = I_G/I_G^2$.
 
 We claim that $(G^{ab},\cdot) \to (I_G/I_G^2,+), gG'\mapsto \overline{g-1}$ is an isomorphism. For this note that $gh-1 = (g-1)(h-1) + (g-1) + (h-1)$ so that we certainly have a homomorphism which also clearly factors through $G/G'$. For the other direction $g-1 \mapsto gG'$ is certainly a well-defined group homomorphism $I_G \to G^{ab}$ since $g-1$ is a $\IZ$-basis of $I_G$. And with the same calculation we see that $(g-1)(h-1)$ gets mapped to $(gh)g^{-1}h^{-1} = [g,h]$.
 \end{proof}
