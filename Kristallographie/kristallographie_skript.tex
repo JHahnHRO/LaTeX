@@ -18,12 +18,45 @@
 Ein \udot{Kristall} (auch \udot{Kristallgitter}) ist eine Punktmenge $\Lambda\subseteq\IR^3$ (gedacht als die Menge aller Atome im Kristall), die ...
 \begin{enumerate}
 \item ... Translationssymmetrie hat, d.h. es gibt Vektoren $t_1,t_2,t_3\in\IR^3$ in drei unabhängige Richtungen, sodass immer, wenn $x\in\Lambda$ ein Punkt im Kristall ist, $x+k_1 t_1+k_2t_2+k_3t_3$ auch ein Punkt im Kristall ist für alle ganzen Zahlen $k_1,k_2,k_3\in\IZ$.
-\item ... besteht aus isolierten Punkten, d.h. es gibt einen Mindestabstand $\delta>0$, sodass sich keine zwei Punkte $x,y\in\Lambda$ näher als $\delta$ kommen: $\norm{x-y}\geq\delta$.
+\item ... aus isolierten Punkten besteht, d.h. es gibt einen Mindestabstand $\delta>0$, sodass sich keine zwei Punkte $x,y\in\Lambda$ näher als $\delta$ kommen: $x\neq y \implies\norm{x-y}\geq\delta$.
 \end{enumerate}
 \end{definition}
 
 \begin{remark}
 Insbesondere bedeutet dass, dass es nur abzählbar viele Punkte im Gitter gibt.
+\end{remark}
+
+\begin{definition}
+Die \udot{Symmetriegruppe} eines Kristallgitters $\Lambda$ ist die Gruppe aller starren Bewegungen (=Isometrien), die das Gitter in sich selbst abbilden:
+\[\Aut(\Lambda) := \Set{s\in \operatorname{Isom}(\IR^3) | s(\Lambda)=\Lambda}\]
+Nach Definition enthält $\Aut(\Lambda)$ mindestens die drei Translationen $x\mapsto x+t_i$. Die Menge \emph{aller} Translationen, die $\Lambda$ in sich selbst abbilden, sind eine Untergruppe von $\Aut(\Lambda)$.
+\end{definition}
+
+\begin{remark}
+Weil die Punkte in $\Lambda$ einen Mindestabstand haben, ist die Translationsuntergruppe diskret, d.h. sie enthält eine Basis: Drei Translationen $\tau_1,\tau_2,\tau_3\in\Aut(\Lambda)$, sodass sich jede beliebige Translation $\tau\in\Aut(\Lambda)$ auf eindeutige Weise als $\tau_1^{k_1}\circ\tau_2^{k_2} \circ \tau_3^{k_3}$ mit $k_1,k_2,k_3\in\IZ$ schreiben lässt.
+
+Die Translationsuntergruppe ist also zur Gruppe $(\IZ^3,+)$ isomorph.
+\end{remark}
+
+\begin{example}
+Umgekehrt: Wenn $v_1,v_2,v_3\in\IR^3$ drei beliebige, linear unabhängige Vektoren sind, dann ist $\Lambda:=\IZ v_1+\IZ v_2 + \IZ v_3 = \Set{k_1 v_1+k_2 v_2+k_3 v_3 | k_1,k_2,k_3\in\IZ}$ ein Gitter, dessen Translationsuntergruppe die drei Translationen $\tau_i:=x\mapsto x+v_i$ als (eine mögliche von vielen) Basis hat.
+\end{example}
+
+\begin{definition}
+Es sei $\Lambda$ ein Kristallgitter und $T$ die Gruppe aller Translationen, die $\Lambda$ invariant lassen.
+
+Eine \udot{Basiszelle von $\Lambda$} ist ein Paar $(Z,A)$ bestehend aus einem (konvexer, kompakter) Polyeder $Z\subseteq\IR^3$ und einer Punktmenge $A\subseteq Z$, sodass
+\begin{enumerate}
+\item ... die Translate von $A$ ganz $\Lambda$ überdecken, d.h. $\Lambda=\bigcup_{t\in T} tA$.
+\item ... die Translate von $Z$ ganz $\IR^3$ überdecken, d.h. $\IR^3 = \bigcup_{t\in T} tZ$.
+\item ... die Translate von $Z$ im wesentlichen disjunkt sind, d.h. $Z \cap tZ$ ist leer oder höchstens eine Seitenfläche von $Z$, wenn $t\in T\setminus\set{1}$ ist.
+\end{enumerate}
+
+Eine Basiszelle des kleinstmöglichen Volumens heißt \udot{elementare Basiszelle} des Gitters.
+\end{definition}
+
+\begin{remark}
+Da $Z$ kompakt ist und $\Lambda$ diskret, muss $A=Z\cap\Lambda$ endlich sein.
 \end{remark}
 
 \end{document}
