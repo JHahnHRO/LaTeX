@@ -1,0 +1,42 @@
+% !TeX root = clifford.tex
+% !TeX spellcheck = en_GB
+
+\begin{theorem}[Fong's second reduction]
+Let $k\in\set{\mathcal{O},\IF}$ and assume that $\IF$ is a splitting field for $A$.
+
+Let $b\in Bl(A_1)$ be a $G$-stable block \enquote{of defect zero}, i.e. isomorphic to a matrix algebra $b\isomorphic\End_k(U)$ for some f.g. projective $k$-module $U$. 
+\begin{enumerate}
+\item Then there exists a 2-cocycle $\xi\in Z^2(G,k^\times)$ such that $\mathsf{mod}(A|b)$ is equivalent to $k_\xi[G]$.
+\item More precisely: $\bigoplus_{B \text{ covers }b} B$ is isomorphic to $b \otimes_k k_\xi[G]$ and
+\[U\otimes_k - : k_\xi[G]\mathsf{-Mod} \to \mathsf{mod}(A|b)\]
+is therefore an equivalence.
+\item In particular: Every block $B\in Bl(A)$ that covers $b$ is Morita equivalent to a block of $k_\xi[G]$.
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+Step 0: $e_b$ is $G$-stable and therefore central in $A$ and $e_b A e_b=bA=\bigoplus_{B\text{ covers }b} B$ is therefore a two-sided graded ideal of $A$. Therefore we can wlog assume that $A_1=b$ and all blocks of $A$ cover $b$.
+
+\medbreak
+Step 1: The conjugation outer action $G \to \operatorname{Out}(A_1)$ is trivial, because as a matrix algebra $A_1$ satisfies $\Aut(A_1) = \operatorname{Inn}(A_1)$ by the Skolem Noether theorem. Therefore proposition \ref{g_graded_algebras:conjugation_outer_action} shows that
+\[A = A_1 \otimes_{Z(A_1)} k_\xi[G] = b \otimes_k k_\xi[G]\]
+for some $\xi\in Z^2(G,k^\times)$.
+\end{proof}
+
+\begin{theorem}[Clifford]
+Let $k=\IF$ be an algebraically closed field and $A$ finite-dimensional.
+
+Furthermore let $U\in\Irr(A_1)$ be simple and $G$-stable.
+
+\begin{enumerate}
+\item There exists a 2-cocycle $\xi\in Z^2(G,\IF^\times)$ such that $U$ extends to an $\IF_{\xi^{-1}}[G] \odot A$-module $\widehat{U}$.
+\item There is a bijection
+\[\left\lbrace\begin{array}{rcl}
+\Irr(A|U) &\leftrightarrow& \Irr(\IF_\xi[G]) \\
+W\otimes_\IF \widehat{U} &\leftarrow& W
+\end{array}\right.\]
+In particular $e(V) = \dim(W)$ for all $V\in\Irr(A|U)$.
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+Again the theorem follows from the block-version applied to the $G$-graded algebra $\overline{A} = A/A\cdot J(A_1)$ instead of $A$ which has the same irreducible modules and semisimple degree-1-piece with blocks corresponding to simple $A_1$-modules.
+\end{proof}

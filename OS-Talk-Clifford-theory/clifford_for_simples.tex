@@ -1,0 +1,54 @@
+% !TeX root = clifford.tex
+% !TeX spellcheck = en_GB
+
+\begin{definition}[Conjugated modules and inertial subgroups of modules]
+$G$ acts on $A_1\mathsf{-Mod}$ (more precisely it acts on the isomorphism classes) as before by letting ${^g V}:=A_g\otimes_{A_1} V$. Note that $A_g \otimes_{A_1} A_h \isomorphic A_{gh}$ via multiplication inside $A$ so that this really is an $G$-action.
+
+The \emph{inertial group} of $V\in A_1\mathsf{-Mod}$ is defined as
+\[I_G(V):=\Set{g\in G | {^g V}\isomorphic V}\]
+\end{definition}
+
+\begin{remark}
+Obviously, $V$ is f.g. / projective / simple / indecomposable / ... iff ${^g V}$ is the same because the conjugation action is given by self-equivalences of $A_1\mathsf{-Mod}$.
+\end{remark}
+
+\begin{remark}
+If $V$ is a $A_1$-submodule of some $\Res_1^G(W)$, then the multiplication $A_g V=u_g V$ is well-defined and also an $A_1$-submodule of $\Res_1^G(W)$. It is isomorphic to ${^gV}$ as one easily verifies.
+\end{remark}
+
+\begin{example}
+Let $A=k[\Gamma]$ with the $\Gamma/N$-grading of some normal subgroup $N\unlhd\Gamma$.
+
+Also note that $C_\Gamma(N)N\leq Stab(\Gamma,V)$. For $g\in C_\Gamma(N)$ the isomorphism is given simply by $V\to A_{gN}\otimes_{A_N} V, v\mapsto g\otimes v$.
+\end{example}
+
+\begin{lemma}[Clifford's first theorem; Semisimple $A$- and $A_1$-modules]\label{clifford_theory:semisimple_restriction}
+Let $k$ be a field and $A$ finite-dimensional.
+
+If $V$ is a simple $A$-module, then $\Res_1^G(V)$ is a semisimple $A_1$-module and its simple constituents are a single $G$-orbit.
+\end{lemma}
+\begin{proof}
+Let $0\neq U\leq\Res_1^G(V)$ be any simple $A_1$-submodule. Then $A_g U\subseteq V$ is a $A_1$-submodule which is isomorphic to $^gU$ and therefore itself simple. Now $\sum_{g\in G} A_g U$ is a non-zero $A$-submodule of $V$. By simplicity $V=\sum_{g\in G} A_g U$ so that $\Res_1^G(V)$ is semisimple.
+\end{proof}
+
+\begin{definition}
+For $H\leq G$ and $U\in\Irr(A_1)$ define
+\[\Irr(A_H | U) := \Set{V\in\Irr(A_H) | U \leq \Res_1^H(V)}\]
+\end{definition}
+
+\begin{theorem}[Clifford's theorem for irreducible modules]
+Let $k$ be a field and $A$ finite-dimensional. If $U\in A_1\mathsf{-mod}$ is irreducible and $T:=I_G(U)$ the stabiliser of its isomorphism class, then
+\[\Ind_T^G: \Irr(T | U) \to \Irr(G | U)\]
+is a well-defined bijection.
+\end{theorem}
+\begin{proof}
+Consider $J_1:=J(A_1)$ and $J:=J_1 A=\bigoplus_{g\in G} J_1 u_g$. Because conjugation with $u_g$ is an automorphism of $A_1$, we find $u_g J_1 u_g^{-1} = J_1$ so that indeed $u_g J_1 = J_1 u_g$ and thus $J_1 A=A J_1$ is a two-sided, graded ideal of $A$. Then $\overline{A} := A/J$ is also a $G$-graded algebra, but $\overline{A}_1=A_1/J_1$ is now semisimple.
+
+\medbreak
+The blocks of $\overline{A}_1$ are canonically isomorphic to $\Irr(\overline{A}_1)=\Irr(A_1)$ as $G$-sets. And now we really have $T=I_G(b_U)$ where $b_U\in Bl(\overline{A}_1)$ is the block containing $U$.
+
+\medbreak
+By the Fong-Reynolds theorem and its corollary, $\Ind_T^G$ is an equivalence
+\[\mathsf{mod}(\overline{A}_T|b_U) \to \mathsf{mod}(\overline{A}_G|b_U)\]
+As an equivalence it maps the simple objects in the left category bijectively to the simple objects in the right category. Note that all simple $A_H$-modules are naturally $\overline{A}_H$-modules, because by Clifford's first theorem, their restrictions to $A_1$ are all semisimple. Therefore the simple objects in $\mathsf{mod}(\overline{A}_H|b_U)$ are exactly $\Irr(A_H|b)$.
+\end{proof}

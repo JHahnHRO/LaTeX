@@ -1,0 +1,27 @@
+% !TeX root = clifford.tex
+% !TeX spellcheck = en_GB
+
+\begin{theorem}[Fong's first reduction; Clifford correspondence for indecomposable, relative projective modules]
+Let $U\in A_1\mathsf{-Mod}$ be indecomposable and $T:=Stab_ G(U)$ its stabiliser.
+
+\begin{enumerate}
+\item $\Ind_T^ G$ induces an equivalence of additive categories
+\[\operatorname{add}(\Ind_1^T(U)) \to \operatorname{add}(\Ind_1^G(U))\]
+\end{enumerate}
+
+Furthermore: If the Krull-Schmidt theorem is satisfied, then
+\begin{enumerate}[resume]
+\item If 
+\[\Ind_1^T(U)=V_1 \oplus \cdots \oplus V_m\]
+is the decomposition into indecomposables, then all $\Ind_T^G(V_i)$ are indecomposable and $\Ind_T^G(V_i) \isomorphic \Ind_T^G(V_j) \iff V_i \isomorphic V_j$.
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+a. Let $b\in Bl(A_1)$ be the block of $U$. Then $\Ind_1^H(U) \in \mathsf{mod}(A_H|b)$ by \ref{covering_of_blocks:induction_restriction} for all $H\leq G$.
+
+Obviously $\mathsf{mod}(A_H|b) = \bigoplus_{\beta\text{ covers }b} \beta\mathsf{-mod}$ is closed under taking direct summands and direct sums. Therefore $\operatorname{add}(\Ind_1^H(U)) \subseteq \mathsf{mod}(A_H|b)$.
+
+The result follows from the Fong-Reynolds theorem and its corollary.
+
+b. and c. obviously from a.
+\end{proof}

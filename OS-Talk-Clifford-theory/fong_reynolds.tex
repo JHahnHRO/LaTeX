@@ -1,0 +1,181 @@
+% !TeX spellcheck = en_GB
+% !TeX root = clifford.tex
+
+\begin{definition}[Covering of blocks]
+We say a block $B\in Bl(A)$ \udot{covers} $b\in Bl(A_1)$ iff $e_b e_B \neq 0$.
+\end{definition}
+
+\begin{lemma}[Covering in terms of bimodules]\label{covering_of_blocks:bimodules}
+TFAE:
+\begin{enumerate}
+\item $e_b e_B \neq 0$
+\item $b\cdot B\neq 0$
+\item $B\cdot b\neq 0$
+\item $b \mid \Res_{A_1\otimes A_1^{op}}^{A\otimes A^{op}}(B)$
+\end{enumerate}
+\end{lemma}
+\begin{proof}
+The first three are obviously equivalent because $b = e_b A_1=A_1 e_b$ and $B=Ae_b=e_BA$.
+
+We also have
+\[b \mid A_1 \mid \Res_{A_1\otimes A_1^{op}}^{A\otimes A^{op}}(A) = \bigoplus_{B\in Bl(A)} \Res_{A_1\otimes A_1^{op}}^{A\otimes A^{op}}(B)\]
+so that $b \mid \Res_{A_1\otimes A_1^{op}}^{A\otimes A^{op}}(\tilde{B})$ for some block $\tilde{B}$ of $A$ by the Krull-Schmidt theorem.
+
+Since $e_B$ annihilates all blocks of $A$ other than $B$, $e_B b \neq 0 \iff b \mid \Res_{A_1\otimes A_1^{op}}^{A\otimes A^{op}}(B)$.
+\end{proof}
+
+\begin{lemma}[Covering in terms of modules]\label{covering_of_blocks:induction_restriction}
+TFAE:
+\begin{enumerate}
+\item $B$ covers $b$.
+\item There exists an indecomposable $0\neq M\in A\mathsf{-mod}$ with $B M\neq 0 \neq b \Res_1^G(M)$.
+\item There exists an indecomposable $0\neq N\in A_1\mathsf{-mod}$ with $B \Ind_1^G(N) \neq 0 \neq b N$.
+\end{enumerate}
+\end{lemma}
+\begin{proof}
+a.$\implies$b.+c. follows by setting $M':=B$ and $N':=b$. By the previous lemma $bM' \neq 0$ and $BN'\neq 0$, therefore any indecomposable summand $M \mid M'$ and $N \mid N'$ does it.
+
+\medbreak
+b.$\implies$a. If $BM\neq 0 \neq b\Res_1^G(M)$, then $M=e_B M$ so that $0\neq e_b M=e_b e_B M$ so that $e_b e_B\neq 0$.
+
+\medbreak
+c.$\implies$a. If $bN\neq 0 \neq B\Ind_1^G(N)$, then $N=e_b N$. As a $k$-module $\Ind_1^G(N) = \bigoplus_{g\in G} u_g \otimes N$. Therefore there must be a $g\in G$ such that $0\neq e_B (u_g \otimes N) = e_B(u_g e_b \otimes N)$. Thus $e_B e_b \neq 0$.
+\end{proof}
+
+\begin{lemma}
+In that case, every block of $A$ covers exactly one $G$-conjugation class of blocks of $A_1$ and every block of $A_1$ is covered by at least one block of $A$.
+\end{lemma}
+\begin{proof}
+Step 1: Every $B\in Bl(A)$ covers at least one $b\in Bl(A_1)$, because
+\[0\neq e_B = e_B\cdot 1 = \sum_{b\in Bl(A_1)} e_B e_b\]
+Every $b\in Bl(A_1)$ is covered by at least one $B\in Bl(A)$, because
+\[0\neq e_b = 1\cdot e_b = \sum_{B\in Bl(A)} e_B e_b\]
+
+\smallbreak
+Step 2: If $B$ covers $b$, then it covers the whole conjugation class: $e_B e_b\neq 0 \implies e_B {^g e_b} = {^g e_B} {^g e_b} = {^g (e_B e_b)} \neq 0$ so that $B$ also covers ${^g b}$.
+
+\smallbreak
+Step 3: If $B$ covers $b$, then it does not cover more than the conjugation class.
+
+Let $C\subseteq Bl(A_1)$ be a $G$-conjugation class. Then
+\[e_C := \sum_{b\in C} e_b\]
+is a idempotent of $Z(A_1)$ that is $G$-invariant, i.e. it commutes with $A_1$ and all $u_g$. Therefore $e_C\in Z(A)$. It is therefore a sum of block idempotents of $A$.
+
+If $B$ covers $b$, then $e_B e_b\neq 0$ and thus $e_B e_C = \sum_{b\in C} e_B e_b\neq 0$ because the $e_B e_b$ all pairwise orthogonal idempotents. Therefore $e_B \leq e_C$. Conversely, if $e_B \leq e_C$, then $e_B e_C\neq 0$ so that $e_B e_b\neq 0$ for some (all by Step 2) $b\in C$.
+
+Thus, $B$ cannot cover blocks from two different $G$-conjugacy classes because $e_C$ and $e_{C'}$ are orthogonal if $C\neq C'$.
+\end{proof}
+
+\begin{example}[Principal blocks]
+Let $N\unlhd\Gamma$ be a normal subgroup. Consider $A=k[\Gamma]$ with the $\Gamma/N$-grading as above. Then the principal block $b_0\in Bl(k[N])$ is $G$-invariant and covered by the principal block $B_0\in Bl(k[\Gamma])$.
+\end{example}
+\begin{proof}
+Let $\nu: k[\Gamma] \to k$ be the augmentation map. $b_0$ is the unique block $b$ of $k[N]$ with $\nu(e_b)=1$. Since $\nu$ is $\Gamma$-equivariant, $\nu({^\gamma e_{b_0}}) = 1$ so that ${^\gamma e_{b_0}} = e_{b_0}$ for all $g\in\Gamma$.
+
+Because $\nu(e_{B_0})=1$ as well, $0\neq 1=\nu(e_{B_0})\nu(e_{b_0})=\nu(e_{B_0}e_{b_0})$ so that $e_{B_0}e_{b_0}\neq 0$.
+\end{proof}
+
+\begin{theorem}[Clifford-Fong-Reynolds correspondence]
+Let $b\in Bl(A_1)$ be a block and $T:=I_ G(b)$ its inertial group.
+
+There is a bijection
+\[\Set{\beta\in Bl(A_T) | \beta \;\text{covers}\; b} \to \Set{B\in Bl(A) | B \;\text{covers}\; b}\]
+the \udot{Fong-Reynolds correspondence} or \udot{Clifford correspondence for blocks}, given by
+\begin{itemize}
+\item the trace map $\tr_T^G$ on block idempotents. (Remember that $C_A(A_1)$ is a $G$-algebra and contains $Z(A_1)$ and $Z(A)$)
+\item induction $\Ind_{A_T\otimes A_T^{op}}^{A\otimes A^{op}}$ on bimodules.
+\item $\beta\mapsto \beta^{ G/T\times G/T}$ on $k$-algebras.
+\item $\beta\mapsto A\beta A$ on subsets of $A$.
+\end{itemize}
+The Clifford correspondent $B\in Bl(A)$ of $\beta\in Bl(A_T)$ is Morita equivalent to $\beta$, via
+\[\Ind_{A_T}^A: \beta\mathsf{-Mod} \leftrightarrows B\mathsf{-Mod} : e_\beta \Res_{A_T}^A\]
+and $Z(\beta) \xrightarrow[\isomorphic]{\tr_T^G} Z(B)$ is the isomorphism (of $k$-algebras) induced by this equivalence.
+\end{theorem}
+\begin{proof}
+The block ${^g \beta}\in Bl({^g A_T})=Bl(A_{^g T})$ covers ${^g b}\in Bl(A_1)$ and only that, because $\beta$ covers $b$ and only $b$, because $b$ is invariant under conjugation by $T$.
+
+\medbreak
+Step 0: These idempotents are pairwise orthogonal as elements of $A$, because if $g,g'\in G$ are arbitrary and $\beta,\beta'\in Bl(A_T)$ both cover $b$, then
+\begin{align*}
+(^g e_\beta)(^{g'} e_{\beta'}) \cdot 1 &= {^g e_\beta}\sum_{b_1\in Bl(A_1)} \underbrace{{^{g'} e_{\beta'}} \cdot e_{b_1}}_{\neq 0 \iff b_1={^{g'} b}} \\
+&= {^g e_\beta} \cdot{^{g '} e_{\beta'}} \cdot {^{g'} e_b} \\
+&= \underbrace{{^g e_\beta} \cdot {^{g'} e_b}}_{\neq 0 \iff {^g b}={^{g'} b}} \cdot{^{g'} e_{\beta'}} \\
+&= \delta_{g T, g'T} \cdot ({^g e_\beta} \cdot {^g e_b}) \cdot {^g e_{\beta'}} \\
+&= \delta_{g T, g'T} \cdot {^g(e_\beta e_b e_{\beta'})} \\
+&= \delta_{g T, g'T} \cdot {^g(e_b e_\beta e_{\beta'})} \\
+&= \delta_{g T, g'T} \cdot \delta_{\beta,\beta'} {^g(e_b e_\beta)}
+\end{align*}
+Therefore $e_B:=\tr_T^G(e_\beta) = \sum_{g T} {^g e_\beta}$ is also an idempotent. By construction it is also $G$-invariant and because $e_\beta\in Z(A_T)$, it commutes with $A_1$. Hence it is central in $A$. We will prove that it is an indecomposable central idempotent. We let $B:=Ae_B = e_B A$ be the ideal generated by $e_B$.
+
+\smallbreak
+Step 1: First we claim that
+\begin{equation}\label{fong_reynolds:B_equals_A_beta_A}
+B=Ae_\beta A \tag{$\ast$}
+\end{equation}
+This follows from $e_\beta = e_\beta e_B \in A e_B$ on one hand and ${^g e_\beta} =u_g e_\beta u_g^{-1} \in A e_\beta A$ on the other.
+
+\smallbreak
+Step 2: Furthermore $e_B = \sum_{g T} {^g e_\beta}$ is a decomposition of the identity of $B$ into orthogonal idempotents. Therefore $B=\bigoplus_{gT,hT} ({^g e_\beta})B({^h e_\beta})$ as $k$-modules. Note that
+\begin{equation}\label{fong_reynolds:corners_of_B}
+({^g e_\beta}) B ({^h e_\beta}) = u_g \beta u_h^{-1} \tag{$\ast\ast$}
+\end{equation}
+because $u_g \beta u_h^{-1} = (u_g e_\beta u_g^{-1})(u_g\beta u_h^{-1})(u_he_\beta u_h^{-1}) \subseteq ({^g e_\beta})(A\beta A)({^h e_\beta}) \overset{(\ast)}{=} ({^g e_\beta})B({^h e_\beta})$ and conversely $B=A\beta A = \sum_{gT,hT} (u_g A_T)\beta(A_T u_h^{-1}) = \sum_{gT,hT} u_g \beta u_h^{-1}$.
+
+\smallbreak
+Step 3: The decompositions $B=\bigoplus u_g\beta u_h^{-1}$ and $A=\bigoplus_{g T} u_g A_T = \bigoplus_{h T} A_T u_h^{-1}$ together prove $B\isomorphic\Ind_{A_1\otimes A_1 {op}}^{A\otimes A^{op}}(\beta)=A\otimes_{A_T} \beta \otimes_{A_T} A$ as bimodules. This also proves that $\beta^{ G/T\times  G/T} \to B, (a_{gT,hT}) \mapsto \sum_{gT,hT} u_g a_{g,h}u_h^{-1}$ is a isomorphism of algebras.
+
+\smallbreak
+This proves that $B$ is a matrix algebra over $\beta$. Its two-sided ideals are therefore in bijection with the two-sided ideals of $\beta$ and no proper decomposition exists. In particular, $B$ is indecomposable, i.e. a block.
+
+\medbreak
+Now that we have established well-definedness of the map, we still need to show that it is bijective. Injectivity follows from the orthogonality proved in step 0.
+
+If $B\in Bl(A)$ covers $b$, then $0\neq e_B e_b = \sum_{\beta\in Bl(A_T)} e_B e_\beta e_b$ so that there must be a $\beta\in Bl(A_T)$ with $e_\beta e_b\neq 0$ and $e_B e_\beta \neq 0$. But then $e_B \tr_T^G(e_\beta) \neq 0$ because the summands in $\tr_T^G(e_\beta)=\sum_{g T} {^g e_\beta}$ are pairwise orthogonal idempotents. Since $\tr_T^G(e_\beta)$ is itself a block idempotent, it must be equal to $e_B$. This proves surjectivity.
+
+\medbreak
+Finally we have to prove the statement about the explicit shape of Morita equivalences. We have already seen that $B \overset{\eqref{fong_reynolds:B_equals_A_beta_A}}{=} Ae_\beta A=Be_\beta B$ and $e_\beta B e_\beta \overset{\eqref{fong_reynolds:corners_of_B}}{=} u_1 \beta u_1^{-1} = \beta$. Therefore a Morita equivalence $\beta \leftrightarrow B$ is given by tensoring with the corresponding bimodules:
+\[ Be_\beta \otimes_{\beta} - : \beta\mathsf{-Mod} \leftrightarrows B\mathsf{-Mod} : e_\beta B \otimes_B - \]
+For all $N\in B\mathsf{-Mod}$:
+\begin{align*}
+e_\beta \Res_{A_T}^A(N) &= e_\beta A \otimes_A N \\
+&= e_\beta \bigoplus_{\tilde{B}\in Bl(A)} \tilde{B} \otimes_{\tilde{B}} e_{\tilde{B}} N \\
+&= e_\beta B\otimes_B N
+\end{align*}
+
+Now we observe that $B$ is the unique block of $A$ with $e_{\tilde{B}} e_\beta \neq 0$ because $e_{\tilde{B}} e_\beta \neq 0 \implies \forall  g: e_{\tilde{B}} {^g e_\beta} \neq 0 \implies e_{\tilde{B}} \tr_T^ G(e_\beta) \neq 0 \implies \tilde{B}=B$. Thus for all $M\in \beta\mathsf{-Mod}$:
+\begin{align*}
+\Ind_{A_T}^A(M) &= A \otimes_{A_T} M \\
+&= \bigoplus_{\tilde{B}\in Bl(A)} \tilde{B}\otimes_{A_T} M &\text{because $A=\bigoplus \tilde{B}$ as $A$-$A_T$-bimodules}\\
+&= \bigoplus_{\substack{\tilde{B}\in Bl(A) \\ \tilde{\beta}\in Bl(A_T)}} \tilde{B}e_{\tilde{\beta}}\otimes_{\tilde{\beta}} e_{\tilde{\beta}} M &\text{because $A_T=\bigoplus \tilde{\beta}$ as $A_T$-$A_T$-bimodules}\\
+&= \bigoplus_{\tilde{B}} \tilde{B}e_\beta \otimes_\beta M &\text{because }M\in\beta\mathsf{-Mod} \\
+&= Be_\beta \otimes_\beta M
+\end{align*}
+
+For the statement about the trace map just observe that $(^g z)\cdot (^{g'} z') = ({^g z}{^g e_\beta})({^{g'}e_\beta}{^{g'} z'}) = \delta_{gT,g'T} {^g(zz')}$ by step 0. This immediately proves multiplicativity of the trace map and we have $\tr_T^G(e_\beta)=e_B$ by construction of $B$ so that it is indeed a homomorphism of $k$-algebras.
+
+Therefore multiplication by $\tr_T^G(z) \in Z(B)$ acts as $\Ind_T^G(z)$ on $\Ind_T^G(X)$:
+\begin{align*}
+\tr_T^G(z) \cdot u_h\otimes x &= \sum_g u_g z u_g^{-1} u_h \otimes x \\
+&= \sum_g u_h (u_h^{-1} u_g)z(u_h^{-1} u_g)^{-1}  \otimes x\\
+&= \sum_g u_h u_{h^{-1}g}^{-1} z u_{h^{-1} g}^{-1} \otimes x &\text{because }z\in C_{A_T}(A_1) \wedge u_x u_y \equiv u_{xy} \mod A_1 \\
+&= \sum_g u_h u_g z u_g^{-1} \otimes x \\
+&= \sum_g u_h \underbrace{(^g z){^1 e_\beta}}_{=\delta_{g,1} z} \otimes x \\
+&= u_h z e_\beta x \\
+&= u_h \otimes zx \qedhere
+\end{align*}
+\end{proof}
+
+\begin{remark}
+Choosing different units $v_g\in A^\times\cap A_{gT}$ instead of $u_g$ will result in a different isomorphism $B \leftrightarrow \beta^{G/T \times G/T}$. The isomorphisms will differ by conjugation with a diagonal matrix with entries from $A_T^\times$.
+\end{remark}
+
+\begin{lemmadef}
+Let $b\in Bl(A_1)$ and $H\leq G$ be arbitrary. Then we define the full subcategory
+\[\mathsf{mod}(H|b) := \bigoplus_{\substack{\beta \in Bl(A_H) \\ \beta \text{ covers } b}} \beta\mathsf{-mod} = \Set{M \in A_H\mathsf{-mod} | Res_1^H(M) \in \bigoplus_{g\in H/I_H(b)} {^g b}\mathsf{-mod}}\]
+
+Furthermore set $T:=I_G(b)$. Then with this notation $\Ind_{A_T}^A$ is an equivalence
+\[\mathsf{mod}(T|b) \to \mathsf{mod}(G|b)\]
+\end{lemmadef}
+\begin{proof}
+This follows then directly from \ref{covering_of_blocks:induction_restriction} and the Fong-Reynolds theorem.
+\end{proof}

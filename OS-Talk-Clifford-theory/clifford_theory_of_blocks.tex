@@ -1,0 +1,53 @@
+% !TeX root = repth.tex
+% !TeX spellcheck = en_GB
+
+\begin{corollary}[Unique covering]
+If $B\in Bl(k[G])$ is the only block covering $b\in Bl(k[N])$, then $B \isomorphic (e_b k[I])^{k\times k}$ where $k:=\abs{G:I_G(b)}$.
+\end{corollary}
+\begin{proof}
+If $B$ is the only block of $G$ covering $b$, then its Clifford correspondent $\beta$ is also the only block of $I$ covering $b$. By Clifford-Fong $B \isomorphic \beta^{k\times k}$. Therefore we only need to prove $\beta\isomorphic e_b k[I]$. Since $e_\beta=\sum_{\beta\;\text{covers}\;b} e_b = \sum_{gI} {^g e_b} = e_b$, the block idempotents are equal so that $\beta=e_\beta k[I]=e_b k[I]$.
+\end{proof}
+
+\begin{corollary}[Clifford-Fong correspondence vs. Brauer correspondence]
+Let $B\in Bl(k[G])$ be a block covering $b\in Bl(k[N])$. If the Brauer correspondent of $b$ is defined, then it is $B$ and $B$ is the only block covering $b$.
+\end{corollary}
+\begin{proof}
+The Brauer correspondent $\tilde{B}:=b^G$ is the unique block of $G$ with $b \mid \Res_{N\times N}^{G\times G}(\tilde{B})$. Since $B$ is one such block, $B=\tilde{B}$.
+\end{proof}
+
+\begin{corollary}[Clifford-Fong-Reynolds correspondence vs. defect groups]
+Let $B\in Bl(k[G])$ be a block covering $b\in Bl(k[N])$, $I:=I_G(b)$ its inertial group and $\beta\in Bl(k[I])$ the Clifford-Fong correspondent of $B$. Then:
+\begin{enumerate}
+\item $Def(\beta) =_G Def(B)$. In particular $Def(B) \leq_G I$.
+\item For every $D_0\in Def(b)$ there is a $D\in Def(B)$ such that $D_0=D\cap N$.
+\item If $k=\IF$ is sufficiently large, then there is defect group $D\in Def(B)$ such that $p \nmid \abs{T:DN}$, i.e. $DN/N \in Syl_p(T/N)$.
+\end{enumerate}
+\end{corollary}
+\begin{proof}
+a. If $b$ is covered by $B$, then $e_B=\tr_I^G(e_\beta)$ by the Clifford-Fong correspondence. If $D'\in Def(\beta)$, then there is an $\alpha\in \beta^I$ such that $e_\beta=\tr_{D'}^I(\alpha)$.
+
+Therefore $e_B = \tr_{D'}^I(\alpha)$ so that $Def(B) \leq_G D' \leq I$ by minimality of defect groups.
+
+Furthermore $\beta$ is a corner of $\beta^{k\times k} \isomorphic B$ so that $\beta \mid \Res_{I\times I}^{G\times G}(B) \overset{\ref{vertex_source:restriction_to_subgroups}}{\implies} Def(\beta) = vx(\beta) \leq_{G\times G} vx(B)=\Delta(Def(B)) \implies Def(\beta) \leq_G Def(B)$.
+
+\medbreak
+b. First of all, $b \mid \Res_{N\times N}^{G\times G}(B)$ implies $\Delta(D_0)=vx(b) \leq_{G\times G} vx(B) = \Delta(Def(B))$ by \ref{vertex_source:restriction_to_subgroups} which already proves one direction, namely $D_0 \leq_G D\cap N$.
+
+\smallbreak
+For the other direction, let $e_b = \tr_{D_0}^N(\alpha)$. Then $e_B \leq \sum_{gT} {^g e_b} = \sum_{gT} {^g \tr_{D_0}^N(\alpha)} = \sum_{gT} \tr_{^g D_0}^N({^g \alpha})$ so that $e_B = \sum_{gT} \tr_{^g D_0}^N({^g \alpha}e_B)$. We conclude 
+\[e_B \in \sum_{gT} \im(\tr_{^g D_0}^N) \overset{\ref{trace:image_of_trace_in_fixed_points}}{=} \operatorname{span}\Set{\tilde{C}^+ | \tilde{C}\in Cl_N(G), Def_N(C) \leq_N D_0}\]
+Therefore we have some linear combination
+\[e_B = \sum_{\substack{\tilde{C}\in Cl_N(G) \\ Def_N(\tilde{C}) \leq_N D_0}}  g_{\tilde{C}} \tilde{C}^+\]
+We also have a linear combination
+\[e_B = \sum_{\substack{C\in Cl(G) \\ Def(C) \leq_G D}}  g_C C^+\]
+by \ref{defect_groups:def_of_blocks_vs_def_of_conjugacy_classes}. We compare these two linear combinations.
+
+Now note that if a $G$-conjugacy class $C$ is equal to a union $\tilde{C}_1 \sqcup \ldots \sqcup \tilde{C}_k$ of $N$-conjugacy classes, then $C_N(x_i)=C_G(x_i)\cap N$ is conjugated to $C_N(x_j)=C_G(x_j)\cap N$ for all $1\leq i,j\leq k$. In particular, the defect groups of $\tilde{C_i}$ are all $G$-conjugated. Moreover every sylow-$p$-subgroup of $C_N(x)=C_G(x)\cap N$ is of the form $S\cap N$ where $S$ is a sylow-$p$-subgroup of $C_G(x)$. This proves $Def_N(x^N) =_G Def(x^G)\cap N$.
+
+We also know that there is at least one non-zero summand $ g_C C^+$ with  $Def(C)=_G D$ in the second sum, again by \ref{defect_groups:def_of_blocks_vs_def_of_conjugacy_classes}. This means that there must be a non-zero summand $ g_{\tilde{C}} \tilde{C}^+$ in the first sum with $Def_N(\tilde{C}) =_G D\cap N$.
+
+This proves the other direction $D\cap N \leq_G D_0$.
+
+\medbreak
+c. \todo{Finish proof}
+\end{proof}
