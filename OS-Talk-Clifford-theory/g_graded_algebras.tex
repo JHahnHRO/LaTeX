@@ -9,7 +9,7 @@ $A$ is a \emph{crossed} $G$-graded algebra if each $A_g$ contains a unit.
 \end{definition}
 
 \begin{remark}
-The homogeneous components of a crossed $G$-graded algebra all have the same dimension because $A_g = u_g A_1 = A_1 u_g$ if $u_g\in A_g\cap A^\times$. In particular: The units $u_g$ are unique up to multiplication with a unit from $A_1^\times$ and every crossed graded algebra is fully graded. The converse need not hold.
+The homogeneous components of a crossed $G$-graded algebra all have the same dimension because $A_g = u_g A_1 = A_1 u_g$ if $u_g\in A_g\cap A^\times$. In particular: The units $u_g$ are unique up to multiplication with a unit from $A_1^\times$.
 \end{remark}
 
 \begin{example}[Group algebras and twisted group algebras]
@@ -17,10 +17,10 @@ $k[G]$ is a crossed $G$-graded algebra. More generally $k_\alpha[G]$ is a crosse
 \end{example}
 
 \begin{example}[Quotient groups]
-If $A$ is $G$-graded and $\phi:G\to\Gamma$ is a group homomorphism, then $A$ is also $\Gamma$-graded via
-\[A_\gamma := \bigoplus_{g\in\phi^{-1}(\gamma)} A_g\]
+If $A$ is $\Gamma$-graded and $\phi:\Gamma\to G$ is a group homomorphism, then $A$ is also $G$-graded via
+\[A_g := \bigoplus_{\gamma\in\phi^{-1}(g)} A_\gamma\]
 
-If $A$ is crossed as a $G$-graded algebra and $\phi$ surjective, then it is also crossed as a $\Gamma$-graded algebra.
+If $A$ is crossed as a $\Gamma$-graded algebra and $\phi$ surjective, then it is also crossed as a $G$-graded algebra.
 \end{example}
 
 \begin{example}[Subgroups]
@@ -34,11 +34,11 @@ Furthermore: If $X=gH$ is a coset, then $A_X$ is a $A_{^g H}$-$A_H$-bimodule.
 
 \begin{example}[Tensorproducts of graded algebras]
 \begin{itemize}
-\item  Let $A$ and $B$ be two (fully graded / crossed) $G$-graded $k$-algebras. Then $A\otimes_k B$ is a (fully graded / crossed) $G\times G$-graded algebra via $(A\otimes B)_{g,h} = A_g\otimes_k B_h$.
+\item  Let $A$ and $B$ be two (crossed) $G$-graded $k$-algebras. Then $A\otimes_k B$ is a (crossed) $G\times G$-graded algebra via $(A\otimes B)_{g,h} = A_g\otimes B_h$.
 
 \item The diagonal subalgebra of the tensor product
 \[A \odot B := \sum_{g\in G} A_g\otimes B_g \subseteq A\otimes B\]
-is a (fully graded / crossed) $G$-graded algebra.
+is a (crossed) $G$-graded algebra.
 
 \item $\odot$ is associative and $k[G]$ is the neutral element.
 
@@ -53,9 +53,9 @@ is a (fully graded / crossed) $G$-graded algebra.
 \begin{proposition}[Conjugation action]
 Let $A$ be a crossed $G$-graded algebra. Then
 
-Conjugation with $u_g\in A_g\cap A^\times$ defines a homomorphism $G\to Out(A_1)$ or more generally to $\operatorname{gradedAut}(A)/\operatorname{Inn}(A_1)$.
+Conjugation with $u_g\in A_g\cap A^\times$ defines a homomorphism $G\to \operatorname{Out}(A_1)$ or more generally to $\operatorname{gradedAut}(A)/\operatorname{Inn}(A_1)$.
 
-Therefore $G$ acts by conjugation on everything that is invariant under multiplication with $A_1$ in an appropriate sense, i.e. the center of $A_1$, the set of two sided ideals of $A_1$, $\Hom_{A_1}(X,Y)$ for modules etc.
+Therefore $G$ acts by conjugation on everything that is invariant under multiplication with $A_1$ in an appropriate sense, e.g. the center of $A_1$, the centraliser $C_A(A_1)$, the set of two sided ideals of $A_1$, the blocks of $A_1$, the module category of $A_1$, $\Hom_{A_1}(X,Y)$ for modules, ...
 \end{proposition}
 \begin{proof}
 $u_g u_h$ is a unit in $A_g A_h\subseteq A_{gh}$ and therefore $u_g u_h=u_{gh} a$ for some $a\in A_1^\times$. Therefore $\kappa_{u_{gh}} \equiv \kappa_{u_g}\circ\kappa_{u_h} \mod Inn(A_1)$ where $\kappa_u$ is conjugation with $u$.

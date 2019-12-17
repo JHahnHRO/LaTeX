@@ -2,26 +2,50 @@
 % !TeX spellcheck = en_GB
 
 \begin{theorem}[Fong's first reduction; Clifford correspondence for indecomposable, relative projective modules]
-Let $U\in A_1\mathsf{-Mod}$ be indecomposable and $T:=Stab_ G(U)$ its stabiliser.
+Assume that the Krull-Schmidt theorem holds for f.g. $k$-Algebras and that $A$ is f.g. over $k$.
+
+Let $U\in A_1\mathsf{-Mod}$ be indecomposable and $T:=I_G(U)$ its stabiliser.
 
 \begin{enumerate}
 \item $\Ind_T^ G$ induces an equivalence of additive categories
 \[\operatorname{add}(\Ind_1^T(U)) \to \operatorname{add}(\Ind_1^G(U))\]
-\end{enumerate}
-
-Furthermore: If the Krull-Schmidt theorem is satisfied, then
-\begin{enumerate}[resume]
 \item If 
 \[\Ind_1^T(U)=V_1 \oplus \cdots \oplus V_m\]
 is the decomposition into indecomposables, then all $\Ind_T^G(V_i)$ are indecomposable and $\Ind_T^G(V_i) \isomorphic \Ind_T^G(V_j) \iff V_i \isomorphic V_j$.
 \end{enumerate}
 \end{theorem}
-\begin{proof}
-a. Let $b\in Bl(A_1)$ be the block of $U$. Then $\Ind_1^H(U) \in \mathsf{mod}(A_H|b)$ by \ref{covering_of_blocks:induction_restriction} for all $H\leq G$.
+\begin{proof}%[Alternative proof]
+We only prove a. because b. follows from that. Consider $\hat{U}=\bigoplus_{gT\in G/T} {^g U} \in A_1\mathsf{-Mod}$ and the algebra $\mathcal{E}:=\End_A(\Ind_1^G(\hat{U}))$. Because $\hat{U}$ is $G$-invariant, $\mathcal{E}$ is a crossed $G$-graded algebra via
+\[\mathcal{E}_g := \Set{\phi\in\mathcal{E} | \phi(1\otimes \hat{U}) \subseteq A_{g^{-1}}\otimes \hat{U}}\]
+It is crossed because if we fix isomorphisms $\alpha_g: \hat{U} \to {^g\hat{U}}$, then $\nu_g := a\otimes x \mapsto au_g^{-1} \otimes\alpha_g(x)$ is an invertible element of $\mathcal{E}_g$.
 
-Obviously $\mathsf{mod}(A_H|b) = \bigoplus_{\beta\text{ covers }b} \beta\mathsf{-mod}$ is closed under taking direct summands and direct sums. Therefore $\operatorname{add}(\Ind_1^H(U)) \subseteq \mathsf{mod}(A_H|b)$.
+Note that $\mathcal{E}_H = \Set{\phi | \phi(A_H\otimes\hat{U})\subseteq A_H\otimes\hat{U}}$ for all $H\leq G$. In particular $\mathcal{E}_H \isomorphic \End_{A_H}(\Ind_1^H(\hat{U}))$. Remember that the blocks of $\End(X)$ correspond to (isomorphism classes of) indecomposable summands of $X$. In particular $\mathcal{E}$ has only a single $G$-conjugacy class of blocks so that all blocks of $\mathcal{E}$ cover all blocks of $\mathcal{E}_1$.
 
-The result follows from the Fong-Reynolds theorem and its corollary.
+Now we set $X_H:=\Ind_1^H(\hat{U})$ and consider the following diagram:
+\[\begin{tikzcd}
+A_T\mathsf{-Mod} \arrow[rr,"{\Hom(X_T,-)}"] \arrow[d,"\Ind_T^G"] && \mathsf{Mod-}\mathcal{E}_T \arrow[d,"\Ind_T^G"] \\
+A\mathsf{-Mod} \arrow[rr,"{\Hom(X_G,-)}"] && \mathsf{Mod-}\mathcal{E}
+\end{tikzcd}\]
+We claim that it is commutative up to natural isomorphism, i.e.
+\[\Hom_{A_T}(X_T,-)\otimes_{\mathcal{E}_T}\mathcal{E} \isomorphic \Hom_A(X_G,\Ind_T^G(-))\]
+First we apply the induction-restriction adjunction and Mackey decomposition to reduce the claim to
+\[\Hom_{A_1}(\hat{U},\Res_1^T(-))\otimes_{\mathcal{E}_T}\mathcal{E} \isomorphic \Hom_{A_1}(\hat{U},\bigoplus_{gT} \Res_1^{^g T}({^g(-)}) \isomorphic \bigoplus_{gT} \Hom_{A_1}(\hat{U},{^g \Res_1^T(-)})\]
 
-b. and c. obviously from a.
+For a homogeneous element $\phi\in\mathcal{E}_g$ we denote by $\phi^0$ the induced $A_1$-linear map $\hat{U}\to{^g \hat{U}}$, i.e. $\phi(1\otimes x) = u_g^{-1}\otimes\phi^0(x)$. With this notation, the isomorphisms we seek are given by
+\[\left\{\begin{array}{rcl}
+\Hom_{A_1}(\hat{U},\Res_1^T(Y))\otimes_{\mathcal{E}_T} \mathcal{E} &\leftrightarrows& \bigoplus_{gT} \Hom_{A_1}(\hat{U},{^g \Res_1^T(Y)}) \\
+\displaystyle
+f\otimes\sum_{g\in G} \phi_g &\mapsto& \displaystyle(f\circ\sum_{g\in hT} \phi_g^0)_{hT\in G/T} \\
+\displaystyle
+\sum_{gT\in G/T} (f_g\circ\alpha_g^{-1})\otimes\nu_g &\leftarrow& (f_g)_{gT\in G/T}
+\end{array}\right.\]
+Note that $\nu_g^0 = \alpha_g$ by definition and that $\mathcal{E}_g = \mathcal{E}_1\nu_g$.
+
+\medbreak
+Now it is generally true that $\Hom(X,-)$ induces an equivalence of the subcategories $\operatorname{add}(X) \to \End(X)^{op}\mathsf{-proj}$. Finitely generated projectives are mapped to finitely generated projectives by equivalences and additive functors map $\operatorname{add}(..)$ into $\operatorname{add}(..)$ so that our diagram restricts to a commutative (up to natural isomorphism) diagram of functors
+\[\begin{tikzcd}
+\operatorname{add}(X_T) \arrow[rr,"{\Hom(X_T,-)}","\isomorphic"'] \arrow[d,"\Ind_T^G"] && \mathcal{E}_T^{op}\mathsf{-proj} \arrow[d,"\Ind_T^G","\isomorphic"'] \\
+\operatorname{add}(X_G) \arrow[rr,"{\Hom(X_G,-)}","\isomorphic"'] && \mathcal{E}^{op}\mathsf{-proj}
+\end{tikzcd}\]
+in which the two horizontal arrows are equivalences and the right arrow is also an equivalence by the Clifford-Fong-Reynolds theorem. Therefore the left arrow is an equivalence which is what we wanted to prove.
 \end{proof}
